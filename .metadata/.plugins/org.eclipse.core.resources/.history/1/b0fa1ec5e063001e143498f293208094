@@ -1,0 +1,6 @@
+package com.acorn.day2;
+
+public class Movie {
+	String name;
+	int price;
+}

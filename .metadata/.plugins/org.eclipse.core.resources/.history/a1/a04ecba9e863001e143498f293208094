@@ -1,0 +1,10 @@
+package com.acorn.day2.db;
+
+public class DBTest2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

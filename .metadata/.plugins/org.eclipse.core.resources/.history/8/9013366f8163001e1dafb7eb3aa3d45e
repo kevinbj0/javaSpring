@@ -1,0 +1,20 @@
+package com.acorn.day1.di;
+
+public class Program {
+	Calculator calculator;
+
+	public Program() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Program(Calculator calculator) {
+		super();
+		this.calculator = calculator;
+	}
+
+	public void setCalculator(Calculator calculator) {
+		this.calculator = calculator;
+	}
+	
+	
+}

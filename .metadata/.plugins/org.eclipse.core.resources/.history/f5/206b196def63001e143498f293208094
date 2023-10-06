@@ -1,0 +1,11 @@
+package com.acorn.day2.db;
+
+public class DBTest3 {
+	public static void main(String[] args) {
+		
+	}
+	public void select() {		
+		String sql="select * from member_tbl_11";
+		try {
+			Connection con = ds.getConnection();
+}

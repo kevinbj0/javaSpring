@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+function register(){
+	alert("sd")
+}
+</script>
+</head>
+<body>
+<input type = "text" id = "name">
+<input type = "text" id = "actor">
+<button onclick = register()>등록</button>
+
+</body>
+</html>

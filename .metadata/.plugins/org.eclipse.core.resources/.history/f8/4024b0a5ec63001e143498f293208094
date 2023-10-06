@@ -1,0 +1,14 @@
+package com.acorn.day2.db;
+
+public class 랩퍼클래스테스트 {
+
+	public static void main(String[] args) {
+		int a = 3;
+		Integer i1 = a;
+		Integer i2 = new Integer(a);
+		
+		System.out.println(i1);
+		System.out.println(i2.intValue());
+	}
+
+}

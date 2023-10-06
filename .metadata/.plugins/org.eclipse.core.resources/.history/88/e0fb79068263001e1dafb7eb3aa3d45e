@@ -1,0 +1,10 @@
+package com.acorn.day1.di;
+
+public class ProgramTest1 {
+
+	public static void main(String[] args) {
+		Program p = new Program();
+		program.addP(5,3);
+	}
+
+}

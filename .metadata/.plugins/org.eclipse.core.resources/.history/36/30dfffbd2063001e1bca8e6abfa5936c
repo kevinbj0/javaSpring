@@ -1,0 +1,28 @@
+package com.acorn.test;
+
+import java.lang.annotation.Annotation;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class AController implements Controller{
+
+	@GetMapping("/test4")
+	public void test1() {
+		
+	}
+
+	@Override
+	public Class<? extends Annotation> annotationType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String value() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

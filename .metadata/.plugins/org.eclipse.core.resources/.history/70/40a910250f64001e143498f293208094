@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+let data = [
+	{name:'무빙', actor:'류승룡'},
+	{name:'더글로리', actor:'송혜교'}	
+];
+
+let str = "";
+
+for(let i =0; i<data.length; i++){
+let item = data[i];
+str += "<li>" + item.name +"</li>""
+</body>
+</html>

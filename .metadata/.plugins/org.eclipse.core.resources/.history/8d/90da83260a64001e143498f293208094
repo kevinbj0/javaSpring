@@ -1,0 +1,7 @@
+package com.acorn.day2.api;
+
+@Data
+public class Drama {
+	String name;
+	String actor;
+}	

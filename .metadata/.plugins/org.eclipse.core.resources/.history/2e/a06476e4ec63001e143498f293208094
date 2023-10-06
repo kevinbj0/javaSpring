@@ -1,0 +1,17 @@
+package com.acorn.day2.db;
+
+public class 랩퍼클래스테스트 {
+	public static void main(String[] args) {
+		int a = 3;
+		Integer i1 = a;
+		Integer i2 = new Integer(a);
+		
+		//오토박싱 : 기본형 -> 객체형으로 자동으로 만들어줌
+		System.out.println(i1);
+		System.out.println(i2.intValue());
+		
+		int result = i2.intValue();
+		System.out.println(result);
+	}
+
+}

@@ -1,0 +1,16 @@
+package com.acorn.day2;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MovieService {
+	
+	ArrayList<Movie> list = new ArrayList<Movie>();
+	
+	
+	public ArrayList<Movie> pMovie(){
+		
+	}
+}

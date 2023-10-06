@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html>
+<script>
+function search(){
+	//alert("드라마조회");
+	$.ajax({
+		type:"GET",
+		url:"/day2/drama",
+		success:function(data){
+			console.log(data);
+			let result = toHTML(data);
+			$("#result").html(result);
+		},
+		error: function(){
+			
+		}
+	});
+}
+
+function toHTML(d){
+	
+}
+</script>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button onclick = "search()">드라마 조회</button>
+<div id = "result"></div>
+</body>
+</html>

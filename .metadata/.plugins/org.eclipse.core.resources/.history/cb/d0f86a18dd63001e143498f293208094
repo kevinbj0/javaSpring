@@ -1,0 +1,12 @@
+package com.acorn.day2;
+
+import org.springframework.stereotype.Controller;
+
+
+//매핑을 매서드 단위로
+@Controller
+public class TestController {
+	public String test1() {
+		return "test";
+	}
+}

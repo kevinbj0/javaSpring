@@ -1,0 +1,28 @@
+package com.acorn.day2.api;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class ApiController2 {
+	//조회
+	public ArrayList<Drama> getList(){
+		
+		ArrayList<Drama> list = new ArrayList<Drama>();
+		Drama drama = new Drame();
+		drama.setName
+		return null;
+		
+	}
+	
+	
+	//등록
+	
+	//변경
+	
+	//삭제
+	
+}

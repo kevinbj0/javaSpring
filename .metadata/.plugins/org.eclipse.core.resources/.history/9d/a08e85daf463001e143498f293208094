@@ -1,0 +1,15 @@
+package com.acorn.day2.실습;
+
+import javax.sql.DataSource;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MovieDAO {
+	
+	DataSource ds;
+	
+	public ArrayList<Movie> MoviePrint{
+		
+	}
+}

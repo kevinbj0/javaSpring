@@ -1,0 +1,34 @@
+package com.acorn.day2.실습;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MovieDAO {
+	
+	@Autowired
+	DataSource ds;
+	
+	public ArrayList<Movie> MoviePrint(){
+		ArrayList<Movie> list = new ArrayList<Movie>();
+		String sql = "select *from amovietbl";
+		
+		Connection con = ds.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		
+		while(rs.next()) {
+			
+		}
+		
+		
+		return list;
+	}
+}
