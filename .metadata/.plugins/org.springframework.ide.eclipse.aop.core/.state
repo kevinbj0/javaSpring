@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="miniSpring"/>
+<aop-project name="Carrot"/>
+<aop-project name="uploadSample"/>
 <aop-project name="testPrj"/>
 <aop-project name="HelloPrj"/>
 <aop-project name="day1"/>
 <aop-project name="day2"/>
+<aop-project name="day4"/>
 </aop-reference-model>

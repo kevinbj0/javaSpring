@@ -56,3 +56,39 @@
 10월 06, 2023 16:52:09.626 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 10월 06, 2023 16:54:31.123 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 10월 06, 2023 16:55:23.557 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 10, 2023 14:43:35.748 NEW SESSION
+10월 10, 2023 14:43:35.748 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 14:44:44.287 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 14:47:31.527 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 15:06:43.738 [22132:18336:1010/150643.738:ERROR:CONSOLE(17)] "Lockdown failed: TypeError: At intrinsics.Object.groupBy expected boolean not function", source: chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/lockdown-run.js (17)
+10월 10, 2023 15:06:43.739 [22132:18336:1010/150643.739:ERROR:CONSOLE(99)] "Protecting intrinsics failed: ReferenceError: harden is not defined", source: chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/lockdown-more.js (99)
+10월 10, 2023 15:42:38.311 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 15:53:21.226 [22384:15616:1010/155321.225:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 10, 2023 16:10:57.299 [22384:15616:1010/161057.299:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+10월 10, 2023 16:21:48.172 NEW SESSION
+10월 10, 2023 16:21:48.172 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 16:42:50.832 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 16:47:35.109 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 16:48:59.878 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 10, 2023 16:54:41.178 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 11, 2023 12:14:47.150 NEW SESSION
+10월 11, 2023 12:14:47.150 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 12:41:11.460 [8840:16128:1011/124111.459:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 11, 2023 15:44:14.728 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 15:46:09.34 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:13:09.113 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:14:12.207 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:14:47.116 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:17:53.613 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:21:01.777 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:23:09.563 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:23:46.51 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:42:13.668 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 16:54:36.614 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 11, 2023 17:21:47.288 NEW SESSION
+10월 11, 2023 17:21:47.288 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 17:29:05.387 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
