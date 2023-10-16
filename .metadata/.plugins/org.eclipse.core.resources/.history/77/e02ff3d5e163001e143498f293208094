@@ -1,9 +1,0 @@
-package com.acorn.day2;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-@con
-public class MovieContriller {
-	@Autowired
-	MovieService service;
-}

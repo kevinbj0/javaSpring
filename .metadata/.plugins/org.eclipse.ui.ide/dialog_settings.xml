@@ -122,6 +122,12 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\mybatis장바구니예제정리\소스\cartBatis"/>
+			<item value="C:\Users\kevin\OneDrive\문서\test\batisPrj"/>
+			<item value="C:\Users\kevin\OneDrive\문서\test\dbtest"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\dbtest\bin"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\dbtest\bin\src"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\dbtest"/>
 			<item value="C:\Users\kevin\OneDrive\문서\test\uploadSample"/>
 		</list>
 	</section>

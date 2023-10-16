@@ -1,7 +1,0 @@
-package com.acorn.day2.db;
-
-public class DBTest3 {
-public static void main(String[] args) {
-	
-}
-}

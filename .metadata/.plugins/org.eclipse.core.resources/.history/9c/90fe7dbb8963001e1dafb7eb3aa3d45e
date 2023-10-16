@@ -1,7 +1,0 @@
-package com.acorn.day1.di;
-
-import org.springframework.web.servlet.mvc.Controller;
-
-public class pController implements Controller{
-
-}

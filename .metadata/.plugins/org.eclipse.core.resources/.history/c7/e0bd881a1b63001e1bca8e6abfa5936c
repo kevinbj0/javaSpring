@@ -1,7 +1,0 @@
-package com.acorn.day1;
-
-import org.springframework.web.servlet.mvc.Controller;
-
-public class AController implements Controller {
-	
-}

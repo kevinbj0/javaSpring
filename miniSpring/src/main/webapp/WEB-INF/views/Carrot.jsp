@@ -10,7 +10,6 @@ function search(){
 	alert("조회 동작");
 	$.ajax({
 		type: "GET", // GET 메서드 사용
-		
 		url: "${pageContext.request.contextPath}/pCarrot2",
 		success: function(data){
 			console.log(data);
@@ -25,7 +24,7 @@ function search(){
 
 function toHTML(data){
 	//let datalist  = data.Cresult; 
-	let str = "<ul>"
+	let str = "<ul>";
 	for(let i = 0; i < data.length; i++){
 		let item = data[i];
 		str += "<li>" + item.goodsName + " " + item.goodsCode + "</li>";

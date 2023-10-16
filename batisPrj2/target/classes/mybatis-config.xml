@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 엘리어스를 사용안하면 다 적어줘야함 -->
+		<typeAlias alias="Member" type="com.acorn.batis2.Member"/>
+		<typeAlias alias="OrderDTO" type="com.acorn.batis2.OrderDTO"/>
+	</typeAliases>
+</configuration>

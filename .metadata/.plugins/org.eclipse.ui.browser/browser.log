@@ -92,3 +92,43 @@
 10월 11, 2023 17:21:47.288 NEW SESSION
 10월 11, 2023 17:21:47.288 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 10월 11, 2023 17:29:05.387 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 11, 2023 21:51:26.262 NEW SESSION
+10월 11, 2023 21:51:26.262 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 21:55:05.744 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 22:13:54.355 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 22:16:12.999 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 23:01:17.910 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 11, 2023 23:06:04.450 [12468:13684:1011/230604.449:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 11, 2023 23:21:53.253 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 11, 2023 23:41:27.909 NEW SESSION
+10월 11, 2023 23:41:27.909 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 12, 2023 09:32:40.34 NEW SESSION
+10월 12, 2023 09:32:40.34 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 12, 2023 10:11:31.522 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 13, 2023 09:58:47.976 NEW SESSION
+10월 13, 2023 09:58:47.976 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 13, 2023 10:04:38.519 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 13, 2023 10:05:37.959 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 13, 2023 10:40:27.965 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 13, 2023 10:46:14.939 [17704:8920:1013/104614.939:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 13, 2023 12:27:09.59 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 13, 2023 13:56:09.566 [12784:2612:1013/135609.566:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 13:58:30.46 [12784:2612:1013/135830.046:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 13:58:32.69 [12784:2612:1013/135832.068:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 14:08:35.86 [12784:2612:1013/140835.085:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 14:08:37.510 [12784:2612:1013/140837.510:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 14:09:43.536 [12784:2612:1013/140943.536:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 14:10:48.638 [12784:2612:1013/141048.637:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 14:45:20.203 [12784:2612:1013/144520.202:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 13, 2023 16:44:56.467 [19432:8436:1013/164456.466:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+
+10월 14, 2023 23:07:00.62 NEW SESSION
+10월 14, 2023 23:07:00.62 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 16, 2023 16:48:14.788 NEW SESSION
+10월 16, 2023 16:48:14.789 [9080:3232:1016/164814.783:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 16, 2023 17:28:52.717 기존 브라우저 세션에서 여는 중입니다.
