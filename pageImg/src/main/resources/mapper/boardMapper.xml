@@ -6,11 +6,17 @@
 
     <select id="getListPage" resultType="BoardDTO">
        SELECT * FROM (SELECT  rownum num , content, likenum, image1 FROM shoptbl)
-       WHERE num BETWEEN ? AND ?   
+       WHERE num BETWEEN #{startPage} AND #{endPage}
     </select>
     
     <select id="getTotalCnt" resultType="int">
        SELECT count(*) FROM shoptbl
+    </select>
+    
+    
+    <select id="getListSlide" resultType="BoardDTO">
+       SELECT * FROM (SELECT  rownum num , content, likenum, image1 FROM shoptbl)
+       WHERE num BETWEEN 1 AND #{page}
     </select>
     
 </mapper>

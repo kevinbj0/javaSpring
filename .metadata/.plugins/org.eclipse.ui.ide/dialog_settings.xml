@@ -122,6 +122,14 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\kevin\OneDrive\문서\test\SecondHand"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\SecondHand"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\SecondHandPrj\SecondHand"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\SecondHandPrj"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\batisTran"/>
+			<item value="C:\Users\kevin\OneDrive\문서\test\testPrj2"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\testPrj2"/>
+			<item value="C:\Users\kevin\OneDrive\바탕 화면\당근참고"/>
 			<item value="C:\Users\kevin\OneDrive\문서\test\ProjectTest"/>
 			<item value="C:\Users\kevin\OneDrive\바탕 화면\mybatis장바구니예제정리\소스\cartBatis"/>
 			<item value="C:\Users\kevin\OneDrive\문서\test\batisPrj"/>

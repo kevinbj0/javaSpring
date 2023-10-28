@@ -20,6 +20,17 @@ public class PageHandler {
 		
 		calcPage();
 	}
+	
+	public PageHandler(int currentPage, int totRecords, int pageSize) {
+		super();
+		this.currentPage = currentPage;
+		this.totRecords = totRecords;
+		this.pageSize = pageSize;
+		this.grpSize = 2;
+		
+		calcPage();
+	}
+	
 	private void calcPage() {
 		//1.총페이지수
 		//2.현재그룹

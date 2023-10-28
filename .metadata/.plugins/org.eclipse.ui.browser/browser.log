@@ -135,3 +135,35 @@
 
 10월 19, 2023 22:04:25.942 NEW SESSION
 10월 19, 2023 22:04:25.942 [15440:7888:1019/220425.939:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+10월 22, 2023 19:52:39.826 NEW SESSION
+10월 22, 2023 19:52:39.827 [6424:11236:1022/195239.824:ERROR:device_event_log_impl.cc(225)] [19:52:39.823] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+10월 22, 2023 19:52:45.955 [6424:11236:1022/195245.955:ERROR:device_event_log_impl.cc(225)] [19:52:45.948] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+
+10월 23, 2023 01:50:19.70 NEW SESSION
+10월 23, 2023 01:50:19.70 [3828:1720:1023/015019.067:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+
+10월 24, 2023 09:26:41.288 NEW SESSION
+10월 24, 2023 09:26:41.288 [7188:4128:1024/092641.284:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+10월 24, 2023 09:27:40.461 [8808:6776:1024/092740.461:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+
+10월 25, 2023 09:28:48.144 NEW SESSION
+10월 25, 2023 09:28:48.144 [12300:12040:1025/092848.140:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 25, 2023 09:58:06.615 [12300:12040:1025/095806.614:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 25, 2023 11:10:36.129 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 25, 2023 12:12:19.18 [12300:7492:1025/121219.018:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 25, 2023 14:11:33.744 [12300:12040:1025/141133.744:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 25, 2023 14:42:31.444 [12300:7492:1025/144231.443:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 25, 2023 14:59:38.97 [12300:7492:1025/145938.096:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -7
+10월 25, 2023 15:43:15.875 [12300:12040:1025/154315.874:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+10월 25, 2023 16:18:24.44 [12300:7492:1025/161824.042:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+
+10월 25, 2023 18:10:59.840 NEW SESSION
+10월 25, 2023 18:10:59.840 [14896:8216:1025/181059.838:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+10월 25, 2023 18:10:59.841 [14896:8216:1025/181059.838:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:10:59.842 [14896:8216:1025/181059.838:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:10:59.842 [14896:8216:1025/181059.838:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:11:22.209 [14896:8216:1025/181122.208:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:11:22.909 [14896:8216:1025/181122.909:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:11:26.584 [14896:8216:1025/181126.584:ERROR:registration_request.cc(259)] Registration URL fetching failed.
+10월 25, 2023 18:11:29.519 [14896:8216:1025/181129.518:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
