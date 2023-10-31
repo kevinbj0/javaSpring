@@ -20,19 +20,20 @@ public class pageRespositoryImp implements pageRespositoryI{
 	public int totalCnt() {
 		return session.selectOne( namespace + ".getTotalCnt");
 	}
+	
 	@Override
-	public List<BoardDTO> getPage(int page, int pageSize) {
+	public List<BoardDTO> getPage(int curpage, int pageSize) {
 		int startPage, endPage;
-		startPage = ((page-1)*pageSize)+1;
-		endPage = page*pageSize;
+		startPage = ((curpage-1)*pageSize)+1; //시작 인덱스
+		endPage = curpage*pageSize; //끝 인덱스
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 	    parameters.put("startPage", startPage);
 	    parameters.put("endPage", endPage);
 
-	    System.out.println(page+ ", "+ pageSize);
+	    System.out.println(curpage+ ", "+ pageSize);
 	    System.out.println(parameters);
-		return session.selectList(namespace+ ".getListPage", parameters);
+		return session.selectList(namespace+ ".getListPage", parameters); //mapper에 넘겨줌
 	}
 	
 	@Override

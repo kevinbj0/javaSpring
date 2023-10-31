@@ -12,6 +12,7 @@ public class PageHandler2 {
 		this.currentPage = currentPage;
 		this.totRecords = totRecords;
 		this.pageSize = pageSize;
+		this.totalPage = (totRecords/pageSize)+1;
 	}
 	
 	public PageHandler2() {

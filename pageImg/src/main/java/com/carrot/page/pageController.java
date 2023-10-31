@@ -16,12 +16,8 @@ public class pageController {
 	
 	@Autowired
 	pageServiceI service;
-
-	@GetMapping("/listPageJstl")
-	public String logintest() {
-		return "listPageJstl";
-	}
 	
+	//페이징
 	@GetMapping("/listpage")
 	public String logintest(String p, Model model) {
 		int currentPage = 1;
@@ -41,7 +37,8 @@ public class pageController {
 		return "listPage";
 	}
 
-	
+
+	//슬라이드 + 페이징 테스트용
 	@GetMapping("/slidelist")
 	public String slidePage(String p, Model model) {
 		int currentPage = 1;
@@ -50,7 +47,7 @@ public class pageController {
 		}
 		int toRecords = service.getTotalCnt();
 		System.out.println(toRecords + ", "+ p);
-		int pageSize = 5;
+		int pageSize = 3;
 		int grpSize = 2;
 		PageHandler handler = new PageHandler(currentPage, toRecords, pageSize, grpSize);
 		List<BoardDTO> list = service.getListSlide(currentPage, pageSize);
@@ -61,7 +58,7 @@ public class pageController {
 		return "slidePage";
 	}
 	
-	
+	//슬라이드 Ajax
 	@GetMapping("/slideHome")
 	public String slideHome2() {
 		return "slidePage2";
@@ -76,7 +73,7 @@ public class pageController {
 		}
 		int toRecords = service.getTotalCnt();
 		System.out.println(toRecords + ", "+ p);
-		int pageSize = 3;
+		int pageSize = 6;
 		
 		PageHandler2 handler = new PageHandler2(currentPage, toRecords, pageSize);
 		List<BoardDTO> list = service.getListSlide(currentPage, pageSize);
@@ -85,9 +82,9 @@ public class pageController {
 		//model.addAttribute("handler",handler);
 		//model.addAttribute("list",list);		
 		Map< String , Object>  map = new HashMap<String, Object>();
-		
-		System.out.println(list);
-		map.put("handler",handler);
+		int totalPage = handler.totalPage;
+		System.out.println("토탈" + totalPage);
+		map.put("totalPage",totalPage);
 		map.put("list",list);
 		
 		return map;

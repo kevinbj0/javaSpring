@@ -9,5 +9,9 @@
 		<typeAlias alias="LoginDTO" type="com.sh.login.LoginDTO" />
 	    <typeAlias alias="UserDTO" type="com.sh.saveUser.UserDTO" />
 		<typeAlias alias="AddressDTO" type="com.sh.address.AddressDTO" />
+        <typeAlias alias="cateDTO" type="com.sh.product.cateDTO"/>
+           <typeAlias alias="Image" type="com.sh.product.cateDTO"/>
+         <typeAlias alias="ProductDTO" type="com.sh.product.ProductDTO"/>
+         <typeAlias alias="SlideDTO" type="com.sh.scroll.SlideDTO"/>
 	</typeAliases>
 </configuration>

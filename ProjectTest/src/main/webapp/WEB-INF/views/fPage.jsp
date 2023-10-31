@@ -22,5 +22,7 @@
 %>
 <form action="/testing/myPage" >
 <button type="submit">마이페이지이동</button></form>
+<form action="/testing/products" >
+<button type="submit">상품조회</button></form>
 </body>
 </html>

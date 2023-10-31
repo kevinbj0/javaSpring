@@ -74,7 +74,7 @@ public class pageController {
 		System.out.println(toRecords + ", "+ p);
 		int pageSize = 5;
 		int grpSize = 2;
-		PageHandler handler = new PageHandler(currentPage, toRecords, pageSize, grpSize);
+		PageHandler2 handler = new PageHandler2(currentPage, toRecords, pageSize, grpSize);
 		List<BoardDTO> list = service.getListSlide(currentPage, pageSize);
 		
 		model.addAttribute("handler",handler);

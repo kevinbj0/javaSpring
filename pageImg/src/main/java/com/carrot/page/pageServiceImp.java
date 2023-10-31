@@ -17,8 +17,8 @@ public class pageServiceImp implements pageServiceI{
 	}
 	
 	@Override
-	public List<BoardDTO> getListPage(int page, int pageSize) {
-		return dao.getPage(page, pageSize);
+	public List<BoardDTO> getListPage(int curpage, int pageSize) {
+		return dao.getPage(curpage, pageSize);
 	}
 	
 	@Override
