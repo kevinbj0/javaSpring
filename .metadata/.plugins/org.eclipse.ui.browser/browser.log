@@ -167,3 +167,40 @@
 10월 25, 2023 18:11:22.909 [14896:8216:1025/181122.909:ERROR:registration_request.cc(259)] Registration URL fetching failed.
 10월 25, 2023 18:11:26.584 [14896:8216:1025/181126.584:ERROR:registration_request.cc(259)] Registration URL fetching failed.
 10월 25, 2023 18:11:29.519 [14896:8216:1025/181129.518:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+
+11월 01, 2023 10:56:56.726 NEW SESSION
+11월 01, 2023 10:56:56.726 [8544:12116:1101/105656.722:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 01, 2023 12:50:02.564 [12728:724:1101/125002.563:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 01, 2023 13:34:10.920 [12728:724:1101/133410.919:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+
+11월 04, 2023 10:12:13.175 NEW SESSION
+11월 04, 2023 10:12:13.175 [684:2148:1104/101213.100:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 04, 2023 11:25:07.225 [684:9256:1104/112507.224:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 04, 2023 11:51:21.486 [684:2148:1104/115121.484:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 04, 2023 12:29:06.825 [684:2148:1104/122906.825:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 04, 2023 12:47:18.945 [684:2148:1104/124718.945:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 04, 2023 12:51:51.11 [684:2148:1104/125151.010:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -7
+11월 04, 2023 13:17:14.553 [684:9256:1104/131714.553:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+11월 07, 2023 02:41:35.685 NEW SESSION
+11월 07, 2023 02:41:35.685 [21056:19380:1107/024135.662:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+11월 07, 2023 11:26:15.889 NEW SESSION
+11월 07, 2023 11:26:15.889 [15124:11764:1107/112615.853:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:26:16.610 [15124:15156:1107/112616.610:ERROR:device_event_log_impl.cc(192)] [11:26:16.608] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+11월 07, 2023 11:26:17.474 [15124:11764:1107/112617.474:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:26:22.992 [15124:11764:1107/112622.992:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:26:25.951 [15124:11764:1107/112625.950:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:26:29.951 [15124:11764:1107/112629.951:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:27:24.962 [15124:11764:1107/112724.961:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 11:27:24.992 [15124:11764:1107/112724.992:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 11:27:26.520 [15124:11764:1107/112726.520:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 12:57:27.158 [15124:11764:1107/125727.157:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 14:27:59.281 [15124:11764:1107/142759.280:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 14:45:37.35 [15124:15156:1107/144537.035:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 07, 2023 16:24:36.219 [15124:11764:1107/162436.218:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 16:33:01.705 [15124:11764:1107/163301.704:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 16:39:29.185 [15124:11764:1107/163929.184:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -7
+11월 07, 2023 16:40:00.214 [15124:11764:1107/164000.213:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 07, 2023 17:02:01.269 [15124:11764:1107/170201.268:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
+11월 07, 2023 17:11:21.480 [15124:15156:1107/171121.480:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
