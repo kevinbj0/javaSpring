@@ -9,7 +9,8 @@
 	    <typeAlias alias="UserDTO" type="com.sh.saveUser.domain.UserDTO" />
 		<typeAlias alias="AddressDTO" type="com.sh.address.domain.AddressDTO" />
         <typeAlias alias="cateDTO" type="com.sh.product.domain.cateDTO"/>
-         <typeAlias alias="ProductDTO" type="com.sh.product.domain.ProductDTO"/>
-          <typeAlias alias="ScrollDTO" type="com.sh.scroll.domain.ScrollDTO"/>
+        <typeAlias alias="ProductDTO" type="com.sh.product.domain.ProductDTO"/>
+        <typeAlias alias="ScrollDTO" type="com.sh.scroll.domain.ScrollDTO"/>
+        <typeAlias alias="OrderDTO" type="com.sh.order.domain.OrderDTO" />
 	</typeAliases>
 </configuration>

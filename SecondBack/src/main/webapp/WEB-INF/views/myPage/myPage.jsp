@@ -58,5 +58,9 @@
     <button type="submit">정보수정하기</button>
 </form>
 
+<form action="/testing/deleteUser">
+    <button type="submit">회원삭제</button>
+</form>
+
 </body>
 </html>

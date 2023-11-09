@@ -112,4 +112,9 @@ public class ProductService implements ProductServiceI {
 	public boolean likeClick(String boardId, String userId) {
 		return productRepository.likeClick(boardId, userId);
 	}
+	//관심상품 갯수
+	@Override
+	public int likeNum(String userId) {
+		return productRepository.likeNum(userId);
+	}
 }

@@ -98,6 +98,10 @@ public class ProductRepository {
 		 	map.put("userId", userId);
 		 	return session.selectOne(namespace + "getlikeClick", map);
 	 }
+	 
+	 public int likeNum(String userId) {
+		 return session.selectOne(namespace + "getLikeNum", userId);
+	 }
   
 }
     

@@ -11,25 +11,88 @@
 <title>Insert title here</title>
 </head>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 100% 높이 화면 중앙 정렬을 위해 추가 */
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0px 0px 5px #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #2070eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        select#detail_loc {
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+
 <body>
-	<%
-	LoginDTO user = (LoginDTO) session.getAttribute("user");
-	List<LoginDTO> selectedUser = (List<LoginDTO>) session.getAttribute("selectedUser");
-	if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
-		LoginDTO firstSelectedUser = selectedUser.get(0); // Assuming you want the first user in the list
-	%>
-    <h2>Add Product</h2>
+   <%
+   LoginDTO user = (LoginDTO) session.getAttribute("user");
+   List<LoginDTO> selectedUser = (List<LoginDTO>) session.getAttribute("selectedUser");
+   if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
+      LoginDTO firstSelectedUser = selectedUser.get(0); // Assuming you want the first user in the list
+   %>
+    <h2>상품작성</h2>
     
     <form action="/testing/products/add" method="post" enctype="multipart/form-data">
+    	<label for="board_cate">분류:</label>
+    	 <select id="board_cate" name="board_cate">
+     <option value="판매">판매</option>
+     <option value="나눔">나눔</option>
+     </select>
         <label for="board_Title">제목:</label>
         <input type="text" id="board_Title" name="board_Title" required><br>
 
         <label for="board_Price">가격:</label>
         <input type="number" id="board_Price" name="board_Price" required><br>
-		
-		
-	  <label for="board_Category">Category:</label>
+      
+      
+     <label for="board_Category">카테고리:</label>
      <select id="loc_code" name="loc_code">
      <option value="서울시">서울</option>
      <option value="제주도">제주도</option>
@@ -52,10 +115,10 @@
 
         <label for="board_Img">이미지:</label>
         <input type="file" id="board_Img" name="file" required><br>
- <input type="text" name="user_code" id="user_code" value="<%= firstSelectedUser.getUser_code() %>" required>
-		 <input type="text" name="user_nickname" id="user_nickname" value="<%= firstSelectedUser.getUser_nickname() %>" required>
-        <button type="submit">Add Product</button>
-        <%=request.getRealPath("/") %>
+ <input type="hidden" name="user_code" id="user_code" value="<%= firstSelectedUser.getUser_code() %>" required>
+       <input type="hidden" name="user_nickname" id="user_nickname" value="<%= firstSelectedUser.getUser_nickname() %>" required>
+        <button type="submit">게시글작성</button>
+
     </form>
 
  <script>

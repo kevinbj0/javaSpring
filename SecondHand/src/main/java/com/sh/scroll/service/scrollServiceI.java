@@ -13,6 +13,5 @@ public interface scrollServiceI {
 	List<ScrollDTO> getSearchList(String searchTerm);
 	
 	//관심상품
-	public List<ScrollDTO> getLikeList(String userId);
-	
+	public List<ScrollDTO> getLikeList(String userId);	
 }

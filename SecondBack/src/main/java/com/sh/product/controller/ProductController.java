@@ -18,7 +18,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sh.login.domain.LoginDTO;
 import com.sh.product.domain.ProductDTO;
 import com.sh.product.service.ProductService;
@@ -40,49 +42,48 @@ public class ProductController {
 	private ProductService productservice;
 
 	@GetMapping("/products")
-	public String getProductList(Model model) {
+	public String getProductList(@ModelAttribute ProductDTO productDTO, HttpServletRequest request) {
 		// ProductService를 통해 상품 목록을 가져와서 모델에 추가
+		HttpSession session = request.getSession();
 		List<ProductDTO> products = productservice.getProductList();
 
-		model.addAttribute("products", products);
+		session.setAttribute("products", products);
+		System.out.println("상품정보=" + products);
 		return "products/productList";
 	}
 
 	///////////////////////////// 상품 상세정보
 	///////////////////////////// /////////////////////////////////////////////////////////////////////
 
-	//*** 수정
 	@GetMapping("/products/detail")
-	public String showProductDetail(@RequestParam String boardId, Model model,HttpServletRequest request) {
-		//*** 로그인 정보 받아오기
+	public String showProductDetail(@RequestParam String boardId, Model model, HttpServletRequest request) {
+		// ProductService를 통해 상품 및 이미지 정보 가져오기
+		ProductDTO product = productservice.getProductById(boardId);
 		HttpSession session = request.getSession();
+		productservice.increaseClick(boardId);
+		
+		//*** 로그인 정보 받아오기
 		LoginDTO login = (LoginDTO)session.getAttribute("user");
 		String userId = login.getUser_id();
-		System.out.println(userId);
 		
 		//*** 좋아요 기능
 		Integer likenum = productservice.getLikeCount(boardId); //좋아요 수 받아오기
 		boolean onClick = productservice.likeClick(boardId, userId); //누른적 있는지
-		
-		System.out.println("detail, 좋아요 수 = "+likenum);
-		System.out.println("클릭 = "+onClick);
-		
+	
 		model.addAttribute("likenum", likenum); //좋아요 수 받아오기
 		model.addAttribute("onClick", onClick); //좋아요 눌렀는지
 
-		// ProductService를 통해 상품 및 이미지 정보 가져오기
-		ProductDTO product = productservice.getProductById(boardId);
-		productservice.increaseClick(boardId);
-		
 		// 모델에 상품 정보 추가
-		model.addAttribute("product", product); //상품 상세 받아오기
-		model.addAttribute("user",login); //user정보 받아오기
-		
-
+		session.setAttribute("product", product);
 		return "products/productDetail";
 	}
-			
-			
+
+	@PostMapping("/products/updateDate")
+	public String updateDate(@RequestParam String boardId) {
+
+		productservice.updateDate(boardId);
+		return "redirect:/products";
+	}
 	///////////////////////////// 상품등록
 	///////////////////////////// /////////////////////////////////////////////////////////////////////
 
@@ -118,12 +119,12 @@ public class ProductController {
 		product.setBoard_Img(fileRealName);
 		productservice.insertProductData(product);
 
-//	        System.out.println("Title: " + product.getBoard_Title());
-//	        System.out.println("Price: " + product.getBoard_Price());
-//	        System.out.println("Description: " + product.getBoard_Text());
-//	        System.out.println("Image URL: " + product.getBoard_Img());
+//           System.out.println("Title: " + product.getBoard_Title());
+//           System.out.println("Price: " + product.getBoard_Price());
+//           System.out.println("Description: " + product.getBoard_Text());
+//           System.out.println("Image URL: " + product.getBoard_Img());
 
-		return "redirect:/products";
+		return "redirect:/scrollHome";
 	}
 
 	///////////////////////////// 상품 업데이트
@@ -166,11 +167,11 @@ public class ProductController {
 		int updateResult = productservice.updateProduct(product);
 		if (updateResult > 0) {
 			System.out.println("상품 수정 성공!");
-			return "redirect:/products";
+			return "redirect:/scrollHome";
 		} else {
 			System.out.println("상품 수정 실패!");
 
-			return "redirect:/products";
+			return "redirect:/scrollHome";
 		}
 	}
 
@@ -181,8 +182,10 @@ public class ProductController {
 		ProductDTO product = productservice.getProductById(boardId);
 		productservice.deleteProduct(boardId);
 		model.addAttribute("product", product);
-		return "redirect:/products";
+		return "redirect:/scrollHome";
 	}
+
+
 
 	///////////////////// 이미지 저장경로,저장하는 코드
 	///////////////////// //////////////////////////////////////////////////////////////
@@ -191,24 +194,47 @@ public class ProductController {
 	public Resource imageView(@PathVariable String fileName) throws MalformedURLException {
 		return new UrlResource("file:c:\\test\\upload\\" + fileName);
 	}
-	
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 좋아요 기능
-	//*** 추가
-	@ResponseBody
-	@PostMapping("/products/like")
-	public String likeup(String boardId, String userId, boolean onClick) {
-		
-		if(onClick == true) {
-			System.out.println("관심 - = " + onClick);
-			productservice.deleteLike(boardId, userId);
-		}else {
-			System.out.println("관심 + = " + onClick);
-			productservice.insertLike(boardId, userId);
-		}
-	
-		Integer likenum = productservice.getLikeCount(boardId);
-		System.out.println("좋아요 수 : "+ likenum+", userId = "+userId+", userId = "+boardId );
 
-		return likenum.toString();
+	@ResponseBody
+	@GetMapping("/products/likes")
+	public int likeNum(String board_Id) {
+		int likeNum = productservice.getLikeCount(board_Id);
+		return likeNum;
 	}
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 좋아요 기능
+		//*** 추가
+		@ResponseBody
+		@PostMapping("/products/like")
+		public Map<String, Object> likeup(String boardId, String userId) {
+			boolean onClick = productservice.likeClick(boardId, userId);
+			if(onClick == true) {
+				//클릭된 상태라면 -> 관심 삭제
+				productservice.deleteLike(boardId, userId);
+			}else {
+				//클릭 안된상태 -> 관심 추가 
+				productservice.insertLike(boardId, userId);
+			}
+			
+			//클릭 상태 반환
+			onClick = !onClick;
+			//상품상세 - 좋아요 수 반환
+			Integer likenum = productservice.getLikeCount(boardId);
+			
+			//관심상품 수
+			Integer likeCount = productservice.likeNum(userId);
+
+			Map<String, Object> map = new HashMap<String,Object>();
+			map.put("likenum", likenum.toString());
+			map.put("onClick", onClick);
+			map.put("likeCount", likeCount);
+			
+			return map;
+		}
+		
+		@ResponseBody
+		@PostMapping("/products/likeEvent")
+		public boolean likeEvent(String userId, String boardId) {
+			return productservice.likeClick(boardId, userId);
+		}
 }

@@ -11,4 +11,6 @@ public interface LoginServiceI {
 	List<Object> selectAll(LoginDTO loginDTO);
 
 	public int updateUser(LoginDTO loginDTO);
+
+	public int deleteUser(LoginDTO loginDTO);
 }

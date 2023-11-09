@@ -10,4 +10,6 @@ public interface LoginRepositoryI {
 	List<Object> selectAll(LoginDTO loginDTO);
 
 	public int update(LoginDTO loginDTO);
+
+	public int delete(LoginDTO loginDTO);
 }

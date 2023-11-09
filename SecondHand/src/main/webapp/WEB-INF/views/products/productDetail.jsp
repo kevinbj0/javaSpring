@@ -38,7 +38,14 @@ body {
 	margin-bottom: 10px;
 }
 #like{
-	width: 100px;
+	width: 50px;
+	hetght:50px;
+	background-color: white;
+	border: none;
+}
+#likeImg{
+	width: 40px;
+	height:40px;
 }
 </style>
 </head>
@@ -130,7 +137,7 @@ body {
 		<input type="text" name="user_code1" id="user_code1"
 			value="<%=selectedUser.getUser_code()%>" required> <input
 			type="hidden" name="boardId" value="${product.board_Id}">
-		<button id="likeButton">안쓰는 버튼</button>
+
 	</form>
 	<%
 	} else {
@@ -141,7 +148,7 @@ body {
 	<!-- 관심 버튼 추가 -->
 	<button id="like">관심 버튼</button>
 
-	<form action="/testing/products">
+	<form action="/testing/scrollHome">
 		<button type="submit">상품</button>
 	</form>
 
@@ -167,12 +174,11 @@ body {
 	            url: "${path}/products/like", // 서버측 엔드포인트 설정
 	            type: "POST",              
 	            data: {boardId:boardId,
-	            	   userId:userId,
-	            	   onClick:onClick
+	            	   userId:userId
 	            	},
 	            success: function (data) {
 	                $("#likes").empty();
-	                $("#likes").append("관심 : " + data+ " 개");
+	                $("#likes").append("관심 : " + data.likenum + " 개");
 	              	liketoggle();
 	                loading = false;
 	            },
@@ -187,10 +193,12 @@ body {
 	function liketoggle(){
 		if(onClick == false){
 			$("#like").empty();
-			$("#like").append("관심");
+			//빈하트
+			$("#like").append(`<img id="likeImg" src="${path}/resources/product/heart.png">`);
 		}else if(onClick == true){
 			$("#like").empty();
-			$("#like").append("관심 해제");
+			//꽉찬 하트
+			$("#like").append(`<img id="likeImg" src="${path}/resources/product/hfull.png">`);
 		}
 		
 	}

@@ -9,18 +9,31 @@ import com.sh.scroll.domain.ScrollDTO;
 import com.sh.scroll.repository.scrollRepositoryI;
 
 @Service
-public class scrollServiceImp implements scrollServiceI{
-	
+public class scrollServiceImp implements scrollServiceI {
+
 	@Autowired
 	scrollRepositoryI dao;
-	
+
 	@Override
 	public int getTotalCnt() {
 		return dao.totalCnt();
 	}
-	
+
+	//인기순, 최신순, 관심상품
 	@Override
 	public List<ScrollDTO> getListScroll(int curpage, int pageSize, String mode) {
 		return dao.getScroll(curpage, pageSize, mode);
+	}
+
+	//검색
+	@Override
+	public List<ScrollDTO> getSearchList(String searchTerm) {
+		return dao.getSearchList(searchTerm);
+	}
+
+	//관심상품
+	@Override
+	public List<ScrollDTO> getLikeList(String userId) {
+		return dao.getLikeList(userId);
 	}
 }

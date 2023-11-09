@@ -4,26 +4,31 @@
 <mapper namespace="com.sh.login.LoginMapper">
 	<select id="checklogin" parameterType="LoginDTO"
 		resultType="LoginDTO">
-		SELECT * FROM user_tbl WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+		SELECT * FROM user_tbl WHERE user_id = #{user_id} AND
+		user_pw = #{user_pw}
 	</select>
 
 	<select id="selectAllU" parameterType="LoginDTO"
 		resultType="LoginDTO">
 		SELECT * FROM user_tbl where user_id = #{user_id}
 	</select>
-	
-		<update id="updateUser" parameterType="LoginDTO">
+
+	<update id="updateUser" parameterType="LoginDTO">
 		UPDATE user_tbl
 		SET
-		user_pw = #{user_pw},
+		user_pw
+		= #{user_pw},
 		address = #{address},
 		phone_num = #{phone_num},
 		member_post = #{member_post},
 		member_addr = #{member_addr},
 		detailed_address = #{detailed_address},
-		user_nickname = #{user_nickname}
+		user_nickname =
+		#{user_nickname}
 		WHERE user_id = #{user_id}
-	</update> 
-	
-	
+	</update>
+
+	<delete id="deleteUser" parameterType="LoginDTO">
+		DELETE FROM user_tbl WHERE user_id = #{user_id}
+	</delete>
 </mapper>

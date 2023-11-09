@@ -26,8 +26,14 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 	//인기순, 최신순
 	@Override
 	public List<ScrollDTO> getScroll(int curpage, int pageSize, String mode) {
-		int itemNum = pageSize*curpage;
-		return session.selectList( namespace + mode, itemNum);
+		int endIndex = pageSize*curpage;
+		int startIndex = endIndex - (pageSize-1);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("endIndex", endIndex);
+		map.put("startIndex",startIndex);
+		
+		System.err.println("페이지"+curpage+", "+endIndex+", "+startIndex);
+		return session.selectList( namespace + mode, map);
 	}
 
 	//검색
@@ -40,5 +46,4 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 	public List<ScrollDTO> getLikeList(String userId) {
 		return session.selectList(namespace + ".getLikeList", userId);
 	}
-	
 }

@@ -74,7 +74,7 @@
         <input type="text" name="member_post" id="member_post" value="<%= selectedUser.getMember_post() %>" readonly required>
 
         <label for="member_addr">Member Address:</label>
-        <input type" name="member_addr" id="member_addr" value="<%= selectedUser.getMember_addr() %>" readonly required>
+        <input type="text" name="member_addr" id="member_addr" value="<%= selectedUser.getMember_addr() %>" readonly required>
 
         <button type="button" onclick="findAddr()">주소찾기</button>
 

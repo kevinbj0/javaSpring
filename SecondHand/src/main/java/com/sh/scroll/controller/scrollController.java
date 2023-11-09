@@ -70,7 +70,7 @@ public class scrollController {
 	//관심 상품 목록
 	@ResponseBody
 	@PostMapping("/likeList")
-	public List<ScrollDTO> scrollGet(String userId) {
+	public List<ScrollDTO> likeList(String userId) {
 		List<ScrollDTO> list = service.getLikeList(userId);
 		return list;
 	}

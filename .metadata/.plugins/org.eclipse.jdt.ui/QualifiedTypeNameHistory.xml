@@ -57,7 +57,7 @@
     <fullyQualifiedTypeName name="com.sh.login.domain.LoginDTO"/>
     <fullyQualifiedTypeName name="com.sh.product.repository.ProductRepository"/>
     <fullyQualifiedTypeName name="com.sh.product.controller.ProductController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
 </qualifiedTypeNameHistroy>

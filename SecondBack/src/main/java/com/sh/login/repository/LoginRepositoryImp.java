@@ -47,5 +47,10 @@ public class LoginRepositoryImp implements LoginRepositoryI {
 		// TODO Auto-generated method stub
 		return session.update(namespace + "updateUser", loginDTO);
 	}
+	@Override
+	   public int delete(LoginDTO loginDTO) {
+	      // TODO Auto-generated method stub
+	      return session.delete(namespace + "deleteUser", loginDTO);
+	   }
 
 }

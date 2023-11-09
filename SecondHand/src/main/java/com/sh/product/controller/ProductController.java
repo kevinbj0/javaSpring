@@ -5,8 +5,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -205,7 +206,8 @@ public class ProductController {
 		//*** 추가
 		@ResponseBody
 		@PostMapping("/products/like")
-		public String likeup(String boardId, String userId, boolean onClick) {
+		public Map<String, Object> likeup(String boardId, String userId) {
+			boolean onClick = productservice.likeClick(boardId, userId);
 			if(onClick == true) {
 				//클릭된 상태라면 -> 관심 삭제
 				productservice.deleteLike(boardId, userId);
@@ -213,9 +215,26 @@ public class ProductController {
 				//클릭 안된상태 -> 관심 추가 
 				productservice.insertLike(boardId, userId);
 			}
-			//좋아요 수 반환
+			
+			//클릭 상태 반환
+			onClick = !onClick;
+			//상품상세 - 좋아요 수 반환
 			Integer likenum = productservice.getLikeCount(boardId);
 			
-			return likenum.toString();
+			//관심상품 수
+			Integer likeCount = productservice.likeNum(userId);
+
+			Map<String, Object> map = new HashMap<String,Object>();
+			map.put("likenum", likenum.toString());
+			map.put("onClick", onClick);
+			map.put("likeCount", likeCount);
+			
+			return map;
+		}
+		
+		@ResponseBody
+		@PostMapping("/products/likeEvent")
+		public boolean likeEvent(String userId, String boardId) {
+			return productservice.likeClick(boardId, userId);
 		}
 }

@@ -204,3 +204,13 @@
 11월 07, 2023 16:40:00.214 [15124:11764:1107/164000.213:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
 11월 07, 2023 17:02:01.269 [15124:11764:1107/170201.268:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -105
 11월 07, 2023 17:11:21.480 [15124:15156:1107/171121.480:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+11월 08, 2023 14:41:34.308 NEW SESSION
+11월 08, 2023 14:41:34.309 [17320:2088:1108/144134.305:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 08, 2023 15:07:15.227 [7732:13912:1108/150715.227:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 08, 2023 16:01:07.334 [7732:13912:1108/160107.333:ERROR:device_event_log_impl.cc(192)] [16:01:07.332] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+11월 08, 2023 16:01:58.824 [7732:13912:1108/160158.824:ERROR:device_event_log_impl.cc(192)] [16:01:58.822] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+
+11월 09, 2023 10:32:49.294 NEW SESSION
+11월 09, 2023 10:32:49.294 [16248:12020:1109/103249.292:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 09, 2023 10:53:13.309 [16248:12020:1109/105313.309:ERROR:gpu_process_host.cc(990)] GPU process exited unexpectedly: exit_code=34

@@ -20,7 +20,10 @@ public class ProductService implements ProductServiceI {
 
 	@Override
 	public List<ProductDTO> getProductList() {
-		return productRepository.getlist();
+
+		List<ProductDTO> result = productRepository.getlist();
+
+		return result;
 	}
 
 	@Override
@@ -58,6 +61,11 @@ public class ProductService implements ProductServiceI {
 		return productRepository.updateProduct(product);
 	}
 
+	@Override
+	public void updateDate(String boardId) {
+		productRepository.updateDate(boardId);
+	}
+
 	/*
 	 * public Map<String, List<cateDTO>> getAllCategoriesMap() { return
 	 * productRepository.getAllCategoriesMap(); }
@@ -80,31 +88,13 @@ public class ProductService implements ProductServiceI {
 		return jsonResult;
 	}
 
-	@Override
-	public void toggleLike(String boardId, String userCode) {
-		Map<String, String> likeInfo = new HashMap<>();
-		likeInfo.put("boardId", boardId);
-		likeInfo.put("userCode", userCode);
-
-		int likeCount = productRepository.getLikeCount(boardId);
-
-		if (likeCount > 0) {
-			// 이미 좋아요를 누른 상태이면 좋아요 취소
-
-			productRepository.removeLike(likeInfo);
-		} else {
-			// 좋아요를 누르지 않은 상태이면 좋아요 추가
-			productRepository.addLike(likeInfo);
-		}
-	}
-
 	// 좋아요 개수 조회
 
 	@Override
-	public int getLikeCount(String boardId) {
-		return productRepository.getLikeCount(boardId);
+	public int getLikeCount(String board_Id) {
+		return productRepository.getLikeCount(board_Id);
 	}
-	
+
 	//*** 좋아요 기능
 	//좋아요 insert
 	@Override
@@ -122,5 +112,9 @@ public class ProductService implements ProductServiceI {
 	public boolean likeClick(String boardId, String userId) {
 		return productRepository.likeClick(boardId, userId);
 	}
-
+	//관심상품 갯수
+	@Override
+	public int likeNum(String userId) {
+		return productRepository.likeNum(userId);
+	}
 }

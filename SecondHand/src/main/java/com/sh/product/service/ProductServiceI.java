@@ -46,4 +46,7 @@ public interface ProductServiceI {
 	
 	//좋아요 클릭했는지
 	boolean likeClick(String boardId, String userId);
+	
+	//관심상품 갯수
+	int likeNum(String userId);
 }

@@ -31,4 +31,10 @@ public class LoginService implements LoginServiceI {
 		// TODO Auto-generated method stub
 		return userRepository.update(loginDTO);
 	}
+
+	@Override
+	public int deleteUser(LoginDTO loginDTO) {
+		// TODO Auto-generated method stub
+		return userRepository.delete(loginDTO);
+	}
 }

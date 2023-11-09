@@ -23,11 +23,27 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 		return session.selectOne( namespace + ".getTotalCnt");
 	}
 	
+	//인기순, 최신순
 	@Override
 	public List<ScrollDTO> getScroll(int curpage, int pageSize, String mode) {
-		int itemNum = pageSize*curpage;
-	    System.out.println("현재 페이지 : "+curpage+ ", 몇 개씩 : "+ pageSize);
-		return session.selectList( namespace + mode, itemNum);
+		int endIndex = pageSize*curpage;
+		int startIndex = endIndex - (pageSize-1);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("endIndex", endIndex);
+		map.put("startIndex",startIndex);
+		
+		System.err.println("페이지"+curpage+", "+endIndex+", "+startIndex);
+		return session.selectList( namespace + mode, map);
+	}
+
+	//검색
+	public List<ScrollDTO> getSearchList(String searchTerm) {
+	    return session.selectList(namespace + ".getSearchList", searchTerm);
 	}
 	
+	//관심상품
+	@Override
+	public List<ScrollDTO> getLikeList(String userId) {
+		return session.selectList(namespace + ".getLikeList", userId);
+	}
 }
