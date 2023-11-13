@@ -19,28 +19,78 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
-.wrap {
-	height: 3000px;
-	width: 1000px;
+*{
+	box-sizing: border-box;
+	/*outline: 1px solid gray;*/
+}
+
+
+.card_a{
+	text-decoration: none;
+	color:black;
+	font-weight: bold;
+}
+.scrollWrap {
+	width: 749px;
 	margin: 0 auto;
-	dixplay: flex;
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
 }
 
-.imgwrap {
-	width: 1000px;
-	height: 100px;
-	border: none;
+.card_wrap {
+	width: 223px;
+	height: 340px;
+}
+
+.card_image {
+	border-radius: 12px;
+	height: 223px;
+	background-size: cover;
+}
+
+.card_title {
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 2px;
+}
+
+.card_date{
+	font-size: 11px;
+	color: gray;
+	margin-bottom: 4px;
+}
+.card_price {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+
+.card_address {
+	font-size: 12px;
+}
+
+.card_count {
+	font-size: 12px;
+	color: gray;
 	display: flex;
-	outline: 1px solid gray;
-	line-height: 100px;
+	justify-content: space-between;
+	align-items: center;
+	height:20px;
 }
 
-.imgBox {
-	width: 100px;
-	height: 100px;
+.card_like {
+	width:20px;
+	border: none;
+	background: none;
+	margin-right: 20px;
+}
+.footer{
+	margin-top:100px;
 }
 
-#myBtn {
+#topButton {
 	position: fixed;
 	bottom: 20px;
 	right: 30px;
@@ -59,15 +109,9 @@
 	margin: 0px auto;
 }
 
-.like{
-	width: 40px;
-	hetght:40px;
-	border: none;
-	background-color: white;
-}
-#likeImg{
+#likeImg {
 	width: 30px;
-	height:30px;
+	height: 30px;
 }
 </style>
 </head>
@@ -82,17 +126,15 @@
 		<button id="srTime">최신순</button>
 		<button id="srClick">인기순</button>
 		<button id="srLike">관심상품</button>
-		<label for="srSearch">검색:</label><input type="text"
-			id="srSearch" value="" /><br>
-		<br>
+		<label for="srSearch">검색:</label><input type="text" id="srSearch"
+			value="" /><br> <br>
 	</div>
-	<div class="wrap"></div>
+	<div class="scrollWrap"></div>
+	
 	<div class="footer"></div>
 	
-	<button id="myBtn" title="Go to top">Top</button>
-	
-	
 
+	<button id="topButton" title="Go to top">Top</button>
 
 	<script>
     let sort_mode = ".getListTime"; // 정렬 기본값 : 최신순, 인기순 정렬 : ".getListClick"
@@ -112,45 +154,45 @@
   	
     function PageInit(){
     	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 설정할 부분
-    	HeightY = 600; //페이지당 나오는 아이템들 높이합
+    	HeightY = 700; //페이지당 나오는 아이템들 높이합
     	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         page = 1; //초기 페이지
         cursorH = page*HeightY; //로드 시 스크롤 위치 조정
         wrapH = HeightY*5; //초기 wrap 높이
-        totalPage; // totalpage ajax에서 불러옴
         loading = false; // 추가 데이터 로딩 중 여부
         
-		$(".wrap").empty();
+        $("body").css("height", 3500);
+		$(".scrollWrap").empty();
 		$(".footer").empty();
         $("html, body").animate({scrollTop: 0}, 0);
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 스크롤 기능
     // 스크롤 이벤트
-    window.addEventListener("scroll", function () {
-        const scrollY = window.scrollY;
-        const pageHeight = document.body.scrollHeight;
-        
-        if (scrollY >= HeightY && page < totalPage) {
-            page += 1;
-            console.log("페이지"+ page)
-            HeightY += cursorH;
-            $("html, body").animate({scrollTop: (page-1)*cursorH}, 500);
-            loadPage(page);
-            wrapH += cursorH;
-            $(".wrap").css("height", wrapH);
-	    } 
-        else if(scrollY >= HeightY && page == totalPage){
-        	page += 1;
-        	$(".wrap").css("height", wrapH-(cursorH*3));
-        	let endSql = `     	 
-         		<div style = 'height:400px; background-color: gray; font-size:40px; color:white'>
-         			Footer
-         		</div>  
-        	`
-        	$(".footer").append(endSql);
-        }
-    });
+	 window.addEventListener("scroll", function() {
+	      const scrollY = window.scrollY;
+	        const pageHeight = document.body.scrollHeight;
+	        
+	        if (scrollY >= HeightY && page < totalPage) {
+	            page += 1;
+	            console.log("페이지"+ page)
+	            HeightY += cursorH;
+	            $("html, body").animate({scrollTop: (page-1)*cursorH}, 500);
+	            loadPage(page);
+	            wrapH += cursorH;
+	            $("body").css("height", wrapH);
+		    } 
+	        else if(scrollY >= HeightY && page == totalPage){
+	        	page += 1;
+	        	$("body").css("height", wrapH-(cursorH*3));
+	        	let endSql = `     	 
+	         		<div style = 'height:400px; background-color: gray; font-size:40px; color:white'>
+	         			Footer
+	         		</div>  
+	        	`
+	        	$(".footer").append(endSql);
+	        }
+	});
     
     //페이지 로드
     function loadPage(pageNumber) {
@@ -163,7 +205,7 @@
 					let list = data.list;
 					totalPage = data.totalPage;
 					let sql = pageToString(list);
-					$(".wrap").append(sql);
+					$(".scrollWrap").append(sql);
 				   	
 					loading = false;
 				},
@@ -180,16 +222,19 @@
 	   	 let str = "";
 	   	 list.forEach(  ( item) => { 
 	   			str += `     	 
-	    		<div class="imgwrap">
-	    			<div class="div1">
-	    			<img src="${path}/images/<%="${item.board_img}" %>" alt="Product Image" style="max-width: 100px; max-height: 100px;">
-	    			</div>
-	    			<div>&nbsp[<%="${item.num}"%>] <a href="/testing/products/detail?boardId=<%="${item.board_id}" %>"><%="${item.board_title}"%></a> |&nbsp</div>
-	    			<div><%="${item.board_date}"%> | <%="${item.board_id}"%> | <%="${item.loc_code}"%>/<%="${item.detail_loc}"%>
-	    			| <%="${item.board_price}"%> | <%="${item.board_click}"%>조회 <button id = '<%="${item.board_id}"%>' class = "like" onclick = "likeEvent('<%="${item.board_id}"%>')">관심버튼</button>
-	    			</div>
-	    		</div>
+	   			 	<article class="card_wrap">
+	    			<div class="card_image" style="background-image: url('${path}/images/<%="${item.board_img}" %>')"></div>
+	    			<h2 class="card_title"><a class = "card_a" href="/testing/products/detail?boardId=<%="${item.board_id}" %>"><%="${item.board_title}"%></a></h2>
+	    			<div class = "card_date"><%="${item.board_date}"%> </div>
+	    			<div class="card_price"><%="${item.board_price}"%> 원</div>
+	    			<div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
+	    			<div class="card_count">
+	    			 조회 <%="${item.board_click}"%>
+	    	         <button id = '<%="${item.board_id}"%>' class="card_like" onclick = "likeEvent('<%="${item.board_id}"%>')"></button>
+	    	        </div>
+	    			</article>
 	   			`;
+	   			//item.board_date 안들어감
 		});
 	   	 
 		list.forEach(  ( item) => { 
@@ -270,8 +315,8 @@
 				success: function(data) {
 					let list = data;
 					let sql = pageToString(list);
-					$(".wrap").empty();
-					$(".wrap").append(sql);
+					$(".scrollWrap").empty();
+					$(".scrollWrap").append(sql);
 	
 					loading = false;
 				},
@@ -328,7 +373,7 @@
 				type: "GET",
 				success: function(data) {
 					let resultHtml = pageToString(data);
-					$(".wrap").empty().append(resultHtml);
+					$(".scrollWrap").empty().append(resultHtml);
 				},
 				error: function(error) {
 					console.log("Error:", error);

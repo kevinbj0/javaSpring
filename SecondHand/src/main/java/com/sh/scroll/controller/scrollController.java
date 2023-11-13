@@ -36,21 +36,22 @@ public class scrollController {
 		HttpSession session = request.getSession();
 		List<ProductDTO> products = productservice.getProductList();
 
+		System.out.println(products);
 		session.setAttribute("products", products);
 		return "products/scrollPage";
 	}
 
 	@ResponseBody
 	@GetMapping("/scroll")
-	public Map<String, Object> scrollGet(String p, String mode, Model model) {
+	public Map<String, Object> scrollGet(String page, String mode) {
 		int currentPage = 1;
-		if (p != null) {
-			currentPage = Integer.parseInt(p);
+		if (page != null) {
+			currentPage = Integer.parseInt(page);
 		}
 		int toRecords = service.getTotalCnt();
 	
 		//스크롤 한번당 6개씩
-		int pageSize = 6;
+		int pageSize = 9;
 
 		ScrollHandler handler = new ScrollHandler(currentPage, toRecords, pageSize);
 		

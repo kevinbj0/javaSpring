@@ -54,12 +54,9 @@ body {
 	<%
 	List<ProductDTO> products = (List<ProductDTO>) session.getAttribute("products");
 	List<LoginDTO> selectedUserList = (List<LoginDTO>) session.getAttribute("selectedUser");
-	ProductDTO a = (ProductDTO) request.getAttribute("product");
-
-	out.println(a);
-
-	LoginDTO user = (LoginDTO) session.getAttribute("user");
-	if (selectedUserList != null && !selectedUserList.isEmpty() && products != null && !products.isEmpty()) {
+	//ProductDTO a = (ProductDTO) request.getAttribute("product");
+	//LoginDTO user = (LoginDTO) session.getAttribute("user");
+	//if (selectedUserList != null && !selectedUserList.isEmpty() && products != null && !products.isEmpty()) {
 		// 수정: selectedUserList에서 selectedUser 가져오기
 		LoginDTO selectedUser = selectedUserList.get(0);
 
@@ -140,10 +137,10 @@ body {
 
 	</form>
 	<%
-	} else {
+	//} else {
 	// products나 selectedUserList가 비어있을 때 예외 처리
-	out.println("상품 정보를 찾을 수 없습니다.");
-	}
+	//out.println("상품 정보를 찾을 수 없습니다.");
+	//}
 	%>
 	<!-- 관심 버튼 추가 -->
 	<button id="like">관심 버튼</button>

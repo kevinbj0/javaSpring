@@ -9,13 +9,14 @@
 <aop-project name="pagingSlide"/>
 <aop-project name="miniSpring"/>
 <aop-project name="Carrot"/>
-<aop-project name="SecondBack"/>
 <aop-project name="intersepterPrj"/>
+<aop-project name="SecondBack"/>
 <aop-project name="day7InterfacePrj"/>
 <aop-project name="day5Cookie"/>
 <aop-project name="testPrj"/>
-<aop-project name="HelloPrj"/>
+<aop-project name="SecondFinal"/>
 <aop-project name="day2"/>
+<aop-project name="HelloPrj"/>
 <aop-project name="day5Exception"/>
 <aop-project name="batisPrac"/>
 <aop-project name="day5Test"/>
@@ -23,6 +24,7 @@
 <aop-project name="kakaoApi"/>
 <aop-project name="carrotMarket"/>
 <aop-project name="batisTran"/>
-<aop-project name="day4"/>
 <aop-project name="SecondHand"/>
+<aop-project name="SecondHandServer"/>
+<aop-project name="day4"/>
 </aop-reference-model>

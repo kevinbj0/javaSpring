@@ -214,3 +214,7 @@
 11월 09, 2023 10:32:49.294 NEW SESSION
 11월 09, 2023 10:32:49.294 [16248:12020:1109/103249.292:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
 11월 09, 2023 10:53:13.309 [16248:12020:1109/105313.309:ERROR:gpu_process_host.cc(990)] GPU process exited unexpectedly: exit_code=34
+
+11월 10, 2023 12:05:33.176 NEW SESSION
+11월 10, 2023 12:05:33.176 [14080:14044:1110/120533.173:ERROR:get_updates_processor.cc(263)] PostClientToServerMessage() failed during GetUpdates with error Network error (ERR_ABORTED)
+11월 10, 2023 14:43:24.499 [8908:8476:1110/144324.498:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
