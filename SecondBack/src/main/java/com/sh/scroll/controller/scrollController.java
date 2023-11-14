@@ -43,10 +43,10 @@ public class scrollController {
 
 	@ResponseBody
 	@GetMapping("/scroll")
-	public Map<String, Object> scrollGet(String p, String mode, Model model) {
+	public Map<String, Object> scrollGet(String page, String mode) {
 		int currentPage = 1;
-		if (p != null) {
-			currentPage = Integer.parseInt(p);
+		if (page != null) {
+			currentPage = Integer.parseInt(page);
 		}
 		int toRecords = service.getTotalCnt();
 	

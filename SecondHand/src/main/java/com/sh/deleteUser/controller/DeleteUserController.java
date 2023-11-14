@@ -34,7 +34,7 @@ public class DeleteUserController {
 	        session.removeAttribute("selectedUser");
 	        return "redirect:/homePage";
 	    } else {
-	        return "redirect:/homePage?error=deleteerror";
+	        return "redirect:/homePage?error=deleteUser";
 	    }
 	}
 

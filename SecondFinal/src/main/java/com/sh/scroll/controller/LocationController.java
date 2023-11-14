@@ -26,19 +26,14 @@ public class LocationController {
 	private ProductService productservice;
 
 	@PostMapping("/location_form")
-	public String location(@RequestParam(name = "newLocation", required = false) String newLocation, Model model,
-			HttpSession session) {
-
+	public String location(@RequestParam(name = "newLocation", required = false) String newLocation, HttpSession session) {
 		session.setAttribute("detail_loc", newLocation);
-
-		// System.out.println(newLocation);
 
 		return "/homePage/homePage";
 	}
 
 	@PostMapping("/localproductList")
-	public String localProductList(@RequestParam(name = "newLocation", required = false) String newLocation,
-			Model model, HttpSession session) {
+	public String localProductList(@RequestParam(name = "newLocation", required = false) String newLocation, HttpSession session) {
 
 		// *** 로그인 정보 받아오기 ***
 		LoginDTO login = (LoginDTO) session.getAttribute("user");

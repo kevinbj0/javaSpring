@@ -13,4 +13,9 @@ public interface LoginServiceI {
 	public int updateUser(LoginDTO loginDTO);
 
 	public int deleteUser(LoginDTO loginDTO);
+	
+	public String selectHeat(String sell_code);
+
+	int updateHeat(String user_heat, String user_code);
+
 }

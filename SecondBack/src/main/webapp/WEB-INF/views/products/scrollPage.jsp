@@ -191,6 +191,10 @@
 	         		</div>  
 	        	`
 	        	$(".footer").append(endSql);
+	        	$("body").css("height", 1000);
+	        }else if(totalPage == 0){
+	        	page += 1;
+	        	$("body").css("height", 1000);
 	        }
 	});
     
@@ -199,7 +203,7 @@
 		if (!loading) {
 			loading = true;
 			$.ajax({
-				url: "scroll?p=" + pageNumber + "&mode=" + sort_mode,
+				url: "scroll?page=" + pageNumber + "&mode=" + sort_mode,
 				type: "GET",
 				success: function(data) {
 					let list = data.list;
@@ -357,7 +361,7 @@
 		//관심 상품 정렬
 		$("#srLike").click(function() {
 			PageInit();
-			totalPage=1;
+			totalPage=0;
 			LikeList();
 		});
 		

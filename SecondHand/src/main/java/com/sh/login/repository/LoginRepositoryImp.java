@@ -1,6 +1,8 @@
 package com.sh.login.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +51,29 @@ public class LoginRepositoryImp implements LoginRepositoryI {
 	}
 	@Override
 	   public int delete(LoginDTO loginDTO) {
-	      // TODO Auto-generated method stub
+	      // TODO Auto-generated method stu	b
 	      return session.delete(namespace + "deleteUser", loginDTO);
 	   }
+	
+	@Override
+	public String selectHeat(String sell_code) {
+		String heat = session.selectOne(namespace + "selectHeat", sell_code);
+		return heat;
+
+	}
+	
+	@Override
+	public int updateHeat(String user_heat,String user_code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_heat", user_heat);
+		map.put("user_code", user_code);
+		
+		System.out.println(user_heat);
+		System.out.println(user_code);
+		return session.update( namespace + "updateHeat",map);
+	}
+	
+
+
 
 }

@@ -36,4 +36,17 @@ public class scrollServiceImp implements scrollServiceI {
 	public List<ScrollDTO> getLikeList(String userId) {
 		return dao.getLikeList(userId);
 	}
+	
+	//동네거래 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	//동네거래 리스트
+	@Override
+	public List<ScrollDTO> getLocalProducts(int curpage, int pageSize, String mode, String detail_loc) {
+		return dao.getLocalProducts(curpage, pageSize, mode, detail_loc);
+	}
+	
+	//동네거래(게시글수)
+	@Override
+	public int localTotalCnt(String location) {
+		return dao.localTotalCnt(location);
+	}
 }

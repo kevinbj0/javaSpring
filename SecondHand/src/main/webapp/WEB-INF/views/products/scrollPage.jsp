@@ -187,7 +187,6 @@
 	        	$("body").css("height", wrapH-(cursorH*3));
 	        	let endSql = `     	 
 	         		<div style = 'height:400px; background-color: gray; font-size:40px; color:white'>
-	         			Footer
 	         		</div>  
 	        	`
 	        	$(".footer").append(endSql);
@@ -340,7 +339,7 @@
 		$("html, body").animate({scrollTop: 0}, 0);
 
 		//맨 위로
-		$("#myBtn").click(function() {
+		$("#topButton").click(function() {
 			$("html, body").animate({scrollTop: 0}, 1000);
 		});
 

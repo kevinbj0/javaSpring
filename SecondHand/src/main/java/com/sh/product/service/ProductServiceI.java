@@ -30,8 +30,7 @@ public interface ProductServiceI {
 
     //상품 수정
     int updateProduct(ProductDTO product);
-
- 
+    
     // 좋아요 개수 조회
     int getLikeCount(String boardId);
    

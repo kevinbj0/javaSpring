@@ -147,19 +147,16 @@
 	    INSERT INTO board_like (like_id, board_id, user_id)
 	    VALUES (seq_board_like.nextval,#{boardId}, #{userId})
 	</insert>
-
     <select id="getlikeDelete">
         delete from board_like where user_id =#{userId} and board_id =#{boardId}
     </select>
-    
     <!-- 상품상세_좋아요 개수 -->
     <select id="getLikeCount" resultType="int">
         SELECT COUNT(*) AS likeCount
         FROM board_like
         WHERE board_id = #{boardId}
     </select>
-    
-    <!-- 좋아요 눌렀는지 -->
+   <!-- 좋아요 눌렀는지 -->
       <select id="getlikeClick" resultType="boolean">
         SELECT CASE
 		  WHEN COUNT(*) > 0 THEN 1
@@ -168,9 +165,10 @@
 		FROM board_like
 		WHERE user_id = #{userId} AND board_id = #{boardId}
     </select>
-    
     <!-- 관심상품 개수 -->
 	<select id="getLikeNum" resultType="int">
 		select count(*) from board_like where user_id = #{userId}
 	</select>
+ 
+ 
 </mapper>

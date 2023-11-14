@@ -12,5 +12,7 @@
         <typeAlias alias="ProductDTO" type="com.sh.product.domain.ProductDTO"/>
         <typeAlias alias="ScrollDTO" type="com.sh.scroll.domain.ScrollDTO"/>
         <typeAlias alias="OrderDTO" type="com.sh.order.domain.OrderDTO" />
+        <typeAlias alias="ChatDTO" type="com.sh.chatting.domain.ChatDTO" />
+        <typeAlias alias="QnaDTO" type="com.sh.qna.domain.QnaDTO" />
 	</typeAliases>
 </configuration>

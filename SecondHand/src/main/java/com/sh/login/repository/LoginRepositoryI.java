@@ -12,4 +12,10 @@ public interface LoginRepositoryI {
 	public int update(LoginDTO loginDTO);
 
 	public int delete(LoginDTO loginDTO);
+	
+	public String selectHeat(String sell_code);
+
+
+	int updateHeat(String user_heat, String user_code);
+
 }

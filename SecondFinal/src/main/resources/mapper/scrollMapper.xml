@@ -57,5 +57,5 @@
 		on l.BOARD_ID = b.BOARD_ID
 		where l.USER_ID = #{userId}
 	</select>
-
+	
 </mapper>

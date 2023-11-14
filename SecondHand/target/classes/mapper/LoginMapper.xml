@@ -13,6 +13,7 @@
 		SELECT * FROM user_tbl where user_id = #{user_id}
 	</select>
 
+	
 	<update id="updateUser" parameterType="LoginDTO">
 		UPDATE user_tbl
 		SET
@@ -29,6 +30,21 @@
 	</update>
 
 	<delete id="deleteUser" parameterType="LoginDTO">
-		DELETE FROM user_tbl WHERE user_id = #{user_id}
+		DELETE FROM user_tbl WHERE
+		user_id = #{user_id}
 	</delete>
+
+	<select id="selectHeat" parameterType="String"
+		resultType="String">
+		SELECT user_heat FROM user_tbl WHERE
+		user_code =
+		#{user_code}
+	</select>
+
+	
+	<update id="updateHeat" parameterType="String">
+		UPDATE user_tbl
+		SET user_heat = #{user_heat, jdbcType=VARCHAR}
+		WHERE user_code = #{user_code, jdbcType=VARCHAR}
+	</update>
 </mapper>
