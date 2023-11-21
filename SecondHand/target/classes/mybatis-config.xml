@@ -14,5 +14,6 @@
         <typeAlias alias="OrderDTO" type="com.sh.order.domain.OrderDTO" />
         <typeAlias alias="ChatDTO" type="com.sh.chatting.domain.ChatDTO" />
         <typeAlias alias="QnaDTO" type="com.sh.qna.domain.QnaDTO" />
+     	<typeAlias alias="HeatChartDTO" type="com.sh.login.domain.HeatChartDTO" />
 	</typeAliases>
 </configuration>

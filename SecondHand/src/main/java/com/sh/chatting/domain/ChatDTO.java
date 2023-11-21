@@ -8,5 +8,7 @@ public class ChatDTO {
     private String buy_code;
     private String sell_code;
     private String board_id;
+    private String board_Title;
+    private String user_nickname;
 
 }

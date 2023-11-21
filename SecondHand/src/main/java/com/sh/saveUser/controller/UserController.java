@@ -47,8 +47,13 @@ public class UserController {
 
 		String setFrom = "dhdl2369@gmail.com";
 		String toMail = email;
-		String title = "SecondHands 회원가입 인증 이메일 입니다.";
-		String content = "인증 번호는 : " + checkNum + "입니다.\n" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+		String title = "SecondHands 회원가입 인증 이메일";		
+		// HTML로 메일 내용 작성
+	    String content = "<div style='background-color: #f4f4f4; padding: 20px; text-align: center;'>"
+	            + "<h2 style='color: #333333;'>SecondHands 회원가입 인증 이메일</h2>"
+	            + "<p style='color: #666666;'>인증 번호는 : " + checkNum + "입니다.<br>"
+	            + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.</p>"
+	            + "</div>";
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();

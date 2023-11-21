@@ -6,20 +6,20 @@ import com.sh.chatting.domain.ChatDTO;
 
 public interface ChatServiceImp {
 
-	public int insertChat(ChatDTO chatDTO);
-	
-	List<Object> selectAllCode(String buy_code);
+   public int insertChat(ChatDTO chatDTO);
+   
+   List<Object> selectAllCode(String buy_code);
 
-	String selectChatCode(String chat_code);
-	
+   String selectChatCode(String chat_code);
+   
+   
+   public int deleteChatByCode(String chat_code,String buy_code);
 
-	boolean cheackCode(String buy_code, String sell_code, String board_id);
-	
-	public int deleteChatByCode(String chat_code,String buy_code);
-	
+   boolean cheackCode(String buy_code, String sell_code, String board_id, String board_Title, String user_nickname);
+   
 
 
-	
-	
+   
+   
 
 }

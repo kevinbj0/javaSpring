@@ -27,6 +27,9 @@ public interface ProductServiceI {
 
     //상품 삭제
     void deleteProduct(String boardId);
+    void deleteProduct2(String boardId);
+    void deleteProduct3(String user_code);
+    void deleteProduct4(String user_id);
 
     //상품 수정
     int updateProduct(ProductDTO product);
@@ -36,18 +39,16 @@ public interface ProductServiceI {
    
     void updateDate(String boardId);
     
-	//*** 좋아요
-	//좋아요 insert
-	void insertLike(String boardId, String userId);
-	
-	//좋아요 delete
-	void deleteLike(String boardId, String userId);
-	
-	//좋아요 클릭했는지
-	boolean likeClick(String boardId, String userId);
-	
-	//관심상품 갯수
-	int likeNum(String userId);
-
-	List<ProductDTO> getLocalProducts(String detail_loc);
+   //*** 좋아요
+   //좋아요 insert
+   void insertLike(String boardId, String userId);
+   
+   //좋아요 delete
+   void deleteLike(String boardId, String userId);
+   
+   //좋아요 클릭했는지
+   boolean likeClick(String boardId, String userId);
+   
+   //관심상품 갯수
+   int likeNum(String userId);
 }

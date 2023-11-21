@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sh.login.domain.LoginDTO;
 import com.sh.product.domain.ProductDTO;
 import com.sh.product.service.ProductService;
 import com.sh.scroll.domain.ScrollDTO;
@@ -28,17 +29,21 @@ public class scrollController {
 	@Autowired
 	private ProductService productservice;
 	
-	// 슬라이드 Ajax
+	// 슬라이드 Home
 	@GetMapping("/scrollHome")
 	public String scrollHome(HttpServletRequest request) {
-		
+		//상품 이미지 및 부가정보 심어둠
 		HttpSession session = request.getSession();
 		List<ProductDTO> products = productservice.getProductList();
+	
+	
 
 		session.setAttribute("products", products);
+		
 		return "products/scrollPage";
 	}
 
+	//슬라이드 Ajax
 	@ResponseBody
 	@GetMapping("/scroll")
 	public Map<String, Object> scrollGet(String page, String mode) {
@@ -84,5 +89,24 @@ public class scrollController {
 		List<ScrollDTO> list = service.getLikeList(userId);
 		return list;
 	}
+	
+	//판매중인 상품 Home
+	@GetMapping("/sellProducts")
+	public String sellHome(HttpServletRequest request) {
+		//상품 이미지 및 부가정보 심어둠
+		HttpSession session = request.getSession();
+		List<ProductDTO> products = productservice.getProductList();
+		session.setAttribute("products", products);
+		return "products/sellProducts";
+	}
 
+	//판매중인 상품 Ajax
+	@ResponseBody
+	@GetMapping("/sellList")
+	public List<ScrollDTO> sellGet(String user_code) {
+		System.out.println("유저코드(판매내역) = " + user_code);
+		//출력할 리스트 받아옴
+		List<ScrollDTO> list = service.getSellProducts(user_code);
+		return list;
+	}
 }

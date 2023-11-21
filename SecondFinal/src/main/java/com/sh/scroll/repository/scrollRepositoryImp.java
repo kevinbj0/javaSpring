@@ -32,7 +32,6 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 		map.put("endIndex", endIndex);
 		map.put("startIndex",startIndex);
 		
-		System.err.println("페이지"+curpage+", "+endIndex+", "+startIndex);
 		return session.selectList( namespace + mode, map);
 	}
 
@@ -45,6 +44,32 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 	@Override
 	public List<ScrollDTO> getLikeList(String userId) {
 		return session.selectList(namespace + ".getLikeList", userId);
+	}
+	
+	
+	//동네거래 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	//동네거래 리스트
+	@Override
+	public List<ScrollDTO> getLocalProducts(int curpage, int pageSize, String mode, String detail_loc) {
+		int endIndex = pageSize*curpage;
+		int startIndex = endIndex - (pageSize-1);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("endIndex", endIndex);
+		map.put("startIndex",startIndex);
+		map.put("detail_loc",detail_loc);
+		return session.selectList( namespace + mode, map);
+	}
+	//동네 레코드 개수
+	@Override
+	public int localTotalCnt(String location) {
+		return session.selectOne( namespace + ".localTotalCnt", location);
+	}
+	
+	
+	//판매중인 물건 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	@Override
+	public List<ScrollDTO> getSellProducts(String user_code) {
+		return session.selectList(namespace+".SellProducts", user_code);
 	}
 	
 }

@@ -70,7 +70,8 @@ header button:hover {
 .main-top {
 	max-width: 800px;
 	margin: 0 auto; /* 화면 가운데 정렬 */
-	padding: 20px;
+	    padding: 100px;
+
 	border-radius: 8px;
 	background-color: white; /* 배경색 추가 */
 	height: 700px;
@@ -200,11 +201,21 @@ color: darkslategrey;
 }
 
 footer {
-	background-color: #333;
-	padding: 10px;
-	color: white;
-	text-align: center;
-	bottom: 0;
+   background-color: #333;
+   padding: 10px;
+   color: white;
+   text-align: center;
+   bottom: 0;
+}
+footer a{
+
+   text-decoration: none; /* 텍스트 데코레이션 제거 */
+   color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
+}
+
+footer a:hover {
+   text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
+   color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -353,14 +364,15 @@ footer {
 		</div>
 	</div>
 	<button id="myBtn" title="Go to top">Top</button>
-	<footer>
-		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
-		<p>조장: 김재열</p>
-		<p>조원: 김민규</p>
-		<p>조원: 김병진</p>
-		<p>조원: 이정훈</p>
-		<p>조원: 허재혁</p>
-	</footer>
+
+   <footer>
+      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
+      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
+      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
+      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
+      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
+      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
+   </footer>
 </body>
 
 </html>

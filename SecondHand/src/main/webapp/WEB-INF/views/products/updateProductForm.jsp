@@ -5,7 +5,7 @@
           <%@ page import="com.sh.product.domain.ProductDTO"%>
          <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
           <%@ page import="java.util.*"%>
-          
+          <c:set  var="path"   value="${pageContext.request.contextPath}"/> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -315,11 +315,21 @@ margin:18px 18px 18px 0px;
 
 }
 footer {
-	background-color: #333;
-	padding: 10px;
-	color: white;
-	text-align: center;
-	bottom: 0;
+   background-color: #333;
+   padding: 10px;
+   color: white;
+   text-align: center;
+   bottom: 0;
+}
+footer a{
+
+   text-decoration: none; /* 텍스트 데코레이션 제거 */
+   color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
+}
+
+footer a:hover {
+   text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
+   color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
 #myBtn {
 	position: fixed;
@@ -338,6 +348,11 @@ footer {
 #myBtn:hover {
 	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
 	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+}
+
+/*글자수 제한*/
+#charCount {
+   margin-left: 574px;
 }
 </style>
 <script>
@@ -377,10 +392,10 @@ footer {
 <body>
    <%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
-   List<LoginDTO> selectedUser = (List<LoginDTO>) session.getAttribute("selectedUser");
+   LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
    List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
-   if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
-      LoginDTO firstSelectedUser = selectedUser.get(0); // Assuming you want the first user in the list
+   if (user != null && selectedUser != null) {
+      LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
    %>
 	<header>
 		<div class="header-logo">
@@ -392,29 +407,33 @@ footer {
 
 		<div class="menu-container">
 			<ul>
+			         <li><h2> </h2></li>
 				<li>
-					<h2>
+				   <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
+						<h2>
 						<%
-						if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
+						if (user != null && selectedUser != null) {
 						%>
 						Welcome,
 						<%=firstSelectedUser.getUser_nickname()%>님
 					</h2>
 				</li>
 				<li>
-					<form action="/testing/myPage">
-						<button type="submit">마이페이지 이동</button>
-					</form>
+				            <form action="/testing/myPage" method="post">
+               <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
+                  <button type="submit">마이페이지 이동</button>
+               </form>
 				</li>
 				           		<li>
-				<form action="/testing/chattingList" method="post">
-    <input type="text" name="buy_code" placeholder="채팅 코드 입력" value="<%=firstSelectedUser.getUser_code()%>">
-      채팅하러 가기
-  <button type="submit">${fn:length(chatList)}개</button>
+			<form action="/testing/chattingList" method="post">
+						<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
+							value="<%=firstSelectedUser.getUser_code()%>">
+						<button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
 
-</form>
+
+					</form>
 </li>
-                 <li>
+                       <li>
               <form action="/testing/products/add">
       <button type="submit">게시글작성</button>
    			</form>
@@ -425,7 +444,7 @@ footer {
 					</form>
 				</li>
 				<li>
-					<form action="/testing/scrollHome">
+					<form action="/testing/qna">
 						<button type="submit">문의하기</button>
 					</form>
 				</li>
@@ -446,21 +465,20 @@ footer {
 				<%
 				}
 				%>
+				
 			</ul>
 		</div>
 		<div class="header-btn">
-			<form action="/testing/products">
-				<button type="submit">중고거래</button>
-			</form>
-			<form action="/testing/scrollHome">
-				<button type="submit">동네거래</button>
-			</form>
-			<form action="/testing/scrollHome">
-				<button type="submit">동네인증</button>
-			</form>
+			 <form action="/testing/scrollHome">
+         <button type="submit">중고거래</button>
+      </form>
+			  <form action="/testing/localproductList" method="post">
+               <input type="hidden" name="newLocation" value="${detail_loc}" />
+         <button type="submit">동네거래</button>
+      </form>
 		</div>
 		<%
-		if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
+		if (user != null && selectedUser != null) {
 		%>
 		<div class="header-btn2">
 			<form action="/testing/logout" method="post">
@@ -476,8 +494,9 @@ footer {
 		<%
 		}
 		%>
+	
+	
 	</header>
-
 
 	<div class="main-top">
 		<form id="saveForm" action="/testing/products/update" method="post"
@@ -517,17 +536,37 @@ footer {
 				<option value="경상도">경상도</option>
 				<option value="전라도">전라도</option>
 				<option value="강원도">강원도</option>
-			</select>
-			<select id="detail_loc" name="detail_loc" style="margin-left: 5px;">
-				<!-- 중분류 옵션은 JavaScript에서 처리 -->
-			</select>
-			</div>
-			</div>
-			
-			
-			<label for="board_Text">내용:</label>
-			<textarea id="board_Text" name="board_Text"  required>${product.board_Text}</textarea>
-			<br>
+		       </select> <select id="detail_loc" name="detail_loc"
+                  style="margin-left: 5px;">
+                  <!-- 중분류 옵션은 JavaScript에서 처리 -->
+               </select>
+            </div>
+         </div>
+
+
+         <label for="board_Text">내용:</label>
+         <textarea id="board_Text" name="board_Text" oninput="checkLength()"
+            required></textarea>
+         <span id="charCount">0 / 100</span>
+
+         <script>
+            function checkLength() {
+               var maxLength = 100;
+               var textArea = document.getElementById("board_Text");
+               var charCount = document.getElementById("charCount");
+
+               var usedChars = textArea.value.length;
+               var remainingChars = maxLength - usedChars;
+
+               if (remainingChars < 0) {
+                  // 만약 100자를 초과하면 더 이상 입력을 허용하지 않음
+                  textArea.value = textArea.value.substring(0, maxLength);
+                  usedChars = maxLength; // 사용된 글자 수를 최대값으로 설정
+               }
+
+               charCount.textContent = usedChars + " / 100";
+            }
+         </script>
 			<label for="board_Img">이미지:</label>
 			<input type="file"
 				id="board_Img" name="file" required><br>
@@ -569,10 +608,15 @@ footer {
 
 
 
- <footer>
-		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
-		<p>조장: 김재열 | 조원: 김민규 | 조원: 김병진 | 조원: 이정훈 | 조원: 허재혁</p>
-	</footer>
+   <footer>
+      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
+      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
+      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
+      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
+      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
+      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
+   </footer>
+
 	<%
 	}
 	%>

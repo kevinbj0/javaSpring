@@ -4,13 +4,13 @@
 <aop-project name="pagingMyBatis"/>
 <aop-project name="day9Transjection"/>
 <aop-project name="batisPrj2"/>
-<aop-project name="day1"/>
 <aop-project name="batisPrj"/>
+<aop-project name="day1"/>
 <aop-project name="pagingSlide"/>
 <aop-project name="miniSpring"/>
 <aop-project name="Carrot"/>
-<aop-project name="SecondBack"/>
 <aop-project name="intersepterPrj"/>
+<aop-project name="SecondBack"/>
 <aop-project name="day7InterfacePrj"/>
 <aop-project name="day5Cookie"/>
 <aop-project name="testPrj"/>
@@ -24,7 +24,7 @@
 <aop-project name="kakaoApi"/>
 <aop-project name="carrotMarket"/>
 <aop-project name="batisTran"/>
-<aop-project name="SecondHand"/>
 <aop-project name="SecondHandServer"/>
 <aop-project name="day4"/>
+<aop-project name="SecondHand"/>
 </aop-reference-model>

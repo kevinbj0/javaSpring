@@ -22,4 +22,7 @@ public interface scrollRepositoryI {
 
 	//동네 레코드 개수
 	public int  localTotalCnt(String location);
+	
+	//내 판매글
+	public List<ScrollDTO> getSellProducts(String user_code);
 }

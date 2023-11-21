@@ -23,4 +23,7 @@ public interface scrollServiceI {
 
 	//동네 레코드 개수
 	public int  localTotalCnt(String location);
+	
+	//판매중인 물건 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	public List<ScrollDTO> getSellProducts(String user_code);
 }

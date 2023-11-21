@@ -46,18 +46,18 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="com.acorn.tranjection.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.sh.scroll.service.scrollServiceI"/>
     <fullyQualifiedTypeName name="com.sh.scroll.domain.ScrollHandler"/>
     <fullyQualifiedTypeName name="com.sh.scroll.repository.scrollRepositoryI"/>
-    <fullyQualifiedTypeName name="com.sh.scroll.domain.ScrollDTO"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
     <fullyQualifiedTypeName name="com.sh.login.domain.LoginDTO"/>
     <fullyQualifiedTypeName name="com.sh.product.repository.ProductRepository"/>
     <fullyQualifiedTypeName name="com.sh.product.controller.ProductController"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.sh.scroll.domain.ScrollDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 </qualifiedTypeNameHistroy>

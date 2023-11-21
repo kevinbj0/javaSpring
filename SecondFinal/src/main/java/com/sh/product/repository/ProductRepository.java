@@ -49,6 +49,15 @@ public class ProductRepository {
     public void deleteProduct(String boardId) {
         session.delete(namespace + "deleteProduct", boardId);
     }
+    public void deleteProduct2(String boardId) {
+        session.delete(namespace + "deleteProduct2", boardId);
+    }
+    public void deleteProduct3(String user_code) {
+        session.delete(namespace + "deleteProduct3", user_code);
+    }
+    public void deleteProduct4(String user_id) {
+        session.delete(namespace + "deleteProduct4", user_id);
+    }
     public int updateProduct(ProductDTO product) {
         return session.update(namespace + "updateProduct", product);
     }
@@ -72,38 +81,36 @@ public class ProductRepository {
         return session.insert(namespace + "updateDate", boardId);
     }
  
-	//*** 좋아요 
-	//좋아요 insert
-	 public void insertLike(String boardId, String userId) {
-		 	Map<String, Object> map = new HashMap<>();
-		 	map.put("boardId", boardId);
-		 	map.put("userId", userId);
-		 	
-	        session.insert(namespace + "insertLike", map);
-	 }
-	 
-	//좋아요 delete
-	 public void deleteLike(String boardId, String userId) {
-		 	Map<String, Object> map = new HashMap<>();
-		 	map.put("boardId", boardId);
-		 	map.put("userId", userId);
-		 	
-	        session.delete(namespace + "getlikeDelete", map);
-	 }
-	 
-	 //좋아요 클릭한적 있는지 0 또는 1 반환
-	 public boolean likeClick(String boardId, String userId) {
-		 	Map<String, Object> map = new HashMap<>();
-		 	map.put("boardId", boardId);
-		 	map.put("userId", userId);
-		 	return session.selectOne(namespace + "getlikeClick", map);
-	 }
-	 
-	 public int likeNum(String userId) {
-		 return session.selectOne(namespace + "getLikeNum", userId);
-	 }
-  	public List<ProductDTO> getLocalProducts(String detail_loc) {
-        return session.selectList(namespace + "getLocalProducts", detail_loc);
+   //*** 좋아요 
+   //좋아요 insert
+    public void insertLike(String boardId, String userId) {
+          Map<String, Object> map = new HashMap<>();
+          map.put("boardId", boardId);
+          map.put("userId", userId);
+          
+           session.insert(namespace + "insertLike", map);
+    }
+    
+   //좋아요 delete
+    public void deleteLike(String boardId, String userId) {
+          Map<String, Object> map = new HashMap<>();
+          map.put("boardId", boardId);
+          map.put("userId", userId);
+          
+           session.delete(namespace + "getlikeDelete", map);
+    }
+    
+    //좋아요 클릭한적 있는지 0 또는 1 반환
+    public boolean likeClick(String boardId, String userId) {
+          Map<String, Object> map = new HashMap<>();
+          map.put("boardId", boardId);
+          map.put("userId", userId);
+          return session.selectOne(namespace + "getlikeClick", map);
+    }
+    
+    //좋아요 몇개인지 반환
+    public int likeNum(String userId) {
+       return session.selectOne(namespace + "getLikeNum", userId);
     }
   
 }

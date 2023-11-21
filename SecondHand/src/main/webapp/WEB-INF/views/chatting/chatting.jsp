@@ -20,17 +20,23 @@
     var selectedNickname = "";
 
     // WebSocket으로 서버에 연결
-function connect() {
-    wsocket = new WebSocket("ws://localhost:8090/testing/chat-sh");
-    wsocket.onopen = onOpen;
-    wsocket.onmessage = onMessage;
-    wsocket.onclose = onClose;
-}
+       function connect() {
+        $('#connectBtn').hide();
+        $('#exitBtn').show();
+        $('#chatArea').show();
+        $('#message').focus();
+
+        wsocket = new WebSocket("ws://localhost:8090/testing/chat-sh");
+        wsocket.onopen = onOpen;
+        wsocket.onmessage = onMessage;
+        wsocket.onclose = onClose;
+    }
 
     // WebSocket 연결을 닫음
-    function disconnect() {
-        wsocket.close();
-    }
+       function disconnect() {
+    	    wsocket.close();
+    	    window.location.href = "homePage";
+    	}
 
     // 연결이 열릴 때 호출될 함수
     function onOpen(evt) {

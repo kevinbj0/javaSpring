@@ -117,4 +117,5 @@ public class ProductService implements ProductServiceI {
 	public int likeNum(String userId) {
 		return productRepository.likeNum(userId);
 	}
+	
 }
