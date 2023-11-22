@@ -12,6 +12,16 @@
       resultType="LoginDTO">
       SELECT * FROM user_tbl where user_id = #{user_id}
    </select>
+   
+   
+   <!--  관리자용 -->
+   <select id="selectAll" parameterType="LoginDTO"
+      resultType="LoginDTO">
+      SELECT * FROM user_tbl
+   </select>
+<select id="selectUserById" parameterType="String" resultType="LoginDTO">
+    SELECT * FROM user_tbl WHERE user_id = #{userId}
+</select>
 
    <update id="updateUser" parameterType="LoginDTO">
       UPDATE user_tbl

@@ -45,10 +45,13 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -401,7 +404,16 @@ footer a:hover {
 
          <div class="menu-container">
             <ul>
-               <li><h2></h2></li>
+                     <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+     
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
                <li><img
                   src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
                   style="border-radius: 50%; width: 100px; height: 100px;">
@@ -417,14 +429,14 @@ footer a:hover {
                   <form action="/testing/myPage" method="post">
                      <input type="hidden" name="user_code"
                         value="<%=firstSelectedUser.getUser_code()%>">
-                     <button type="submit">마이페이지 이동</button>
+                     <button type="submit">마이페이지</button>
                   </form>
                </li>
                <li>
                   <form action="/testing/chattingList" method="post">
                      <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                         value="<%=firstSelectedUser.getUser_code()%>">
-                     <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                     <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                   </form>
@@ -434,6 +446,11 @@ footer a:hover {
                      <button type="submit">게시글작성</button>
                   </form>
                </li>
+                 <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
+               </form>
+            </li>
                <li>
                   <form action="/testing/showOrder">
                      <button type="submit">주문내역</button>

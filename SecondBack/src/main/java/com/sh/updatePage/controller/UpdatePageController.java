@@ -45,7 +45,8 @@ public class UpdatePageController {
 			// 업데이트 성공
 			HttpSession session = request.getSession();
 			// 업데이트 후 사용자 정보를 다시 조회
-			List<Object> updatedUser = loginService.selectAll(loginDTO);
+			String userId = loginDTO.getUser_id();
+			LoginDTO updatedUser = loginService.getLoginDTO(userId);
 			// 세션에 업데이트된 사용자 정보 저장
 			session.setAttribute("selectedUser", updatedUser);
 			return "/myPage/myPage";
@@ -62,7 +63,8 @@ public class UpdatePageController {
 	    loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	    // 업데이트 성공
 	    HttpSession session = request.getSession();
-	    List<Object> updatedUser = loginService.selectAll(loginDTO);
+	    String userId = loginDTO.getUser_id();
+	    LoginDTO updatedUser = loginService.getLoginDTO(userId);
 	    // 세션에 업데이트된 사용자 정보 저장
 	    session.setAttribute("selectedUser", updatedUser);
 	    return "/myPage/myPage";
@@ -90,8 +92,8 @@ public class UpdatePageController {
 	            loginDTO.setUser_image(fileRealName);
 	            loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	        }
-	        
-	        List<Object> updatedUser = loginService.selectAll(loginDTO);
+	        String userId = loginDTO.getUser_id();
+	        LoginDTO updatedUser = loginService.getLoginDTO(userId);
 		    session.setAttribute("selectedUser", updatedUser);
 	        // 상품 수정이 성공하면 목록 페이지로 리다이렉션
 

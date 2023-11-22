@@ -45,7 +45,11 @@ header h2 {
    font-size: 24px;
 }
 
+
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
@@ -223,6 +227,7 @@ header.menu-open h2 {
 .user-info-detail {
    display: flex;
    width: 864px;
+   position: relative;
    /* border-radius: 8px; */
    border-bottom-right-radius: 8px;
    border-bottom-left-radius: 8px;
@@ -232,6 +237,18 @@ header.menu-open h2 {
    border-bottom: 1px solid #ccc;
    border-left: 1px solid #ccc;
    border-right: 1px solid #ccc;
+}
+.user-info-detail button{
+  padding: 5px;
+   background-color: #ff6f0f;
+   color: #fff;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s, color 0.3s;
+}
+.user-info-detail button:hover{
+   background-color: #d55500;
 }
 
 .user_image_detail {
@@ -505,7 +522,7 @@ footer a:hover {
         var data = google.visualization.arrayToDataTable(chartData);
 
         var options = {
-            title: 'My temperature record',
+            title: '온도 기록',
             legend: { position: 'none' },
             series: {
                 0: {
@@ -566,7 +583,20 @@ footer a:hover {
       </div>
       <div class="menu-container">
          <ul>
-            <li><h2></h2></li>
+         
+         
+       
+          <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+     
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
+           
             <li><img src="${path}/images/<%=selectedUser.getUser_image()%>"
                style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
@@ -578,13 +608,13 @@ footer a:hover {
 
                </h2></li>
             <li><form action="/testing/update">
-                  <button type="submit">회원정보 수정하기</button>
+                  <button type="submit">회원정보 수정</button>
                </form></li>
             <li>
                <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=selectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -594,8 +624,13 @@ footer a:hover {
                   <button type="submit">게시글작성</button>
                </form>
             </li>
+         
+   <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
+               </form>
+            </li>
             <li>
-
                <form action="/testing/showOrder">
                   <button type="submit">주문내역</button>
                </form>
@@ -664,6 +699,7 @@ footer a:hover {
       <div id="user-info-div" class="toggle-div">
          <div class="user-info">
             <div class="user-info-detail">
+            
                <div class="user_image_detail">
                   <form method="post" action="/testing/updateuserimg"
                      enctype="multipart/form-data" style="margin-bottom: 30px;">
@@ -675,12 +711,26 @@ footer a:hover {
                         name="user_id" value="<%=selectedUser.getUser_id()%>" />
                      <button class="modifyBtn" type="submit">사진 수정</button>
                   </form>
+                  
                   <form method="post" action="/testing/updateusermainimg">
                      <input type="hidden" name="user_id"
                         value="<%=selectedUser.getUser_id()%>" /> <input type="hidden"
                         name="user_image" value="기본_이미지.jpg">
                      <button class="originBtn" type="submit">기본이미지로 변경</button>
                   </form>
+                                
+					<form action="/testing/update">
+                  <button type="submit"
+                  style="
+    position: absolute;
+    top: 400px;
+    left: 85px;
+    padding: 5px;
+    
+"
+                  >회원정보 수정하기</button>
+               </form>
+             
                </div>
 
                <div class="gauge-container">

@@ -9,13 +9,14 @@
     <meta charset="UTF-8">
     <title>Product List</title>
 </head>
+
 <body>
     <h2>Product List</h2>
    <%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
-   List<LoginDTO> selectedUser = (List<LoginDTO>) session.getAttribute("selectedUser");
-   if (user != null && selectedUser != null && !selectedUser.isEmpty()) {
-      LoginDTO firstSelectedUser = selectedUser.get(0); // Assuming you want the first user in the list
+   LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
+   if (user != null && selectedUser != null) {
+      LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
    %>
     <h2>Welcome, <%= firstSelectedUser.getUser_nickname() %></h2>
 <%

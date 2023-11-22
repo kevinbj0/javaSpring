@@ -15,4 +15,6 @@ public class ScrollDTO {
 	String board_click; //조회수
 	String board_img; //이미지
 	String board_text; //내용
+	String user_code; //유저코드
 }
+

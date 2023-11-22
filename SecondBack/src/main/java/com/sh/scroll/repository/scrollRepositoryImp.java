@@ -65,4 +65,11 @@ public class scrollRepositoryImp implements scrollRepositoryI{
 		return session.selectOne( namespace + ".localTotalCnt", location);
 	}
 	
+	
+	//판매중인 물건 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	@Override
+	public List<ScrollDTO> getSellProducts(String user_code) {
+		return session.selectList(namespace+".SellProducts", user_code);
+	}
+	
 }

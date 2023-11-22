@@ -484,11 +484,19 @@ footer a:hover {
       <div class="menu-container">
          <ul>
 
-            <%
-            if (user != null && selectedUser != null) {
-               LoginDTO firstSelectedUser = selectedUser;
-            %>
-            <li><h2></h2></li>
+         <%
+if (user != null && selectedUser != null) {
+   LoginDTO firstSelectedUser = selectedUser;
+   if ("admin".equals(firstSelectedUser.getUser_id())) {
+%>
+  
+        <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li><img
                src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
                style="border-radius: 50%; width: 100px; height: 100px;">
@@ -501,7 +509,16 @@ footer a:hover {
                <form action="/testing/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
+               </form>
+            </li>
+                 <li>
+               <form action="/testing/chattingList" method="post">
+                  <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
+                     value="<%=firstSelectedUser.getUser_code()%>">
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
+
+
                </form>
             </li>
             <li>
@@ -514,15 +531,7 @@ footer a:hover {
                   <button type="submit">구매내역</button>
                </form>
             </li>
-            <li>
-               <form action="/testing/chattingList" method="post">
-                  <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
-                     value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
-
-
-               </form>
-            </li>
+       
             <li>
                <form action="/testing/qna">
                   <button type="submit">문의하기</button>
@@ -671,6 +680,7 @@ footer a:hover {
          <%
          }
          %>
+
 
       </div>
       <div>

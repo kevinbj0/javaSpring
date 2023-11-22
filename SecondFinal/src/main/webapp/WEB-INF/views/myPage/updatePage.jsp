@@ -40,10 +40,13 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -497,7 +500,16 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
       </form></div>
       <div class="menu-container">
           <ul>
-         <li><h2> </h2></li>
+            <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+     
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li>
               <img src="${path}/images/<%=selectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
@@ -512,7 +524,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
               
                            <form action="/testing/myPage" method="post">
                <input type="hidden" name="user_code" value="<%=selectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
               
             </li>
@@ -520,7 +532,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
                <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=selectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -530,8 +542,12 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
                   <button type="submit">게시글작성</button>
                </form>
             </li>
+                     <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
+               </form>
+            </li>
             <li>
-
                <form action="/testing/showOrder">
                   <button type="submit">주문내역</button>
                </form>
@@ -591,7 +607,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
 <div class="button-container">
     <form id="saveForm" action="/testing/update" method="post">
           <div style="text-align: center;"> <!-- Add this div for centering -->
-            <h2>정보수정</h2>
+            <h2>" <%= selectedUser.getUser_nickname() %> " 님의 정보수정</h2>
         </div>
         <input type="hidden" name="user_code" id="user_code" value="<%= selectedUser.getUser_code() %>" required>
 
@@ -600,11 +616,15 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
         <label for="user_id">아이디</label>
         <input type="text" name="user_id" id="user_id" value="<%= selectedUser.getUser_id() %>" readonly required>
 
-        <label for="user_pw">비밀번호</label>
-        <input type="password" name="user_pw" id="user_pw" value="<%= selectedUser.getUser_pw() %>" readonly required>
+           <label for="user_password">비밀번호</label>
+        <input type="text" name="user_pw" id="user_pw" value="<%= selectedUser.getUser_pw() %>"  required>
+        <label for="user_nickname">닉네임</label>
+        <input type="text" name="user_nickname" id="user_nickname" value="<%= selectedUser.getUser_nickname() %>" required>
 
         <label for="address">이메일</label>
         <input type="text" name="address" id="address" value="<%= selectedUser.getAddress() %>" required>
+        <label for="user_birth">생년월일</label>
+        <input type="text" name="user_birth" id="user_birth" value="<%= selectedUser.getUser_birth() %>" readonly >
 
         <label for="phone_num">휴대폰 번호</label>
         <input type="text" name="phone_num" id="phone_num" value="<%= selectedUser.getPhone_num() %>" required>
@@ -621,38 +641,23 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
         <label for="detailed_address">상세주소</label>
         <input type="text" name="detailed_address" id="detailed_address" value="<%= selectedUser.getDetailed_address() %>" required>
 
-        <label for="user_birth">생일</label>
-        <input type="text" name="user_birth" id="user_birth" value="<%= selectedUser.getUser_birth() %>" readonly required>
 
-        <label for="user_nickname">닉네임</label>
-        <input type="text" name="user_nickname" id="user_nickname" value="<%= selectedUser.getUser_nickname() %>" readonly required>
 
-        <label for="user_image">회원사진</label>
-        <input type="text" name="user_image" id="user_image" value="<%= selectedUser.getUser_image() %>" required>
+       
+        <input type="hidden" name="user_image" id="user_image" value="<%= selectedUser.getUser_image() %>" required>
+        <input type="hidden" name="user_heat" id="user_heat" value="<%= selectedUser.getUser_heat() %>" readonly required>
 
-        <label for="user_heat">평점</label>
-        <input type="text" name="user_heat" id="user_heat" value="<%= selectedUser.getUser_heat() %>" readonly required>
-
-        <button type="submit">정보수정하기</button>
+        <button type="submit">정보수정</button>
        
     </form>
-    <form id="deleteForm" action="/testing/delete" method="post">
+    <form id="deleteForm" action="/testing/delete" method="post" onsubmit="return confirm(' 회원탈퇴를 하시겠습니까?(탈퇴시 모든 게시글은 삭제됩니다)');">
         <input type="hidden" name="user_code" value="<%= selectedUser.getUser_code() %>">
         <input type="hidden" name="user_id" value="<%= selectedUser.getUser_id() %>">
-        <button class = "deleteUBtn" type="submit" onclick="confirmDelete()">삭제</button>
+        <button class = "deleteUBtn" type="submit">회원탈퇴</button>
     </form>
     
-    <script>
-function confirmDelete() {
-    // 확인 대화 상자를 표시하고 사용자의 응답을 확인합니다.
-    var result = confirm("정말로 삭제하시겠습니까?");
 
-    // 사용자가 확인을 선택한 경우에만 폼을 제출합니다.
-    if (result) {
-        document.getElementById("deleteForm").submit();
-    }
-}
-</script>
+
     
     
     </div>

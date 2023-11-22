@@ -54,7 +54,17 @@ public class LoginRepositoryImp implements LoginRepositoryI {
       return session.update(namespace + "updateUserImg", loginDTO);
    }
 
+   @Override
+   public List<LoginDTO> selectAllUsers() {
+      return session.selectList(namespace + "selectAll");
+   }
+
    
+   @Override
+   public LoginDTO getUserById(String userId) {
+       return session.selectOne(namespace + "selectUserById", userId);
+   }   //관리자용
+
    
    @Override
    public int delete(LoginDTO loginDTO) {

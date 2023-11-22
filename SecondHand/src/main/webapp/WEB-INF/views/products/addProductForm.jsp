@@ -44,10 +44,13 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -216,6 +219,7 @@ header.menu-open h2 {
 }
 
 #saveForm {
+   height: 746px;
    margin: 20px auto;
    box-shadow: 0px 0px 5px #ccc;
    width: 650px;
@@ -339,6 +343,9 @@ footer a:hover {
    background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
    color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
+textarea {
+    resize: none;
+}
 
 /*글자수 제한*/
 #charCount {
@@ -385,7 +392,7 @@ footer a:hover {
    LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
    List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
    if (user != null && selectedUser != null) {
-      LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
+      LoginDTO firstSelectedUser = selectedUser;
    %>
    <header>
       <div class="header-logo">
@@ -397,7 +404,15 @@ footer a:hover {
 
       <div class="menu-container">
          <ul>
-            <li><h2></h2></li>
+  <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li><img
                src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
                style="border-radius: 50%; width: 100px; height: 100px;">
@@ -412,14 +427,14 @@ footer a:hover {
                <form action="/testing/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
                <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -427,6 +442,11 @@ footer a:hover {
             <li>
                <form action="/testing/products/add">
                   <button type="submit">게시글작성</button>
+               </form>
+            </li>
+                 <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
@@ -503,12 +523,13 @@ footer a:hover {
                <option value="나눔">나눔</option>
             </select>
          </div>
+         <div></div>
          <label for="board_Title">제목:</label> <input type="text"
             id="board_Title" name="board_Title" required> <br>
 
          <div class="detail-container">
             <label id="detail">가격:</label> <input type="number" id="board_Price"
-               name="board_Price" step="1000" min="1000" required
+               name="board_Price" step="1000" min="1000" max="999990000" required
                style="margin-right: 102px;"> <br> <label id="detail">카테고리:</label>
             <div class="cate-container">
 
@@ -529,8 +550,8 @@ footer a:hover {
 
 
          <label for="board_Text">내용:</label>
-         <textarea id="board_Text" name="board_Text" oninput="checkLength()"
-            required></textarea>
+      <textarea id="board_Text" name="board_Text" oninput="checkLength()"
+            required style="font-size:18px;"></textarea>
          <span id="charCount">0 / 100</span>
 
          <script>
@@ -588,16 +609,15 @@ footer a:hover {
 </script>
 
 
-   <footer>
+  <footer>
       &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p>
-         <a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
-            href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
-            href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
-            href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
-            href="https://github.com/lepio1999">조원: 허재혁 </a>
-      </p>
+      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
+      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
+      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
+      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
+      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
    </footer>
+
 
    <%
    }

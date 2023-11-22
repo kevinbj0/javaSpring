@@ -66,7 +66,7 @@ public class ChatController {
         return "/chatting/chattingList"; 
     }
    
-   @PostMapping("/inchat")
+   @GetMapping("/inchat")
    public String inchat(@RequestParam String chat_code,@RequestParam String sell_code,@RequestParam String buy_code,
 		   @RequestParam String board_Title,
 		   @RequestParam String board_Price,@RequestParam String board_Img,Model model) {

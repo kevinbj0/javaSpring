@@ -40,11 +40,11 @@ public class ChatService implements ChatServiceImp {
       return dao.selectChatCode(chat_code);
    }
 
-
-   @Override
-   public boolean cheackCode(String buy_code,String sell_code,String board_id, String board_Title, String user_nickname) {
+@Override
+   public boolean cheackCode(String buy_code,String sell_code,String board_id, String board_Title, 
+		   String user_nickname, String board_Price,String board_Img) {
       // TODO Auto-generated method stub
-      return dao.cheackCode(buy_code, sell_code,board_id,board_Title,user_nickname);
+      return dao.cheackCode(buy_code, sell_code,board_id,board_Title,user_nickname,board_Price,board_Img);
    }
 
    @Override

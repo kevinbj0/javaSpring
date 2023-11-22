@@ -15,7 +15,9 @@ public interface ChatServiceImp {
    
    public int deleteChatByCode(String chat_code,String buy_code);
 
-   boolean cheackCode(String buy_code, String sell_code, String board_id, String board_Title, String user_nickname);
+
+boolean cheackCode(String buy_code, String sell_code, String board_id, String board_Title, String user_nickname,
+		String board_Price,String board_Img);
    
 
 

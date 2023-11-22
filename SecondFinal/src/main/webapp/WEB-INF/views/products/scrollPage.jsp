@@ -57,10 +57,13 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -192,6 +195,7 @@ header.menu-open h2 {
 
 #sort button {
    margin: 0px 6px 0px 6px;
+   width:101px;
    padding: 4px;
    font-weight: bold;
    background-color: white;
@@ -209,7 +213,7 @@ header.menu-open h2 {
 .search {
    position: relative;
    width: 300px;
-   margin-left: 230px;
+   margin-left: 30px;
 }
 
 .search input {
@@ -401,7 +405,15 @@ header.menu-open h2 {
 
       <div class="menu-container">
          <ul>
-            <li><h2></h2></li>
+                     <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li>
                <% if (user != null && selectedUser != null) {
       LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
@@ -418,14 +430,14 @@ header.menu-open h2 {
                <form action="/testing/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
                <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -433,6 +445,11 @@ header.menu-open h2 {
             <li>
                <form action="/testing/products/add">
                   <button type="submit">게시글작성</button>
+               </form>
+            </li>
+                <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
@@ -528,6 +545,10 @@ header.menu-open h2 {
          <button id="srClick">인기순</button>
          |
          <button id="srLike">관심상품</button>
+         |
+             <form action="/testing/products/add">
+                  <button type="submit">게시글작성</button>
+               </form>
          <div class="search">
             <input type="text" id="srSearch" value="" placeholder="검색어 입력">
             <img

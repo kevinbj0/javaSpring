@@ -46,18 +46,20 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
    margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
-/* 버튼 스타일 */
 header button {
-   margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
+    margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
    padding: 10px;
-   background-color: #ff6f0f;
-   font-weight: bold;
+   background-color:  #ff6f0f;
+   font-weight:bold;
    color: white;
    border: none;
    text-align: center;
@@ -70,7 +72,7 @@ header button {
 }
 
 header button:hover {
-   background-color: #ff6f0f;
+   background-color: #ff6f0f; 
    color: black;
 }
 
@@ -113,26 +115,21 @@ header.menu-open h2 {
    margin-top: 10px;
 }
 
-/* 햄버거 아이콘을 화면 왼쪽에 고정 */
-.menu-icon {
-   order: -1;
-}
-
-/* 햄버거 아이콘 스타일 */
 .menu-icon:hover {
 
-   color: black; /* 마우스를 올렸을 때의 색상 변경 */
+   color: black;
 }
 
 .menu-container {
    display: none;
    position: fixed;
-   top: 100px; /* 헤더 높이에 따라 조정하세요 */
+   top: 100px;
    left: 0;
    width: 20%;
    height: 100%;
    background-color: #f9f9f9;
    z-index: 999;
+   background-color: #f9f9f9;
 }
 
 .menu-container ul {
@@ -144,7 +141,7 @@ header.menu-open h2 {
 
 .menu-container li {
    padding: 15px;
-   border-bottom: 1px solid #ddd; /* 메뉴 항목 간에 경계선 추가 */
+   border-bottom: 1px solid #ddd;
 }
 
 .menu-container h2 {
@@ -162,12 +159,13 @@ header.menu-open h2 {
 }
 
 .menu-container Button:hover {
-background-color: #f9f9f9;
-   color: #ff6f0f; /* 호버 시 색상 변경 */
+   background-color: white; 
+   color: #ff6f0f;
 }
 
 .menu-container h2:hover {
-   color: #ff6f0f; /* 호버 시 색상 변경 */
+
+   color: #ff6f0f;
 }
 
 .main-top {
@@ -356,6 +354,21 @@ footer a:hover {
 .chatting_table{
 width: 1000px;
 }
+#saveForm button {
+   display: block;
+   margin: 20px auto; /* 중앙 정렬 및 아래쪽 여백 조절 */
+   padding: 10px;
+   background-color: #ff6f0f;
+   color: #fff;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s, color 0.3s;
+}
+
+#saveForm button:hover {
+   background-color: #d55500;
+}
 </style>
 <body>
 
@@ -391,6 +404,24 @@ width: 1000px;
                      }
                   });
          });
+   
+   
+   $(document).ready(function() {
+       $('.chatBtn').click(function(e) {
+           e.preventDefault(); // 기본 이벤트 동작 방지
+           var form = $(this).closest('form'); // 클릭된 버튼의 부모 form 선택
+           var formData = form.serialize(); // Form 데이터 가져오기
+           var inchatURL = form.attr('action'); // inchat URL
+
+           // 새 창 열기
+           var newWindow = window.open(inchatURL + '?' + formData, '_blank');
+           if (newWindow) {
+               newWindow.focus(); // 새 창이 있으면 해당 창에 포커스
+           } else {
+               alert('팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요.');
+           }
+       });
+   });
 </script>
 
 
@@ -418,7 +449,16 @@ width: 1000px;
 
       <div class="menu-container">
           <ul>
-         <li><h2> </h2></li>
+        <% if ("admin".equals(firstSelectedUser.getUser_id())) {
+%>
+  
+        <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li>
               <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
@@ -432,14 +472,14 @@ width: 1000px;
          <li>
                         <form action="/testing/myPage" method="post">
                <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
             </li>
                              <li>
          <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -449,6 +489,11 @@ width: 1000px;
       <button type="submit">게시글작성</button>
             </form>
    </li>
+         <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
+               </form>
+            </li>
             <li>
                <form action="/testing/showOrder">
                   <button type="submit">주문내역</button>
@@ -529,17 +574,18 @@ width: 1000px;
             <td>${chat.board_Title}</td>
             <td>${chat.user_nickname}</td>
             <td>
-                <form action="/testing/inchat" method="post">
-                    <input type="text" name="chat_code" value="${chat.chat_code}" />
-                    sell_code:<input type="text" name="sell_code" value="${chat.sell_code}" />
-                    buy_code:<input type="text" name="buy_code" value="${chat.buy_code}" />
-                    <input type="text" name="board_id" value="${chat.board_id}" />
-                    <input type="text" name="board_Price" value="${chat.board_Price}" />
-                    <input type="text" name="board_Img" value="${chat.board_Img}" />
-                    <input type="text" name="board_Title" value="${chat.board_Title}" />
+<form action="/testing/inchat" method="Get" target="_blank" id="chatForm">
+                    <input type="hidden" name="chat_code" value="${chat.chat_code}" />
+                    <input type="hidden" name="sell_code" value="${chat.sell_code}" />
+                    <input type="hidden" name="buy_code" value="${chat.buy_code}" />
+                    <input type="hidden" name="board_id" value="${chat.board_id}" />
+                    <input type="hidden" name="board_Price" value="${chat.board_Price}" />
+                    <input type="hidden" name="board_Img" value="${chat.board_Img}" />
+                    <input type="hidden" name="board_Title" value="${chat.board_Title}" />
                     
                     
-                    <button type="submit">채팅</button>
+                       <button type="submit" class="chatBtn">채팅</button>
+
                 </form>
             </td>
             <td>

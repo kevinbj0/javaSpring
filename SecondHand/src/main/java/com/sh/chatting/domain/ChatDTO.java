@@ -10,5 +10,8 @@ public class ChatDTO {
     private String board_id;
     private String board_Title;
     private String user_nickname;
+    private String board_Price;
+    private String board_Img;
+
 
 }

@@ -16,6 +16,7 @@ import com.sh.chatting.domain.ChatDTO;
 import com.sh.chatting.service.ChatService;
 import com.sh.chatting.service.ChatServiceImp;
 import com.sh.login.service.LoginService;
+import com.sh.product.service.ProductService;
 
 @Controller
 public class ChatController {
@@ -24,6 +25,8 @@ public class ChatController {
    private ChatService chatService;
    @Autowired
    private LoginService loginService;
+   @Autowired
+   private ProductService productService;
    
 
    
@@ -57,15 +60,45 @@ public class ChatController {
     @PostMapping("/chattingList")
     public String chatList(@RequestParam String buy_code, HttpSession session, Model model) {
         List<Object> chatList = chatService.selectAllCode(buy_code);
+
         System.out.println("넘어갈때 리스트"+chatList);
         session.setAttribute("chatList", chatList);
         return "/chatting/chattingList"; 
     }
    
-   @PostMapping("/inchat")
-   public String inchat(@RequestParam String chat_code, Model model) {
+   @GetMapping("/inchat")
+   public String inchat(@RequestParam String chat_code,@RequestParam String sell_code,@RequestParam String buy_code,
+		   @RequestParam String board_Title,
+		   @RequestParam String board_Price,@RequestParam String board_Img,Model model) {
+       String nickName = loginService.selectHeatU(sell_code);
+       System.out.println("내닉네임"+nickName);
+       model.addAttribute("nickName",nickName);
+       
+       String targetNickName = loginService.selectHeatU(buy_code);
+       System.out.println("상대닉네임"+nickName);
+       model.addAttribute("targetNickName",targetNickName);
+       
+       String my_heat = loginService.selectHeat(sell_code);
+       model.addAttribute("my_heat",my_heat);
+
+       String target_heat = loginService.selectHeat(buy_code);
+       model.addAttribute("target_heat",target_heat);
+
         String chatCode = chatService.selectChatCode(chat_code);
         model.addAttribute("chatCode", chatCode);
+        
+        model.addAttribute("board_Price",board_Price);
+        model.addAttribute("board_Img",board_Img);
+        model.addAttribute("board_Title",board_Title);
+
+        
+        System.out.println("각격"+board_Price);
+        System.out.println("이미지"+board_Img);
+        System.out.println("제목"+board_Title);
+
+
+        
+        System.out.println(buy_code);
        System.out.println(chatCode);
        return "chatting/chatting";
    }
@@ -75,8 +108,10 @@ public class ChatController {
          @RequestParam String board_id,
          @RequestParam String board_Title,
          @RequestParam String user_nickname,
+         @RequestParam String board_Price,
+         @RequestParam String board_Img,
          HttpSession session, Model model) {
-       boolean isCodeValid = chatService.cheackCode(buy_code, sell_code, board_id, board_Title, user_nickname);
+       boolean isCodeValid = chatService.cheackCode(buy_code, sell_code, board_id, board_Title, user_nickname,board_Price,board_Img);
        model.addAttribute("isCodeValid", isCodeValid);
        System.out.println(isCodeValid);
        if (isCodeValid == false) {

@@ -43,12 +43,14 @@ header h2 {
    margin: 0;
    font-size: 24px;
 }
-
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -169,7 +171,7 @@ header.menu-open h2 {
    justify-content: center;
    align-items: center;
    padding: 20px; /* 추가된 부분 */
-   height: 800px;
+   height: 826px;
 }
 
 .main-top div h1 {
@@ -584,7 +586,15 @@ footer a:hover {
 
       <div class="menu-container">
          <ul>
-                  <li><h2> </h2></li>
+                 <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li>
                <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
                   <h2>
@@ -598,14 +608,14 @@ footer a:hover {
             <li>
                         <form action="/testing/myPage" method="post">
                <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
             </li>
                              <li>
          <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -615,6 +625,11 @@ footer a:hover {
       <button type="submit">게시글작성</button>
             </form>
    </li>
+       <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
+               </form>
+            </li>
             <li>
                <form action="/testing/showOrder">
                   <button type="submit">주문내역</button>
@@ -699,7 +714,9 @@ footer a:hover {
       %>
    
    
+   
    </header>
+
 
 
 
@@ -820,10 +837,13 @@ footer a:hover {
                            required><br>
                        <input type="hidden" name="board_Title" value="${product.board_Title}" required><br> 
                            <input type="hidden" name="user_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
+                            <input type="hidden" name="board_Img" value="${product.board_Img}" required><br>
+                           
                         <button type="submit">채팅신청하기</button>
 
                      </form>
-                                                              <form action="/testing/scrollHome">
+                     <form action="/testing/scrollHome">
          <button type="submit">리스트로 돌아가기</button>
       </form>
                      <div class="like1">
@@ -839,7 +859,9 @@ footer a:hover {
 
 
             <div class="modify_product">
-               <c:if test="${owner}">
+            
+         
+             <c:if test="${owner}">
                   <!-- 수정부분 -->
 
                   <form action="/testing/products/update" method="get">
@@ -856,7 +878,7 @@ footer a:hover {
                      <button type="submit">수정</button>
                   </form>
                   <!-- 삭제부분 -->
-                  <form action="/testing/products/delete" method="post">
+                  <form action="/testing/products/delete" method="post" onsubmit="return confirm('게시글을 삭제하시겠습니까?');">
                      <input type="hidden" name="user_code1" id="user_code1"
                         value="<%=firstSelectedUser.getUser_code()%>" required> <input
                         type="hidden" name="user_code3" id="user_code3"
@@ -869,17 +891,31 @@ footer a:hover {
                      <input type="hidden" name="boardId" value="${product.board_Id}">
                      <button type="submit">끌어올리기</button>
                   </form>
-                                                           <form action="/testing/scrollHome">
+                  
+                  
+           <form action="/testing/scrollHome">
          <button type="submit">리스트로 돌아가기</button>
       </form>
+      
                   <div class="like1">
                      <button id="like">관심 버튼</button>
                   </div>
           
                </c:if>
+             
+
             </div>
          </div>
-
+       <c:if test="${'admin' == user.user_id}">
+   <form action="/testing/products/delete" method="post" onsubmit="return confirm('게시글을 삭제하시겠습니까?');"
+   style="margin-top: 460px;">
+      <input type="hidden" name="user_code1" id="user_code1" value="<%=firstSelectedUser.getUser_code()%>" required>
+      <input type="hidden" name="user_code3" id="user_code3" value="<%=product.getUser_code()%>" required>
+      <input type="hidden" name="boardId" value="${product.board_Id}">
+      <button type="submit">삭제</button>
+   </form>
+</c:if>
+ 
       </div>
       <button id="myBtn" title="Go to top">Top</button>
    </div>

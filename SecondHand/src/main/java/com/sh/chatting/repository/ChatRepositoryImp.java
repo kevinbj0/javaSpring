@@ -37,13 +37,18 @@ public class ChatRepositoryImp implements ChatRepository {
    }
 
    @Override
-   public boolean cheackCode(String buy_code, String sell_code,String board_id,String board_Title, String user_nickname) {
+   public boolean cheackCode(String buy_code, String sell_code,String board_id,String board_Title, 
+		   String user_nickname,String board_Price,String board_Img) {
       Map<String, Object> map = new HashMap<String, Object>();
       map.put("buy_code", buy_code);
       map.put("sell_code", sell_code);
       map.put("board_id", board_id);
       map.put("board_Title", board_Title);
       map.put("user_nickname", user_nickname);
+      map.put("board_Price", board_Price);
+      map.put("board_Img", board_Img);
+
+
 
       
       System.out.println(buy_code);

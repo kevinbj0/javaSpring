@@ -4,18 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<bean id="d" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url"
-			value="jdbc:oracle:thin:@secondhand.cxtf5ov9mjaq.ap-northeast-2.rds.amazonaws.com:1521:DATABASE"></property>
-		<property name="username" value="scott"></property>
-		<property name="password" value="12345678"></property>
-	</bean>
+		   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+      <property name="url" value="jdbc:mysql://3.35.52.214:3306/sh_db?useUnicode=true&amp;characterEncoding=utf8"></property>
+      <property name="username" value="user"></property>
+      <property name="password" value="tiger"></property>
+   </bean>   
 	
 		<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="d" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:mybatis-config.xml" />
 		<property name="mapperLocations"

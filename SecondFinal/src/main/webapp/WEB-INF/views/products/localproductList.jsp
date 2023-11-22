@@ -57,10 +57,13 @@ header h2 {
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -183,11 +186,21 @@ header.menu-open h2 {
    font-weight: bold;
 }
 
+#sort {
+   color: #cfcfcf;
+   width: 749px;
+   display: flex;
+   align-items: center;
+   margin: 0px auto;
+   font-weight: bold;
+}
+
 #sort button {
    margin: 0px 6px 0px 6px;
+   width:101px;
    padding: 4px;
    font-weight: bold;
-   background-color:white;
+   background-color: white;
    color: black;
    border: none;
    border-radius: 4px;
@@ -202,7 +215,7 @@ header.menu-open h2 {
 .search {
    position: relative;
    width: 300px;
-   margin-left: 230px;
+   margin-left: 30px;
 }
 
 .search input {
@@ -390,7 +403,15 @@ border-radius: 12px;
 
       <div class="menu-container">
          <ul>
-            <li><h2></h2></li>
+      <% if ("admin".equals(selectedUser.getUser_id())) {
+%>
+      <li>
+            <form action="/testing/admin" method="post">
+            <button type="submit">관리자 페이지</button>
+        </form>
+   </li>     <%
+         }
+         %>
             <li><img
                src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
                style="border-radius: 50%; width: 100px; height: 100px;">
@@ -405,14 +426,14 @@ border-radius: 12px;
                <form action="/testing/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
+                  <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
                <form action="/testing/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
+                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
                </form>
@@ -420,6 +441,11 @@ border-radius: 12px;
             <li>
                <form action="/testing/products/add">
                   <button type="submit">게시글작성</button>
+               </form>
+            </li>
+                 <li>
+               <form action="/testing/sellProducts">
+                  <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
@@ -486,7 +512,11 @@ border-radius: 12px;
      <div id="sort">
          <button id="srTime">최신순</button>|
          <button id="srClick">인기순</button>|
-         <button id="srLike">관심상품</button>
+           <button id="srLike">관심상품</button>
+         |
+             <form action="/testing/products/add">
+                  <button type="submit">게시글작성</button>
+               </form>
          <div class="search">
             <input type="text" id="srSearch" value="" placeholder="검색어 입력">
             <img
@@ -570,32 +600,36 @@ border-radius: 12px;
            }
    });
     
-     //페이지 로드
-      function loadPage(pageNumber) {
-       if (!loading) {
-           loading = true;
-           $.ajax({
-               url: "localScroll?page=" + pageNumber + "&mode=" + sort_mode + "&detail_loc=" + detail_loc,
-               type: "GET",
-               success: function(data) {
-                   list = data.loclist;
-                   if( list.length !== 0){
-                       totalPage = data.totalPage;
-                       let sql = pageToString(list);
-                       $(".scrollWrap").append(sql);
-                   }else{
-                      alert("해당 지역 내 상품이 없습니다.");
-                       window.location.href = "/testing/homePage";
-                                      }
-                   loading = false;
-               },
-               error: function(error) {
-                   console.log("Error:", error);
-                   loading = false;
-               }
-           });
-       }
-   }    
+  //페이지 로드
+    function loadPage(pageNumber) {
+     if (!loading) {
+         loading = true;
+         $.ajax({
+             url: "localScroll?page=" + pageNumber + "&mode=" + sort_mode + "&detail_loc=" + detail_loc,
+             type: "GET",
+             success: function(data) {
+                 list = data.loclist;
+                 if( list.length !== 0){
+                     totalPage = data.totalPage;
+                     let sql = pageToString(list);
+                     $(".scrollWrap").append(sql);
+                 }
+                 else if(list.length == 0 && pageNumber !== 1){
+                    alert("더 이상 상품이 없습니다.");
+                 }
+                 else{
+                    alert("해당 지역 내 상품이 없습니다.");
+                     window.location.href = "/testing/homePage";
+                 }
+                 loading = false;
+             },
+             error: function(error) {
+                 console.log("Error:", error);
+                 loading = false;
+             }
+         });
+     }
+ }    
     //str문 생성
      function  pageToString(list){
           let str = "";
@@ -685,30 +719,36 @@ border-radius: 12px;
         });
     }
     
-    //관심목록 출력
-    function LikeList(){
-       if (!loading) {
-         loading = true;
-         $.ajax({
-            url: "${path}/likeList",
-            type: "POST",
-            data: {userId:userId},
+ //페이지 로드
+   function loadPage(pageNumber) {
+    if (!loading) {
+        loading = true;
+        $.ajax({
+            url: "localScroll?page=" + pageNumber + "&mode=" + sort_mode + "&detail_loc=" + detail_loc,
+            type: "GET",
             success: function(data) {
-               let list = data;
-               let sql = pageToString(list);
-               $(".scrollWrap").empty();
-               $(".scrollWrap").append(sql);
-   
-               loading = false;
+                list = data.loclist;
+                if( list.length !== 0){
+                    totalPage = data.totalPage;
+                    let sql = pageToString(list);
+                    $(".scrollWrap").append(sql);
+                }
+                else if(list.length == 0 && pageNumber !== 1){
+                   alert("더 이상 상품이 없습니다.");
+                }
+                else{
+                   alert("해당 지역 내 상품이 없습니다.");
+                    window.location.href = "/testing/homePage";
+                }
+                loading = false;
             },
             error: function(error) {
-               console.log("Error:", error);
-               loading = false;
+                console.log("Error:", error);
+                loading = false;
             }
-         });
-      }
-       
+        });
     }
+}    
      //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 좋아요 기능 END
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 부가기능 : 맨위로
     //맨위로 올리기

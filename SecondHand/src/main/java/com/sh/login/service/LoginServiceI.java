@@ -11,6 +11,9 @@ public interface LoginServiceI {
    LoginDTO getLoginDTO(String userId);
 
    public int updateUser(LoginDTO loginDTO);
+
+   List<LoginDTO> selectAllUsers();  // 추가
+   LoginDTO getUserById(String userId); //추가2
    
    public int updateUserImg(LoginDTO loginDTO);
    

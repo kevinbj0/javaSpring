@@ -18,42 +18,47 @@
 </head>
 <style>
 /* 23.11.10 수정완료 */
-
-body {
-   margin: 0;
-   padding: 0;
-   font-family: 'Arial', sans-serif;
+* {
+	margin: 0;
+	padding: 0;
 }
-
 
 header {
-   margin: 0 auto;
-   background-color: #ff6f0f;
-   padding: 10px;
-   position: sticky;
-   top: 0;
-   color: white;
-   z-index: 1000;
-   text-align: center;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   height: 100px;
-   box-sizing: border-box;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  background-color: #ff6f0f;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  color: white;
+  z-index: 1000;
+  text-align: center;
+  display: flex;
+  justify-content: center; /* 변경된 부분 */
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+h2 {
+	margin: 0;
+	text-align: center;
+	font-size: 24px; /* 폰트 크기 조정 */
+}
 header h2 {
    margin: 0;
    font-size: 24px;
 }
 
 .menu-icon {
+    justify-content: center;
+    align-items: center;
+    display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
-   margin-right: 20px;
+   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
@@ -393,7 +398,24 @@ footer a:hover {
    text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
    color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
+#myBtn {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   z-index: 99;
+   border: none;
+   outline: none;
+   background-color: #ff6f0f;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 10px;
+}
 
+#myBtn:hover {
+      background-color: #ff6f0f; 
+   color: black;
+}
 </style>
 <script>
    function findAddr() {
@@ -417,56 +439,61 @@ footer a:hover {
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-   $(document)
-         .ready(
-               function() {
-                  $("#showPasswordCheckbox").on("change", function() {
-                     let isChecked = $(this).is(":checked");
-                     let type = isChecked ? "text" : "password";
-                     $("#user_pw, #user_pw_confirm").attr("type", type);
-                  });
+$(document).ready(function () {
+    $('#saveForm').submit(function (e) {
+        let fields = ['#user_id', '#user_pw', '#user_pw_confirm', '#address', '#phone_num', '#member_post', '#member_addr', '#detailed_address', '#user_birth', '#user_nickname'];
+        let isPasswordMatch = checkPasswordMatch(); // 비밀번호 일치 여부 확인
 
-                  $("#user_pw, #user_pw_confirm")
-                        .on(
-                              "keyup",
-                              function() {
-                                 let pass1 = $("#user_pw").val();
-                                 let pass2 = $("#user_pw_confirm")
-                                       .val();
+        for (let i = 0; i < fields.length; i++) {
+            if ($(fields[i]).val() === '') {
+                e.preventDefault();
+                alert('모든 값을 입력해 주세요');
+                return;
+            }
+        }
 
-                                 if (pass1 !== "" || pass2 !== "") {
-                                    if (pass1.length >= 8
-                                          && /[a-zA-Z]/
-                                                .test(pass1)
-                                          && /[0-9]/.test(pass1)
-                                          && /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
-                                                .test(pass1)
-                                          && /^\S*$/.test(pass1)) {
-                                       if (pass1 === pass2) {
-                                          $("#checkPw").html(
-                                                "비밀번호가 일치합니다.");
-                                          $("#checkPw").css(
-                                                "color",
-                                                "green");
-                                       } else {
-                                          $("#checkPw")
-                                                .html(
-                                                      "비밀번호가 일치하지 않습니다.");
-                                          $("#checkPw").css(
-                                                "color", "red");
-                                       }
-                                    } else {
-                                       $("#checkPw")
-                                             .html(
-                                                   "비밀번호는 영어, 숫자, 특수문자를 포함해 총 8글자 이상이어야 합니다."
-                                                         + "<br>"
-                                                         + "단, 공백은 안됩니다.");
-                                       $("#checkPw").css("color",
-                                             "red");
-                                    }
-                                 }
-                              });
-               });
+        if (!isPasswordMatch) {
+            e.preventDefault();
+            alert('비밀번호가 일치하지 않습니다.');
+        }
+
+        let isEmailVerificationMatch = checkEmailVerificationMatch(); // 이메일 인증 번호 일치 여부 확인
+        if (!isEmailVerificationMatch) {
+            e.preventDefault();
+            alert('이메일 인증 번호가 일치하지 않습니다.');
+        }
+    });
+
+    // ... 기타 코드 ...
+
+    function checkPasswordMatch() {
+        // 비밀번호 일치 여부 확인 로직 추가
+        let pass1 = $("#user_pw").val();
+        let pass2 = $("#user_pw_confirm").val();
+
+        if (pass1 !== pass2) {
+            $("#checkPw").html("비밀번호가 일치하지 않습니다.");
+            $("#checkPw").css("color", "red");
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkEmailVerificationMatch() {
+        // 이메일 인증 번호 일치 여부 확인 로직 추가
+        let inputCode = $("#verification_code").val();
+        if (inputCode !== code) {
+            $("#verification-result").html("인증번호가 일치하지 않습니다.");
+            $("#verification-result").css("color", "red");
+            $("#verification_code").css("border", "1.5px solid red");
+            $("#verification_code").css("color", "red");
+            return false;
+        }
+
+        return true;
+    }
+});
 </script>
 <script>
    function checkPasswordMatch() {
@@ -605,18 +632,27 @@ footer a:hover {
          var inputCode = $("#verification_code").val(); /* 사용자가 입력한 인증 번호 */
          var checkResult = $("#verification-result"); /* 결과를 표시할 요소 */
 
-         if (inputCode == code) { // 일치할 경우
+         if (!inputCode) { // 입력이 없을 경우
+            checkResult.html("인증번호를 입력하세요.");
+            checkResult.css("color", "red");
+            checkResult.css("display", "block");
+            return;
+         }
+
+         if (inputCode === code) { // 일치할 경우
             checkResult.html("인증번호가 일치합니다.");
             checkResult.css("color", "#3781E3");
             checkResult.css("display", "block");
             $("#verification_code").css("border", "1.5px solid #3781E3"); // 일치할 경우 테두리 색 변경
             $("#verification_code").css("color", "#3781E3"); // 일치할 경우 글자 색 변경
+
          } else {
             checkResult.html("인증번호가 일치하지 않습니다.");
             checkResult.css("color", "red");
             checkResult.css("display", "block");
             $("#verification_code").css("border", "1.5px solid red");
             $("#verification_code").css("color", "red");
+            return false;
          }
       });
    });
@@ -624,20 +660,19 @@ footer a:hover {
 
 
 <script>
-$(document).ready(function() {
-    //맨위로 올리기
-    $("html, body").animate({
-        scrollTop: 0
-    }, 400);
+   $(document).ready(function() {
+      //맨위로 올리기
+      $("html, body").animate({
+         scrollTop : 0
+      }, 400);
 
-    // 버튼을 클릭하면 페이지 맨 위로 스크롤합니다.
-    $("#myBtn").click(function() {
-        $("html, body").animate({
-            scrollTop: 0
-        }, 400); // 1000은 애니메이션 속도를 나타냅니다. 여기서는 1000ms로 설정했습니다.
-    });
-});
-  
+      // 버튼을 클릭하면 페이지 맨 위로 스크롤합니다.
+      $("#myBtn").click(function() {
+         $("html, body").animate({
+            scrollTop : 0
+         }, 400); // 1000은 애니메이션 속도를 나타냅니다. 여기서는 1000ms로 설정했습니다.
+      });
+   });
 </script>
 
 
@@ -650,160 +685,83 @@ $(document).ready(function() {
    %>
 
 
-   <header>
-      <div class="header-logo">
-         <div class="menu-icon">&#9776;</div>
-         <form action="/testing/homePage">
-         <button type="submit" >Second Hands</button>
-      </form>
-      </div>
+ 	<header>
 
-      <!-- 햄버거 아이콘 추가 -->
-      <div class="menu-container">
-         <ul>
-            <li>
-               <h2>
-                  <%
-                  if (user != null && selectedUser != null) {
-                     LoginDTO firstSelectedUser = selectedUser;
-                  %>
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
-               </h2>
-            </li>
-            <li>
-               <form action="/testing/myPage">
-                  <button type="submit">마이페이지 이동</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/showOrder">
-                  <button type="submit">주문내역</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/scrollHome">
-                  <button type="submit">문의하기</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/logout" method="post">
-                  <button type="submit">로그아웃</button>
-               </form>
-            </li>
-            <%
-            } else {
-            %>
-            <li><h2>로그인이 필요한 서비스입니다.</h2></li>
-            <li>
-               <form action="/testing/login">
-                  <button type="submit">가입 및 로그인</button>
-               </form>
-            </li>
-            <%
-            }
-            %>
-         </ul>
-      </div>
-      <div class="header-btn">
-         <form action="/testing/products">
-            <button type="submit">중고거래</button>
-         </form>
-         <form action="/testing/scrollHome">
-            <button type="submit">동네거래</button>
-         </form>
-         <form action="/testing/scrollHome">
-            <button type="submit">동네인증</button>
-         </form>
-      </div>
-      <%
-      if (user != null && selectedUser != null) {
-         LoginDTO firstSelectedUser = selectedUser;
-      %>
-      <div class="header-btn2">
-         <form action="/testing/logout" method="post">
-            <button type="submit">로그아웃</button>
-         </form>
-      </div>
-      <%
-      } else {
-      %>
-      <form action="/testing/login">
-         <button type="submit">로그인</button>
+
+		<form action="/testing/homePage">
+			<button type="submit" >Second Hands</button>
+		</form>
+	
+		 <form action="/testing/login">
+         <button id="myBtn" type="submit">로그인</button>
       </form>
-      <%
-      }
-      %>
-   </header>
+
+
+	</header>
    <div class="main-top">
 
       <form id="saveForm" method="post" action="/testing/saveForm">
-      <div style="text-align: center;"> <!-- Add this div for centering -->
+         <div style="text-align: center;">
+            <!-- Add this div for centering -->
             <h2>회원가입</h2>
-        </div>
+         </div>
          <input type="hidden" id="user_kakao" name="user_kakao"
-            value="${user_kakao}">
-            <input type="text" id="user_id" name="user_id" 
-            onfocus="this.placeholder = '아이디'" onblur="checkUserIdAvailability()" placeholder="아이디">
-         <div id="userIdMessage"></div> 
+            value="${user_kakao}"> <input type="text" id="user_id"
+            name="user_id" onfocus="this.placeholder = '아이디'"
+            onblur="checkUserIdAvailability()" placeholder="아이디">
+         <div id="userIdMessage"></div>
          <div class="password-input-container">
             <input type="password" id="user_pw" name="user_pw"
-               
-               onfocus="this.placeholder = '비밀번호'"placeholder="비밀번호" /> 
-               <input type="checkbox"
-               id="showPasswordCheckbox" />
+               onfocus="this.placeholder = '비밀번호'" placeholder="비밀번호" /> <input
+               type="checkbox" id="showPasswordCheckbox" />
          </div>
          <div id="passwordValidityMessage"></div>
-          <input type="password"
-            id="user_pw_confirm" name="user_pw_confirm" placeholder="비밀번호 재확인"
-            onkeyup="checkPasswordMatch()" />
+         <input type="password" id="user_pw_confirm" name="user_pw_confirm"
+            placeholder="비밀번호 재확인" onkeyup="checkPasswordMatch()" />
          <div id="passwordMatchResult"></div>
-       <input type="text"
-            id="user_nickname" name="user_nickname"placeholder="닉네임을 입력해주세요" value="${nickname}">
-         
-         <input type="text" id="address"
-            name="address" placeholder="example@gmail.com"
-            onfocus="this.placeholder = ''">
+         <input type="text" id="user_nickname" name="user_nickname"
+            placeholder="닉네임을 입력해주세요" value="${nickname}"> <input
+            type="text" id="address" name="address"
+            placeholder="example@gmail.com" onfocus="this.placeholder = ''"
+            required>
          <button type="button" id="auth_btn">이메일 인증</button>
-         <br> <input
-            type="text" id="verification_code" name="verification_code"
-            placeholder="인증번호를 입력하세요" onfocus="this.placeholder = ''">
-                  <div id="verification-result"></div>
+         <br> <input type="text" id="verification_code"
+            name="verification_code" placeholder="인증번호를 입력하세요"
+            onfocus="this.placeholder = ''" required>
+         <div id="verification-result"></div>
          <button type="button" id="confirm_btn">확인</button>
-   
-          <input
-            type="text" id="phone_num" name="phone_num" placeholder="핸드폰 번호"
-            onfocus="this.placeholder = ''"> <input id="member_addr"
-            name="member_addr" type="text" placeholder="주소" readonly><input
-            id="member_post" name="member_post" type="text" placeholder="우편번호"
-            readonly>
-         
-            <input id="detailed_address" name="detailed_address" type="text"
-               placeholder="상세주소를 입력하세요" onfocus="this.placeholder = ''">
-            <button type="button" onclick="findAddr()">주소찾기</button>
-   
-         <br> <input type="text"
-            id="user_birth" name="user_birth" placeholder="생년월일 6자리 입력해주세요"
-            onfocus="this.placeholder = ''">
-         <input type="hidden"
-            id="user_image" name="user_image"   value="${profile_image != null ? profile_image : '기본_이미지.jpg'}">
-         <input type="hidden" id="user_heat"
-            name="user_heat" value="36.5">
+
+         <input type="text" id="phone_num" name="phone_num"
+            placeholder="핸드폰 번호" onfocus="this.placeholder = ''"> <input
+            id="member_addr" name="member_addr" type="text" placeholder="주소"
+            readonly><input id="member_post" name="member_post"
+            type="text" placeholder="우편번호" readonly> <input
+            id="detailed_address" name="detailed_address" type="text"
+            placeholder="상세주소를 입력하세요" onfocus="this.placeholder = ''">
+         <button type="button" onclick="findAddr()">주소찾기</button>
+
+         <br> <input type="date" id="user_birth" name="user_birth"
+            placeholder="생년월일 6자리 입력해주세요" onfocus="this.placeholder = ''">
+         <input type="hidden" id="user_image" name="user_image"
+            value="${profile_image != null ? profile_image : '기본_이미지.jpg'}">
+         <input type="hidden" id="user_heat" name="user_heat" value="36.5">
          <button type="submit" form="saveForm">회원가입</button>
 
       </form>
-
+	 
    </div>
 
-
+    
 
    <footer>
       &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
-      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
-      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
-      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
-      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
+      <p>
+         <a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
+            href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
+            href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
+            href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
+            href="https://github.com/lepio1999">조원: 허재혁 </a>
+      </p>
    </footer>
 
    <!-- 

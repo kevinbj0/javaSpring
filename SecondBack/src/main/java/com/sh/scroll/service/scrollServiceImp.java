@@ -49,4 +49,10 @@ public class scrollServiceImp implements scrollServiceI {
 	public int localTotalCnt(String location) {
 		return dao.localTotalCnt(location);
 	}
+	
+	//판매중인 물건 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	@Override
+	public List<ScrollDTO> getSellProducts(String user_code) {
+		return dao.getSellProducts(user_code);
+	}
 }

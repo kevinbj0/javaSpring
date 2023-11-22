@@ -58,6 +58,7 @@
       FROM user_board
       ORDER BY board_date DESC
    </select>
+  
    <!-- 게시글 상세 보기 -->
    <select id="selectProImagesById" resultType="ProductDTO">
       SELECT

@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sh.login.domain.LoginDTO;
+import com.sh.login.service.LoginService;
 import com.sh.product.domain.ProductDTO;
 import com.sh.product.service.ProductService;
 
@@ -37,7 +38,9 @@ import com.sh.product.service.ProductService;
 public class ProductController {
 
 	String fileDir = "c:\\test\\upload\\";// 물리적 폴더 만들어야함 c드라이브 안에 test폴더 생성후 test폴더안에 upload폴더 생성
-
+	
+	   @Autowired
+	   private LoginService loginService;
 	@Autowired
 	private ProductService productservice;
 
@@ -56,34 +59,47 @@ public class ProductController {
 	///////////////////////////// /////////////////////////////////////////////////////////////////////
 
 	@GetMapping("/products/detail")
-	public String showProductDetail(@RequestParam String boardId, Model model, HttpServletRequest request) {
-		// ProductService를 통해 상품 및 이미지 정보 가져오기
-		ProductDTO product = productservice.getProductById(boardId);
-		HttpSession session = request.getSession();
-		productservice.increaseClick(boardId);
-		
-		//*** 로그인 정보 받아오기
-		LoginDTO login = (LoginDTO)session.getAttribute("user");
-		String userId = login.getUser_id();
-		
-		//*** 좋아요 기능
-		Integer likenum = productservice.getLikeCount(boardId); //좋아요 수 받아오기
-		boolean onClick = productservice.likeClick(boardId, userId); //누른적 있는지
-	
-		model.addAttribute("likenum", likenum); //좋아요 수 받아오기
-		model.addAttribute("onClick", onClick); //좋아요 눌렀는지
+	   public String showProductDetail(@RequestParam String boardId,@RequestParam String user_code, Model model, HttpServletRequest request) {
 
-		// 모델에 상품 정보 추가
-		session.setAttribute("product", product);
-		return "products/productDetail";
-	}
+	      String user_heat = loginService.selectHeat(user_code);
+	      model.addAttribute("user_heat", user_heat);
 
-	@PostMapping("/products/updateDate")
-	public String updateDate(@RequestParam String boardId) {
+	      System.out.println("szsfzfzsfzfzfz" + user_heat);
+	      // ProductService를 통해 상품 및 이미지 정보 가져오기
+	      ProductDTO product = productservice.getProductById(boardId);
+	      HttpSession session = request.getSession();
+	      productservice.increaseClick(boardId);
 
-		productservice.updateDate(boardId);
-		return "redirect:/products";
-	}
+	      // *** 로그인 정보 받아오기
+	      LoginDTO login = (LoginDTO) session.getAttribute("user");
+	      String userId = login.getUser_id();
+
+	      // *** 좋아요 기능
+	      Integer likenum = productservice.getLikeCount(boardId); // 좋아요 수 받아오기
+	      boolean onClick = productservice.likeClick(boardId, userId); // 누른적 있는지
+
+	      model.addAttribute("likenum", likenum); // 좋아요 수 받아오기
+	      model.addAttribute("onClick", onClick); // 좋아요 눌렀는지
+
+	      // 모델에 상품 정보 추가
+	      session.setAttribute("product", product);
+	      return "products/productDetail";
+	   }
+
+	   //끌어올리기
+	   @PostMapping("/products/updateDate")
+	   public String updateDate(@RequestParam String boardId) {
+	      productservice.updateDate(boardId);
+	      return "redirect:/scrollHome";
+	   }
+	   
+	   
+	   //끌어올리기 Ajax
+	   @ResponseBody
+	   @PostMapping("/products/upEvent")
+	   public void upEvent(@RequestParam String boardId) {
+	      productservice.updateDate(boardId);
+	   }
 	///////////////////////////// 상품등록
 	///////////////////////////// /////////////////////////////////////////////////////////////////////
 
@@ -185,8 +201,6 @@ public class ProductController {
 		return "redirect:/scrollHome";
 	}
 
-
-
 	///////////////////// 이미지 저장경로,저장하는 코드
 	///////////////////// //////////////////////////////////////////////////////////////
 	@ResponseBody
@@ -201,40 +215,41 @@ public class ProductController {
 		int likeNum = productservice.getLikeCount(board_Id);
 		return likeNum;
 	}
-	
-	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 좋아요 기능
-		//*** 추가
-		@ResponseBody
-		@PostMapping("/products/like")
-		public Map<String, Object> likeup(String boardId, String userId) {
-			boolean onClick = productservice.likeClick(boardId, userId);
-			if(onClick == true) {
-				//클릭된 상태라면 -> 관심 삭제
-				productservice.deleteLike(boardId, userId);
-			}else {
-				//클릭 안된상태 -> 관심 추가 
-				productservice.insertLike(boardId, userId);
-			}
-			
-			//클릭 상태 반환
-			onClick = !onClick;
-			//상품상세 - 좋아요 수 반환
-			Integer likenum = productservice.getLikeCount(boardId);
-			
-			//관심상품 수
-			Integer likeCount = productservice.likeNum(userId);
 
-			Map<String, Object> map = new HashMap<String,Object>();
-			map.put("likenum", likenum.toString());
-			map.put("onClick", onClick);
-			map.put("likeCount", likeCount);
-			
-			return map;
+	// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 좋아요 기능
+	// *** 추가
+	@ResponseBody
+	@PostMapping("/products/like")
+	public Map<String, Object> likeup(String boardId, String userId) {
+		boolean onClick = productservice.likeClick(boardId, userId);
+		if(onClick == true) {
+			//클릭된 상태라면 -> 관심 삭제
+			productservice.deleteLike(boardId, userId);
+		}else {
+			//클릭 안된상태 -> 관심 추가 
+			productservice.insertLike(boardId, userId);
 		}
 		
-		@ResponseBody
-		@PostMapping("/products/likeEvent")
-		public boolean likeEvent(String userId, String boardId) {
-			return productservice.likeClick(boardId, userId);
-		}
+		//클릭 상태 반환
+		onClick = !onClick;
+		//상품상세 - 좋아요 수 반환
+		Integer likenum = productservice.getLikeCount(boardId);
+		
+		//관심상품 수
+		Integer likeCount = productservice.likeNum(userId);
+
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("likenum", likenum.toString());
+		map.put("onClick", onClick);
+		map.put("likeCount", likeCount);
+		
+		return map;
+	}
+
+	//좋아요 클릭
+	@ResponseBody
+	@PostMapping("/products/likeEvent")
+	public boolean likeEvent(String userId, String boardId) {
+		return productservice.likeClick(boardId, userId);
+	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import com.sh.login.domain.LoginDTO;
 import com.sh.login.service.LoginService;
 import com.sh.order.domain.OrderDTO;
 import com.sh.order.service.OrderServiceI;
+import com.sh.product.domain.ProductDTO;
 import com.sh.product.service.ProductService;
 
 @Controller
@@ -64,6 +66,19 @@ public class LoginController {
       }
 
    }
+//////관리자 기능 추가////////
+   @PostMapping("/admin")
+   public String showAdminPage(Model model, @ModelAttribute ProductDTO productDTO) {
+       List<LoginDTO> userList = loginService.selectAllUsers();
+       List<ProductDTO> products = productService.getProductList();
+       model.addAttribute("products", products);
+       model.addAttribute("userList", userList);
+       return "admin/adminPage";
+   }
+
+	
+	
+	  
 
    @PostMapping("/heat")
    public String showHeatPage(HttpSession session, @RequestParam String sell_code, @RequestParam String board_id, Model model) {
