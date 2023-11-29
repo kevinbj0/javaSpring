@@ -12,7 +12,7 @@
 
 
 <!--${path} -->
-<!--${path2}  -->
+<!--${path}2}  -->
 
 <!DOCTYPE html>
 <html>
@@ -57,9 +57,9 @@ header h2 {
 }
 
 .menu-icon {
-    justify-content: center;
-    align-items: center;
-    display: flex;
+   justify-content: center;
+   align-items: center;
+   display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
@@ -110,7 +110,7 @@ header.menu-open h2 {
 
 .header-btn {
    display: flex;
-   margin: 0px 0px 0px 500px;
+   margin: 0px 0px 0px 0px;
 }
 
 header.menu-open {
@@ -195,7 +195,7 @@ header.menu-open h2 {
 
 #sort button {
    margin: 0px 6px 0px 6px;
-   width:101px;
+   width: 101px;
    padding: 4px;
    font-weight: bold;
    background-color: white;
@@ -398,22 +398,14 @@ header.menu-open h2 {
    <header>
       <div class="header-logo">
          <div class="menu-icon">&#9776;</div>
-         <form action="/testing/homePage">
+         <form action="${path}/homePage">
             <button type="submit">Second Hands</button>
          </form>
       </div>
 
       <div class="menu-container">
          <ul>
-                     <% if ("admin".equals(selectedUser.getUser_id())) {
-%>
-      <li>
-            <form action="/testing/admin" method="post">
-            <button type="submit">관리자 페이지</button>
-        </form>
-   </li>     <%
-         }
-         %>
+
             <li>
                <% if (user != null && selectedUser != null) {
       LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
@@ -427,14 +419,14 @@ header.menu-open h2 {
                </h2>
             </li>
             <li>
-               <form action="/testing/myPage" method="post">
+               <form action="${path}/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
-               <form action="/testing/chattingList" method="post">
+               <form action="${path}/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">채팅 ${fn:length(chatList)} 개</button>
@@ -443,27 +435,27 @@ header.menu-open h2 {
                </form>
             </li>
             <li>
-               <form action="/testing/products/add">
+               <form action="${path}/products/add">
                   <button type="submit">게시글작성</button>
                </form>
             </li>
-                <li>
-               <form action="/testing/sellProducts">
+            <li>
+               <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/showOrder">
+               <form action="${path}/showOrder">
                   <button type="submit">주문내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/qna">
+               <form action="${path}/qna">
                   <button type="submit">문의하기</button>
                </form>
             </li>
             <li>
-               <form action="/testing/logout" method="post">
+               <form action="${path}/logout" method="post">
                   <button type="submit">로그아웃</button>
                </form>
             </li>
@@ -472,7 +464,7 @@ header.menu-open h2 {
             %>
             <li><h2>로그인이 필요한 서비스입니다.</h2></li>
             <li>
-               <form action="/testing/login">
+               <form action="${path}/login">
                   <button type="submit">가입 및 로그인</button>
                </form>
             </li>
@@ -483,13 +475,13 @@ header.menu-open h2 {
          </ul>
       </div>
       <div class="header-btn">
-         <form action="/testing/scrollHome">
+         <form action="${path}/scrollHome">
             <button type="submit">중고거래</button>
          </form>
          <%
       if (user != null && selectedUser != null) {
       %>
-         <form action="/testing/localproductList" method="post">
+         <form action="${path}/localproductList" method="post">
             <input type="hidden" name="newLocation" value="${detail_loc}" />
             <button id="localTransactionButton" type="submit">동네거래</button>
          </form>
@@ -510,7 +502,7 @@ header.menu-open h2 {
          <script>
         document.getElementById("loginAlertButton").addEventListener("click", function() {
             alert("로그인이 필요한 서비스 입니다.");
-            window.location.href = "/testing/login"; 
+            window.location.href = "${path}/login"; 
         });
     </script>
          <%
@@ -521,14 +513,14 @@ header.menu-open h2 {
       if (user != null && selectedUser != null) {
       %>
       <div class="header-btn2">
-         <form action="/testing/logout" method="post">
+         <form action="${path}/logout" method="post">
             <button type="submit">로그아웃</button>
          </form>
       </div>
       <%
       } else {
       %>
-      <form action="/testing/login">
+      <form action="${path}/login">
          <button type="submit">로그인</button>
       </form>
       <%
@@ -546,9 +538,9 @@ header.menu-open h2 {
          |
          <button id="srLike">관심상품</button>
          |
-             <form action="/testing/products/add">
-                  <button type="submit">게시글작성</button>
-               </form>
+         <form action="${path}/products/add" onsubmit="return checkLogin()">
+            <button type="submit">게시글작성</button>
+         </form>
          <div class="search">
             <input type="text" id="srSearch" value="" placeholder="검색어 입력">
             <img
@@ -566,7 +558,7 @@ header.menu-open h2 {
    <button id="topButton" title="Go to top">Top</button>
 
    <script>
-    let sort_mode = ".getListTime"; // 정렬 기본값 : 최신순, 인기순 정렬 : ".getListClick"
+   let sort_mode = ".getListTime"; // 정렬 기본값 : 최신순, 인기순 정렬 : ".getListClick"
     let userId = "${user.user_id}";
     
    let HeightY; //페이지당 나오는 아이템들 높이합
@@ -583,7 +575,7 @@ header.menu-open h2 {
      
     function PageInit(){
        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 설정할 부분
-       HeightY = 700; //페이지당 나오는 아이템들 높이합
+       HeightY = 760; //페이지당 나오는 아이템들 높이합
        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         page = 1; //초기 페이지
         cursorH = page*HeightY; //로드 시 스크롤 위치 조정
@@ -640,6 +632,8 @@ header.menu-open h2 {
             url: "scroll?page=" + pageNumber + "&mode=" + sort_mode,
             type: "GET",
             success: function(data) {
+               
+               console.log("데이터" + data);
                let list = data.list;
                totalPage = data.totalPage;
                let sql = pageToString(list);
@@ -657,29 +651,48 @@ header.menu-open h2 {
     
     //str문 생성
      function  pageToString(list){
+       
+        console.log( "list"  +list) ;
+         
           let str = "";
           list.forEach(  ( item) => { 
-               str += `         
+             
+               str += `        
                    <article class="card_wrap">
                 <div class="card_image" style="background-image: url('${path}/images/<%="${item.board_img}" %>')"></div>
                                    
                    <%if(user != null){%>
                    <h2 class="card_title">   
-                   <a class="card_a" href="/testing/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
+                   <a class="card_a" href="${path}/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
                    <%="${item.board_title}"%> </a></h2>
                   <%}else{%>
                   <h2 class="card_title"><a class="card_a" onclick = "goLogin()"> <%="${item.board_title}"%> </a></h2>
                        <%}%>
-                       
-                <div class = "card_date"><%="${item.board_date}"%> </div>
-                <div class="card_price"><%="${item.board_price}"%> 원</div>
-                <div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
-                <div class="card_count">
+                  <div class = "card_date"><%="${item.board_date}"%> </div>
+
+
+       
+                  <div class="card_price"><%= "${item.board_price}" %> 원</div>
+                
+                 
+          
+                 <div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
+                 <div class="card_count">
                  조회 <%="${item.board_click}"%>
                    <button id = '<%="${item.board_id}"%>' class="card_like" onclick = "likeEvent('<%="${item.board_id}"%>')"></button>
-                  </div>
-                </article>
-               `;
+                  </div>                  
+                 `;
+               
+                let bP=`<%="${item.board_price}"%>` ;
+                
+               
+               if(  bP== 0){
+                  str += "[나눔]";
+               }
+                
+               str+= ` </article>`;
+              
+               
                //item.board_date 안들어감
                
       });
@@ -695,7 +708,18 @@ header.menu-open h2 {
     // 로그인 alert(상품 상세 확인 시 로그인 필요)
      function goLogin(){
         alert("로그인이 필요한 서비스 입니다.");
+     
      }
+    
+     function checkLogin() {
+         <%if (user == null) {%>
+             alert("로그인이 필요한 서비스입니다.");
+             return false; // 폼 제출 방지
+         <%}%>
+         return true; // 폼 제출 허용
+     }
+    
+    
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 관심상품 기능
     //좋아요 Insert
    function likeEvent(boardId) {

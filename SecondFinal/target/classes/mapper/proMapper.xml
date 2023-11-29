@@ -7,7 +7,7 @@
    <insert id="insertProduct" parameterType="ProductDTO">
       INSERT INTO user_board
       (
-      board_id,
+
       board_date,
       board_title,
       board_price,
@@ -22,8 +22,8 @@
       user_nickname,
       board_cate
       )
-      VALUES (seq_board_id.nextval,
-      sysdate,
+      VALUES (
+      CURRENT_TIMESTAMP,
       #{board_Title} ,
       #{board_Price} ,
       #{board_Text} ,
@@ -42,7 +42,7 @@
    <select id="selectAll" resultType="ProductDTO">
       SELECT
       board_id,
-      TO_CHAR(board_date, 'MM/DD HH24:MI') AS board_date,
+      DATE_FORMAT(board_date, '%m/%d %T') AS board_date,
       board_title,
       board_price,
       board_text,
@@ -52,18 +52,20 @@
       board_click,
       loc_code,
       detail_loc,
-      user_code ,
+      user_code,
       user_nickname,
       board_cate
-      FROM user_board
-      ORDER BY board_date DESC
+      FROM
+      user_board
+      ORDER BY
+      board_date DESC;
    </select>
-  
+
    <!-- 게시글 상세 보기 -->
    <select id="selectProImagesById" resultType="ProductDTO">
       SELECT
       ub.board_id,
-      TO_CHAR(ub.board_date, 'MM/DD HH24:MI') AS board_date,
+      DATE_FORMAT(board_date, '%m/%d %T') AS board_date,
       ub.board_title,
       ub.board_price,
       ub.board_text,
@@ -116,7 +118,7 @@
 
 
    </delete>
-     <delete id="deleteProduct3" parameterType="String">
+   <delete id="deleteProduct3" parameterType="String">
       DELETE FROM user_board
       WHERE user_code = #{user_code}
 
@@ -128,7 +130,7 @@
 
 
    </delete>
- 
+
 
 
 
@@ -148,12 +150,11 @@
    <!-- 끌어올리기 -->
 
 
-   <update id="updateDate" parameterType="Map">
-      UPDATE user_board
-      SET
-      board_date = sysdate
-      WHERE board_id = #{boardId}
-   </update>
+<update id="updateDate" parameterType="Map">
+   UPDATE user_board
+   SET board_date = CURRENT_TIMESTAMP
+   WHERE board_id = #{boardId}
+</update>
 
 
    <!-- 카테고리영역 -->
@@ -172,26 +173,32 @@
 
    <!-- 좋아요 부분 -->
    <insert id="insertLike" parameterType="ProductDTO">
-      INSERT INTO board_like (like_id, board_id, user_id)
-      VALUES (seq_board_like.nextval,#{boardId}, #{userId})
+      INSERT INTO board_like
+      ( board_id, user_id)
+      VALUES (#{boardId},
+      #{userId})
    </insert>
    <select id="getlikeDelete">
-      delete from board_like where user_id =#{userId} and board_id =#{boardId}
+      delete from board_like where user_id =#{userId} and
+      board_id =#{boardId}
    </select>
    <!-- 상품상세_좋아요 개수 -->
    <select id="getLikeCount" resultType="int">
-      SELECT COUNT(*) AS likeCount
+      SELECT COUNT(*) AS
+      likeCount
       FROM board_like
       WHERE board_id = #{boardId}
    </select>
    <!-- 좋아요 눌렀는지 -->
    <select id="getlikeClick" resultType="boolean">
       SELECT CASE
-      WHEN COUNT(*) > 0 THEN 1
+      WHEN COUNT(*) >
+      0 THEN 1
       ELSE 0
       END AS result
       FROM board_like
-      WHERE user_id = #{userId} AND board_id =
+      WHERE user_id = #{userId}
+      AND board_id =
       #{boardId}
    </select>
    <!-- 관심상품 개수 -->

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.sh.login.domain.LoginDTO"%>
 <%@ page import="java.util.*"%>
+<c:set  var="path"   value="${pageContext.request.contextPath}"/> 
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
 <%
     }
 %>
-    <form action="/testing/products" method ="post">
+    <form action="${path}/products" method ="post">
     <table border="1">
         <thead>
             <tr>
@@ -41,7 +42,7 @@
             <c:forEach var="product" items="${products}">
                 <tr>
                 	<td>[${product.board_cate}]</td>
-                    <td><a href="/testing/products/detail?boardId=${product.board_Id}">${product.board_Title}</a></td>
+                    <td><a href="${path}/products/detail?boardId=${product.board_Id}">${product.board_Title}</a></td>
                     <td>${product.board_Date}</td>
                     <td>${product.user_nickname}</td>
                     <td>${product.loc_code}/${product.detail_loc}</td>
@@ -58,22 +59,22 @@
 
    
     </form>
-    <form action="/testing/products/add">
+    <form action="${path}/products/add">
       <button type="submit">게시글작성</button>
    </form>
-       <form action="/testing/myPage">
+       <form action="${path}/myPage">
       <button type="submit">마이페이지이동</button>
    </form>
 
-   <form action="/testing/products">
+   <form action="${path}/products">
       <button type="submit">상품</button>
    </form>
 
-   <form action="/testing/login">
+   <form action="${path}/login">
       <button type="submit">가입 및 로그인</button>
    </form>
    
-<form action="/testing/logout" method="post">
+<form action="${path}/logout" method="post">
     <button type="submit">로그아웃</button>
 </form>
 </body>

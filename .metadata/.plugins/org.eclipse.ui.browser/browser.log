@@ -228,3 +228,17 @@
 11월 17, 2023 16:50:21.974 [10820:8816:1117/165021.972:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
 11월 17, 2023 16:54:00.352 [10820:624:1117/165400.351:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
 11월 17, 2023 17:18:24.27 [10820:624:1117/171824.026:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+11월 23, 2023 09:50:25.474 NEW SESSION
+11월 23, 2023 09:50:25.474 [7276:4752:1123/095025.463:ERROR:CONSOLE(1)] "Uncaught (in promise) RangeError: Invalid line number 749 in 1-line document", source: devtools://devtools/bundled/devtools-frontend/front_end/third_party/codemirror.next/chunk/codemirror.js (1)
+
+11월 24, 2023 10:35:54.225 NEW SESSION
+11월 24, 2023 10:35:54.226 [10488:13840:1124/103554.184:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 24, 2023 12:52:49.264 [10488:12276:1124/125249.263:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 24, 2023 12:52:50.404 [10488:12276:1124/125250.403:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+11월 24, 2023 13:44:44.955 [10488:13840:1124/134444.954:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+11월 24, 2023 14:00:32.262 [10488:13840:1124/140032.262:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+11월 27, 2023 13:38:41.559 NEW SESSION
+11월 27, 2023 13:38:41.560 [2480:10216:1127/133841.556:ERROR:get_updates_processor.cc(263)] PostClientToServerMessage() failed during GetUpdates with error Network error (ERR_ABORTED)
+11월 27, 2023 14:39:11.685 [9120:4444:1127/143911.685:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost

@@ -5,6 +5,7 @@
 <%@ page import="com.sh.address.domain.AddressDTO"%>
 <%@ page import="com.sh.kakaologin.domain.KakaoUserDTO"%>
 <%@ page import="com.sh.login.domain.LoginDTO"%>
+<c:set  var="path"   value="${pageContext.request.contextPath}"/> 
 
 <%@ page import="java.util.*"%>
 
@@ -19,8 +20,8 @@
 <style>
 /* 23.11.10 수정완료 */
 * {
-	margin: 0;
-	padding: 0;
+   margin: 0;
+   padding: 0;
 }
 
 header {
@@ -42,9 +43,9 @@ header {
 }
 
 h2 {
-	margin: 0;
-	text-align: center;
-	font-size: 24px; /* 폰트 크기 조정 */
+   margin: 0;
+   text-align: center;
+   font-size: 24px; /* 폰트 크기 조정 */
 }
 header h2 {
    margin: 0;
@@ -292,11 +293,13 @@ button:hover {
 #saveForm input {
     display: block;
     text-align: left; /* 왼쪽 정렬을 위한 수정 */
+     outline: none;
 }
 
 #saveForm input[type="checkbox"],
 #saveForm button {
     display: inline-block;
+    outline: none;
 }
 
 #user_id,
@@ -314,6 +317,7 @@ button:hover {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
+
 }
 
 #address {
@@ -578,7 +582,7 @@ $(document).ready(function () {
 
       $.ajax({
          type : "POST",
-         url : "/testing/isUserIdExists",
+         url : "${path}/isUserIdExists",
          data : {
             user_id : userId
          },
@@ -603,15 +607,17 @@ $(document).ready(function () {
 
 <script>
    var code = ""; /*인증번호 저장할 곳*/
+   
    $(document).ready(function() {
       $('#auth_btn').click(function() {
+    	  alert('인증번호가 전송되었습니다.');
          var email = $('#address').val(); /*입력한 이메일*/
          console.log('완성된 이메일 : ' + email); /* 이메일 오는지 확인*/
          var checkInput = $('.mail-check-input'); /* 인증번호 입력 */
 
          $.ajax({
             type : 'GET',
-            url : 'testing/mailCheck',
+            url : '${path}/mailCheck',
             data : {
                email : email
             }, /* 데이터를 객체로 보내도록 수정 */
@@ -619,7 +625,7 @@ $(document).ready(function () {
                console.log("data : " + data);
                checkInput.prop('disabled', false); /* 데이터가 성공적으로 들어오면 인증번호 입력란이 활성화되도록 */
                code = data;
-               alert('인증번호가 전송되었습니다.');
+               
             },
             error : function(xhr, status, error) {
                console.error("Error:", error);
@@ -685,22 +691,22 @@ $(document).ready(function () {
    %>
 
 
- 	<header>
+    <header>
 
 
-		<form action="/testing/homePage">
-			<button type="submit" >Second Hands</button>
-		</form>
-	
-		 <form action="/testing/login">
+      <form action="${path}/homePage">
+         <button type="submit" >Second Hands</button>
+      </form>
+   
+       <form action="${path}/login">
          <button id="myBtn" type="submit">로그인</button>
       </form>
 
 
-	</header>
+   </header>
    <div class="main-top">
 
-      <form id="saveForm" method="post" action="/testing/saveForm">
+      <form id="saveForm" method="post" action="${path}/saveForm">
          <div style="text-align: center;">
             <!-- Add this div for centering -->
             <h2>회원가입</h2>
@@ -722,33 +728,33 @@ $(document).ready(function () {
          <input type="text" id="user_nickname" name="user_nickname"
             placeholder="닉네임을 입력해주세요" value="${nickname}"> <input
             type="text" id="address" name="address"
-            placeholder="example@gmail.com" onfocus="this.placeholder = ''"
+            placeholder="example@gmail.com" onfocus="this.placeholder = '이메일 주소를 입력해주세요'"
             required>
          <button type="button" id="auth_btn">이메일 인증</button>
          <br> <input type="text" id="verification_code"
             name="verification_code" placeholder="인증번호를 입력하세요"
-            onfocus="this.placeholder = ''" required>
+            onfocus="this.placeholder = '인증번호를 입력하세요'" required>
          <div id="verification-result"></div>
          <button type="button" id="confirm_btn">확인</button>
 
          <input type="text" id="phone_num" name="phone_num"
-            placeholder="핸드폰 번호" onfocus="this.placeholder = ''"> <input
+            placeholder="핸드폰 번호" onfocus="this.placeholder = '핸드폰 번호'"> <input
             id="member_addr" name="member_addr" type="text" placeholder="주소"
             readonly><input id="member_post" name="member_post"
             type="text" placeholder="우편번호" readonly> <input
             id="detailed_address" name="detailed_address" type="text"
-            placeholder="상세주소를 입력하세요" onfocus="this.placeholder = ''">
+            placeholder="상세주소를 입력하세요" onfocus="this.placeholder = '상세주소를 입력하세요'">
          <button type="button" onclick="findAddr()">주소찾기</button>
 
          <br> <input type="date" id="user_birth" name="user_birth"
-            placeholder="생년월일 6자리 입력해주세요" onfocus="this.placeholder = ''">
+             min="1900-01-01" max="2015-01-01" onfocus="this.placeholder = ''">
          <input type="hidden" id="user_image" name="user_image"
-            value="${profile_image != null ? profile_image : '기본_이미지.jpg'}">
+            value="${profile_image != null ? profile_image : '/resources/user/default.jpg'}">
          <input type="hidden" id="user_heat" name="user_heat" value="36.5">
          <button type="submit" form="saveForm">회원가입</button>
 
       </form>
-	 
+    
    </div>
 
     
@@ -766,7 +772,7 @@ $(document).ready(function () {
 
    <!-- 
    <div>Address</div>
-   <form id="addressForm" method="post" action="/testing/addressForm">
+   <form id="addressForm" method="post" action="${path}/addressForm">
    </form>
 
  -->

@@ -59,7 +59,7 @@ public class UpdatePageController {
 	public String processUpdateMainImg(@ModelAttribute LoginDTO loginDTO,@RequestParam String user_image, @RequestParam String user_id, HttpServletRequest request) {
 		loginDTO.setUser_id(user_id);
 		loginDTO.setUser_image(user_image);
-
+		System.out.println(user_image);
 	    loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	    // 업데이트 성공
 	    HttpSession session = request.getSession();
@@ -89,7 +89,7 @@ public class UpdatePageController {
 	            model.addAttribute("fileName", fileRealName);
 
 	            // 이미지 파일이 업데이트되면 데이터베이스에 반영
-	            loginDTO.setUser_image(fileRealName);
+	            loginDTO.setUser_image("/images/"+fileRealName);
 	            loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	        }
 	        String userId = loginDTO.getUser_id();

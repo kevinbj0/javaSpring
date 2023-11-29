@@ -44,9 +44,9 @@ header h2 {
 }
 
 .menu-icon {
-    justify-content: center;
-    align-items: center;
-    display: flex;
+   justify-content: center;
+   align-items: center;
+   display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
@@ -97,7 +97,7 @@ header.menu-open h2 {
 
 .header-btn {
    display: flex;
-   margin: 0px 0px 0px 500px;
+   margin: 0px 0px 0px 0px;
 }
 
 header.menu-open {
@@ -297,7 +297,6 @@ select {
    margin: 18px 14px 18px 0px;
 }
 
-
 #board_Title, #board_Text {
    width: 96%;
 }
@@ -343,8 +342,9 @@ footer a:hover {
    background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
    color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
+
 textarea {
-    resize: none;
+   resize: none;
 }
 
 /*글자수 제한*/
@@ -397,41 +397,46 @@ textarea {
    <header>
       <div class="header-logo">
          <div class="menu-icon">&#9776;</div>
-         <form action="/testing/homePage">
+         <form action="${path}/homePage">
             <button type="submit">Second Hands</button>
          </form>
       </div>
 
       <div class="menu-container">
          <ul>
-  <% if ("admin".equals(selectedUser.getUser_id())) {
-%>
-      <li>
-            <form action="/testing/admin" method="post">
-            <button type="submit">관리자 페이지</button>
-        </form>
-   </li>     <%
-         }
-         %>
-            <li><img
-               src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
-               style="border-radius: 50%; width: 100px; height: 100px;">
+            <%
+            if ("admin".equals(selectedUser.getUser_id())) {
+            %>
+            <li>
+               <form action="${path}/admin" method="post">
+                  <button type="submit">관리자 페이지</button>
+               </form>
+            </li>
+            <%
+            }
+            %>
+            <li><img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
                   <%
                   if (user != null && selectedUser != null) {
                   %>
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
-               </h2></li>
+               <form action="${path}/myPage" method="post">
+					<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+					<button type="submit">
+					Welcome, ${selectedUser.user_nickname}님
+					</button>
+				</form>
+               </h2>
+            </li>
             <li>
-               <form action="/testing/myPage" method="post">
+               <form action="${path}/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
-               <form action="/testing/chattingList" method="post">
+               <form action="${path}/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">채팅 ${fn:length(chatList)} 개</button>
@@ -440,27 +445,27 @@ textarea {
                </form>
             </li>
             <li>
-               <form action="/testing/products/add">
+               <form action="${path}/products/add">
                   <button type="submit">게시글작성</button>
                </form>
             </li>
-                 <li>
-               <form action="/testing/sellProducts">
+            <li>
+               <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/showOrder">
+               <form action="${path}/showOrder">
                   <button type="submit">주문내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/qna">
+               <form action="${path}/qna">
                   <button type="submit">문의하기</button>
                </form>
             </li>
             <li>
-               <form action="/testing/logout" method="post">
+               <form action="${path}/logout" method="post">
                   <button type="submit">로그아웃</button>
                </form>
             </li>
@@ -469,7 +474,7 @@ textarea {
             %>
             <li><h2>로그인이 필요한 서비스입니다.</h2></li>
             <li>
-               <form action="/testing/login">
+               <form action="${path}/login">
                   <button type="submit">가입 및 로그인</button>
                </form>
             </li>
@@ -480,10 +485,10 @@ textarea {
          </ul>
       </div>
       <div class="header-btn">
-         <form action="/testing/scrollHome">
+         <form action="${path}/scrollHome">
             <button type="submit">중고거래</button>
          </form>
-         <form action="/testing/localproductList" method="post">
+         <form action="${path}/localproductList" method="post">
             <input type="hidden" name="newLocation" value="${detail_loc}" />
             <button type="submit">동네거래</button>
          </form>
@@ -492,14 +497,14 @@ textarea {
       if (user != null && selectedUser != null) {
       %>
       <div class="header-btn2">
-         <form action="/testing/logout" method="post">
+         <form action="${path}/logout" method="post">
             <button type="submit">로그아웃</button>
          </form>
       </div>
       <%
       } else {
       %>
-      <form action="/testing/login">
+      <form action="${path}/login">
          <button type="submit">로그인</button>
       </form>
       <%
@@ -510,7 +515,7 @@ textarea {
    </header>
 
    <div class="main-top">
-      <form id="saveForm" action="/testing/products/add" method="post"
+      <form id="saveForm" action="${path}/products/add" method="post"
          enctype="multipart/form-data">
          <div style="text-align: center;">
             <h2>게시글 작성</h2>
@@ -518,7 +523,8 @@ textarea {
          <div style="display: flex; margin: 26px 0px 25px 0px;">
 
             <label for="board_cate">분류:</label> <select id="board_cate"
-               name="board_cate" style="margin: -11px 22px 0px;">
+               name="board_cate" style="margin: -11px 22px 0px;"
+               onchange="checkboardCate()">
                <option value="판매">판매</option>
                <option value="나눔">나눔</option>
             </select>
@@ -531,6 +537,25 @@ textarea {
             <label id="detail">가격:</label> <input type="number" id="board_Price"
                name="board_Price" step="1000" min="1000" max="999990000" required
                style="margin-right: 102px;"> <br> <label id="detail">카테고리:</label>
+
+            <script>
+               function checkboardCate() {
+
+                  var boardCate = document.getElementById("board_cate");
+                  var boardPrice = document.getElementById("board_Price");
+
+                  if (boardCate.value === "나눔") {
+
+                     boardPrice.value = 0;
+                     boardPrice.readOnly = true;
+                  } else {
+                     boardPrice.value = "";
+                     boardPrice.readOnly = false;
+                  }
+               }
+            </script>
+
+
             <div class="cate-container">
 
                <select id="loc_code" name="loc_code" style="margin-right: 5px;">
@@ -550,8 +575,8 @@ textarea {
 
 
          <label for="board_Text">내용:</label>
-      <textarea id="board_Text" name="board_Text" oninput="checkLength()"
-            required style="font-size:18px;"></textarea>
+         <textarea id="board_Text" name="board_Text" oninput="checkLength()"
+            required style="font-size: 18px;"></textarea>
          <span id="charCount">0 / 100</span>
 
          <script>
@@ -572,7 +597,7 @@ textarea {
                charCount.textContent = usedChars + " / 100";
             }
          </script>
-         
+
          <br> <label for="board_Img">이미지:</label> <input type="file"
             id="board_Img" name="file" required><br> <input
             type="hidden" name="user_code" id="user_code"
@@ -585,7 +610,7 @@ textarea {
       <button id="myBtn" title="Go to top">Top</button>
    </div>
 
-<script>
+   <script>
     var categoryData = ${item}; 
     
     console.log(categoryData);
@@ -609,13 +634,16 @@ textarea {
 </script>
 
 
-  <footer>
+
+   <footer>
       &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
-      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
-      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
-      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
-      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
+      <p>
+         <a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
+            href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
+            href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
+            href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
+            href="https://github.com/lepio1999">조원: 허재혁 </a>
+      </p>
    </footer>
 
 

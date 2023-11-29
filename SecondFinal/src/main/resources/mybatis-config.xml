@@ -25,7 +25,6 @@
 		<typeAlias alias="QnaDTO" type="com.sh.qna.domain.QnaDTO" />
 		<typeAlias alias="HeatChartDTO"
 			type="com.sh.login.domain.HeatChartDTO" />
-		<typeAlias alias="visitorDTO"
-			type="com.sh.VisitCount.domain.visitorDTO" />
+		
 	</typeAliases>
 </configuration>

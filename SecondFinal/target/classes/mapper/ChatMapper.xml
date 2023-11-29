@@ -24,7 +24,7 @@
 
    <insert id="insertChat" parameterType="ChatDTO">
       INSERT INTO chat_tbl (
-      chat_code,
+
       buy_code,
       sell_code,
       board_id,
@@ -34,7 +34,7 @@
       board_img
       )
       VALUES (
-      seq_chat_code.nextval,
+
       #{buy_code},
       #{sell_code},
       #{board_id},

@@ -31,19 +31,19 @@ public class UserController {
 		return "/saveUser/saveUser";
 	}
 
-	@RequestMapping(value = "/testing/mailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String email) throws Exception {
 		if (!isValidEmailAddress(email)) {
 			throw new Exception("이메일 주소 형식이 올바르지 않습니다. 다시 입력해주세요.");
 		}
 
-		System.out.println("이메일 데이터 전송 확인");
-		System.out.println("인증 이메일 : " + email);
+		//System.out.println("이메일 데이터 전송 확인");
+		//System.out.println("인증 이메일 : " + email);
 
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
-		System.out.println("인증번호 :" + checkNum);
+		//System.out.println("인증번호 :" + checkNum);
 
 		String setFrom = "dhdl2369@gmail.com";
 		String toMail = email;

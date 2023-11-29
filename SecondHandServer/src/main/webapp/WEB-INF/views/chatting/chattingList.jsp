@@ -1,380 +1,375 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.sh.login.domain.LoginDTO"%>
 <%@ page import="com.sh.order.domain.OrderDTO"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<c:set  var="path"   value="${pageContext.request.contextPath}"/> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Chatting List</title>
 </head>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <style>
 /* 23.11.10 수정완료 */
 body {
-   margin: 0;
-   padding: 0;
-   font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', sans-serif;
 }
 
 header {
-   margin: 0 auto;
-   background-color: #ff6f0f;
-   padding: 10px;
-   position: sticky;
-   top: 0;
-   color: white;
-   z-index: 1000;
-   text-align: center;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   height: 100px;
-   box-sizing: border-box;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin: 0 auto;
+	background-color: #ff6f0f;
+	padding: 10px;
+	position: sticky;
+	top: 0;
+	color: white;
+	z-index: 1000;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header h2 {
-   margin: 0;
-   font-size: 24px;
+	margin: 0;
+	font-size: 24px;
 }
 
 .menu-icon {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-   order: -1;
-   font-size: 24px;
-   cursor: pointer;
-   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	order: -1;
+	font-size: 24px;
+	cursor: pointer;
+	margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
-    margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
-   padding: 10px;
-   background-color:  #ff6f0f;
-   font-weight:bold;
-   color: white;
-   border: none;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 20px;
-   cursor: pointer;
-   /* border-radius: 5px; 모서리 둥글게 */
-   transition: background-color 0.3s, color 0.3s;
+	margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
+	padding: 10px;
+	background-color: #ff6f0f;
+	font-weight: bold;
+	color: white;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	cursor: pointer;
+	/* border-radius: 5px; 모서리 둥글게 */
+	transition: background-color 0.3s, color 0.3s;
 }
 
 header button:hover {
-   background-color: #ff6f0f; 
-   color: black;
+	background-color: #ff6f0f;
+	color: black;
 }
 
 header.menu-open {
-   flex-direction: column;
-   align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 header.menu-open form {
-   display: block;
+	display: block;
 }
 
 header.menu-open h2 {
-   margin-top: 10px;
+	margin-top: 10px;
 }
 
 .header-logo {
-   display: flex;
+	display: flex;
 }
 
 .header-logo h2 {
-   font-size: 32px;
+	font-size: 32px;
 }
 
 .header-btn {
-   display: flex;
-   margin: 0px 0px 0px 500px;
+	display: flex;
+	margin: 0px 0px 0px 0px;
 }
 
 header.menu-open {
-   flex-direction: column;
-   align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 header.menu-open form {
-   display: block;
+	display: block;
 }
 
 header.menu-open h2 {
-   margin-top: 10px;
+	margin-top: 10px;
 }
 
 .menu-icon:hover {
-
-   color: black;
+	color: black;
 }
 
 .menu-container {
-   display: none;
-   position: fixed;
-   top: 100px;
-   left: 0;
-   width: 20%;
-   height: 100%;
-   background-color: #f9f9f9;
-   z-index: 999;
-   background-color: #f9f9f9;
+	display: none;
+	position: fixed;
+	top: 100px;
+	left: 0;
+	width: 20%;
+	height: 100%;
+	background-color: #f9f9f9;
+	z-index: 999;
+	background-color: #f9f9f9;
 }
 
 .menu-container ul {
-   list-style-type: none;
-   padding: 0;
-   margin: 0;
-   text-align: center;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }
 
 .menu-container li {
-   padding: 15px;
-   border-bottom: 1px solid #ddd;
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
 }
 
 .menu-container h2 {
-   text-decoration: none;
-   color: #333;
-   font-weight: bold;
-   font-size: 18px;
-   transition: color 0.3s;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	font-size: 18px;
+	transition: color 0.3s;
 }
 
 .menu-container button {
-   color: black;
-   background-color: #f9f9f9;
-   font-weight: bold;
+	color: black;
+	background-color: #f9f9f9;
+	font-weight: bold;
 }
 
 .menu-container Button:hover {
-   background-color: white; 
-   color: #ff6f0f;
+	background-color: white;
+	color: #ff6f0f;
 }
 
 .menu-container h2:hover {
-
-   color: #ff6f0f;
+	color: #ff6f0f;
 }
 
 .main-top {
-   background: #fffae0;
-   /*border: 1px solid black;*/
-   display: flex; /* 자식 요소를 가로로 정렬 */
-   justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
-   
-   height: 1000px;
+	background: #fffae0;
+	/*border: 1px solid black;*/
+	display: flex; /* 자식 요소를 가로로 정렬 */
+	justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
+	height: 1000px;
 }
 
 .main-top div {
-   width: 50%;
-   padding: 20px;
-   text-align: center; /* 가운데 정렬 추가 */
-   
+	width: 50%;
+	padding: 20px;
+	text-align: center; /* 가운데 정렬 추가 */
 }
 
 .main-top div h1 {
-   font-weight: bold;
-   font-size: 52px;
+	font-weight: bold;
+	font-size: 52px;
 }
 
 .main-top div p {
-   font-size: 22px;
-   color: grey;
+	font-size: 22px;
+	color: grey;
 }
 
 .main-top div a {
-   display: inline-block;
-   width: 180px;
-   height: 25px;
-   padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
-   margin: 10px; /* 각 링크 간의 간격을 늘림 */
-   background-color: #ff6f0f; /* 주황색 배경 */
-   color: white; /* 흰 글씨 */
-   font-size: 18px;
-   border-radius: 10px; /* 모서리를 둥글게 설정 */
-   text-decoration: none;
-   font-weight: bold; /* 텍스트를 두껍게 설정 */
-   transition: background-color 0.3s, color 0.3s;
+	display: inline-block;
+	width: 180px;
+	height: 25px;
+	padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
+	margin: 10px; /* 각 링크 간의 간격을 늘림 */
+	background-color: #ff6f0f; /* 주황색 배경 */
+	color: white; /* 흰 글씨 */
+	font-size: 18px;
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	text-decoration: none;
+	font-weight: bold; /* 텍스트를 두껍게 설정 */
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .main-top table {
-   margin: 0 auto;
-   border-collapse: collapse;
-   
-   background-color: white; /* Set background color to white */
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   /* Add a subtle shadow effect */
+	margin: 0 auto;
+	border-collapse: collapse;
+	background-color: white; /* Set background color to white */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	/* Add a subtle shadow effect */
 }
 
 .main-top th, .main-top td {
-   border: 1px solid #ddd; /* Light gray border color */
-   padding: 12px;
-   text-align: center;
+	border: 1px solid #ddd; /* Light gray border color */
+	padding: 12px;
+	text-align: center;
 }
 
-
-
 .main-top td {
-   background-color: #fdfdfd;
-   /* Slightly off-white background color for data cells */
+	background-color: #fdfdfd;
+	/* Slightly off-white background color for data cells */
 }
 
 header.menu-open {
-   flex-direction: column;
-   align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 header.menu-open form {
-   display: block;
+	display: block;
 }
 
 header.menu-open h2 {
-   margin-top: 10px;
+	margin-top: 10px;
 }
 
 /* 햄버거 아이콘을 화면 왼쪽에 고정 */
 .menu-icon {
-   order: -1;
+	order: -1;
 }
 
 .main-top div a:hover {
-   background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
-   color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
+	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
 
 .main-top img {
-   max-width: 100%;
-   max-height: 100%;
-   width: 650px;
-   height: 800px;
+	max-width: 100%;
+	max-height: 100%;
+	width: 650px;
+	height: 800px;
 }
 
 /*         중간          */
 .main-middle {
-   border: 1px solid black;
-   display: flex; /* 자식 요소를 가로로 정렬 */
-   justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
-   align-items: center; /* 수직 정렬 */
-   height: 800px;
+	border: 1px solid black;
+	display: flex; /* 자식 요소를 가로로 정렬 */
+	justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
+	align-items: center; /* 수직 정렬 */
+	height: 800px;
 }
 
 .main-middle div {
-   width: 50%;
-   padding: 20px;
-   text-align: start;
+	width: 50%;
+	padding: 20px;
+	text-align: start;
 }
 
 .main-middle div h1 {
-   font-weight: bold;
-   font-size: 52px;
+	font-weight: bold;
+	font-size: 52px;
 }
 
 .main-middle div p {
-   font-size: 22px;
-   color: grey;
+	font-size: 22px;
+	color: grey;
 }
 
 .main-middle div a {
-   display: inline-block;
-   width: 180px;
-   height: 25px;
-   padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
-   margin: 10px; /* 각 링크 간의 간격을 늘림 */
-   background-color: #ff6f0f; /* #ff6f0f = 주황색 배경 */
-   color: white; /* 흰 글씨 */
-   font-size: 18px;
-   border-radius: 10px; /* 모서리를 둥글게 설정 */
-   text-decoration: none;
-   font-weight: bold; /* 텍스트를 두껍게 설정 */
-   transition: background-color 0.3s, color 0.3s;
+	display: inline-block;
+	width: 180px;
+	height: 25px;
+	padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
+	margin: 10px; /* 각 링크 간의 간격을 늘림 */
+	background-color: #ff6f0f; /* #ff6f0f = 주황색 배경 */
+	color: white; /* 흰 글씨 */
+	font-size: 18px;
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	text-decoration: none;
+	font-weight: bold; /* 텍스트를 두껍게 설정 */
+	transition: background-color 0.3s, color 0.3s;
 }
 
-
 #saveForm {
-    margin: 20px auto;
-
-    box-shadow: 0px 0px 5px #ccc;
-    width: 1400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	margin: 20px auto;
+	box-shadow: 0px 0px 5px #ccc;
+	width: 1400px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 footer {
-   background-color: #333;
-   padding: 10px;
-   color: white;
-   text-align: center;
-   bottom: 0;
+	background-color: #333;
+	padding: 10px;
+	color: white;
+	text-align: center;
+	bottom: 0;
 }
-footer a{
 
-   text-decoration: none; /* 텍스트 데코레이션 제거 */
-   color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
+footer a {
+	text-decoration: none; /* 텍스트 데코레이션 제거 */
+	color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
 }
 
 footer a:hover {
-   text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
-   color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
+	text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
+	color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
 
 #myBtn {
-   position: fixed;
-   bottom: 20px;
-   right: 30px;
-   z-index: 99;
-   border: none;
-   outline: none;
-   background-color: #ff6f0f;
-   color: white;
-   cursor: pointer;
-   padding: 15px;
-   border-radius: 10px;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: #ff6f0f;
+	color: white;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 10px;
 }
 
 #myBtn:hover {
-   background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
-   color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
+	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
-.chatting_table{
-width: 1000px;
+
+.chatting_table {
+	width: 1000px;
 }
+
 #saveForm button {
-   display: block;
-   margin: 20px auto; /* 중앙 정렬 및 아래쪽 여백 조절 */
-   padding: 10px;
-   background-color: #ff6f0f;
-   color: #fff;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
-   transition: background-color 0.3s, color 0.3s;
+	display: block;
+	margin: 20px auto; /* 중앙 정렬 및 아래쪽 여백 조절 */
+	padding: 10px;
+	background-color: #ff6f0f;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 #saveForm button:hover {
-   background-color: #d55500;
+	background-color: #d55500;
 }
 </style>
 <body>
 
 
 
-<script>
+	<script>
    $(document).ready(
          function() {
             //맨위로 올리기
@@ -425,201 +420,224 @@ width: 1000px;
 </script>
 
 
-   <c:set var="user" value="${sessionScope.user}" />
-   <c:set var="selectedUserList" value="${sessionScope.selectedUser}" />
+	<c:set var="user" value="${sessionScope.user}" />
+	<c:set var="selectedUserList" value="${sessionScope.selectedUser}" />
 
-<%
+	<%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
    LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
-   List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
    if (user != null && selectedUser != null) {
       LoginDTO firstSelectedUser = selectedUser;
    %>
-  <c:if test="${not empty user}">
-        <c:set var="selectedUser" value="${selectedUser}" />
-    
-       
-        <header>
-      <div class="header-logo">
-         <div class="menu-icon">&#9776;</div>
-         <form action="/testing/homePage">
-         <button type="submit" >Second Hands</button>
-      </form>
-      </div>
+	<c:if test="${not empty user}">
+		<c:set var="selectedUser" value="${selectedUser}" />
 
-      <div class="menu-container">
-          <ul>
-        <% if ("admin".equals(firstSelectedUser.getUser_id())) {
+
+		<header>
+			<div class="header-logo">
+				<div class="menu-icon">&#9776;</div>
+				<form action="${path}/homePage">
+					<button type="submit">Second Hands</button>
+				</form>
+			</div>
+
+			<div class="menu-container">
+				<ul>
+					<% if ("admin".equals(firstSelectedUser.getUser_id())) {
 %>
-  
-        <li>
-            <form action="/testing/admin" method="post">
-            <button type="submit">관리자 페이지</button>
-        </form>
-   </li>     <%
+
+					<li>
+						<form action="${path}/admin" method="post">
+							<button type="submit">관리자 페이지</button>
+						</form>
+					</li>
+					<%
          }
          %>
-            <li>
-              <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
-               <h2>
-                  <%
-                  if (user != null && selectedUser != null) {
-                  %>
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
-               </h2>
-            </li>
-         <li>
-                        <form action="/testing/myPage" method="post">
-               <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지</button>
-               </form>
-            </li>
-                             <li>
-         <form action="/testing/chattingList" method="post">
-                  <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
-                     value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
+					<li><img src="${selectedUser.user_image}"
+						style="border-radius: 50%; width: 100px; height: 100px;">
+						<h2>
+							<%
+			                  if (user != null && selectedUser != null) {
+			                %>
+							<form action="${path}/myPage" method="post">
+								<input type="hidden" name="user_code"
+									value="${selectedUser.user_code}">
+
+								<button type="submit">
+									Welcome,
+									${selectedUser.user_nickname}님
+								</button>
+							</form>
+						</h2></li>
+					<li>
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code"
+								value="<%=firstSelectedUser.getUser_code()%>">
+							<button type="submit">마이페이지</button>
+						</form>
+					</li>
+					<li>
+						<form action="${path}/chattingList" method="post">
+							<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
+								value="<%=firstSelectedUser.getUser_code()%>">
+							<button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
 
-               </form>
-</li>
-                       <li>
-              <form action="/testing/products/add">
-      <button type="submit">게시글작성</button>
-            </form>
-   </li>
-         <li>
-               <form action="/testing/sellProducts">
-                  <button type="submit">판매내역</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/showOrder">
-                  <button type="submit">주문내역</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/qna">
-                  <button type="submit">문의하기</button>
-               </form>
-            </li>
-            <li>
-               <form action="/testing/logout" method="post">
-                  <button type="submit">로그아웃</button>
-               </form>
-            </li>
-            <%
+						</form>
+					</li>
+					<li>
+						<form action="${path}/products/add">
+							<button type="submit">게시글작성</button>
+						</form>
+					</li>
+					<li>
+						<form action="${path}/sellProducts">
+							<button type="submit">판매내역</button>
+						</form>
+					</li>
+					<li>
+						<form action="${path}/showOrder">
+							<button type="submit">주문내역</button>
+						</form>
+					</li>
+					<li>
+						<form action="${path}/qna">
+							<button type="submit">문의하기</button>
+						</form>
+					</li>
+					<li>
+						<form action="${path}/logout" method="post">
+							<button type="submit">로그아웃</button>
+						</form>
+					</li>
+					<%
             } else {
             %>
-            <li><h2>로그인이 필요한 서비스입니다.</h2></li>
-            <li>
-               <form action="/testing/login">
-                  <button type="submit">가입 및 로그인</button>
-               </form>
-            </li>
-            <%
+					<li><h2>로그인이 필요한 서비스입니다.</h2></li>
+					<li>
+						<form action="${path}/login">
+							<button type="submit">가입 및 로그인</button>
+						</form>
+					</li>
+					<%
             }
             %>
-            
-         </ul>
-      </div>
-      <div class="header-btn">
-          <form action="/testing/scrollHome">
-         <button type="submit">중고거래</button>
-      </form>
-           <form action="/testing/localproductList" method="post">
-               <input type="hidden" name="newLocation" value="${detail_loc}" />
-         <button type="submit">동네거래</button>
-      </form>
-      </div>
-      <%
+
+				</ul>
+			</div>
+			<div class="header-btn">
+				<form action="${path}/scrollHome">
+					<button type="submit">중고거래</button>
+				</form>
+				<form action="${path}/localproductList" method="post">
+					<input type="hidden" name="newLocation" value="${detail_loc}" />
+					<button type="submit">동네거래</button>
+				</form>
+			</div>
+			<%
       if (user != null && selectedUser != null) {
       %>
-      <div class="header-btn2">
-         <form action="/testing/logout" method="post">
-            <button type="submit">로그아웃</button>
-         </form>
-      </div>
-      <%
+			<div class="header-btn2">
+				<form action="${path}/logout" method="post">
+					<button type="submit">로그아웃</button>
+				</form>
+			</div>
+			<%
       } else {
       %>
-      <form action="/testing/login">
-         <button type="submit">로그인</button>
-      </form>
-      <%
+			<form action="${path}/login">
+				<button type="submit">로그인</button>
+			</form>
+			<%
       }
       %>
-   
-   </header>
 
- <div class="main-top">  
- 
- 
-   <div id=saveForm>
-   
-   
-   
-  <table class="chatting_table" border="1">
-    <tr>
-        <th></th>
-        <th>상품이름</th>
-        <th>판매자 닉네임</th>
-        <th>채팅하기</th>
-        <th>채팅삭제</th>
-    </tr>
-   <c:forEach items="${chatList}" var="chat" varStatus="loop">
-        <tr>
-            <td>${loop.index + 1}</td>
-            <td>${chat.board_Title}</td>
-            <td>${chat.user_nickname}</td>
-            <td>
-<form action="/testing/inchat" method="Get" target="_blank" id="chatForm">
-                    <input type="hidden" name="chat_code" value="${chat.chat_code}" />
-                    <input type="hidden" name="sell_code" value="${chat.sell_code}" />
-                    <input type="hidden" name="buy_code" value="${chat.buy_code}" />
-                    <input type="hidden" name="board_id" value="${chat.board_id}" />
-                    <input type="hidden" name="board_Price" value="${chat.board_Price}" />
-                    <input type="hidden" name="board_Img" value="${chat.board_Img}" />
-                    <input type="hidden" name="board_Title" value="${chat.board_Title}" />
-                    
-                    
-                       <button type="submit" class="chatBtn">채팅</button>
+		</header>
 
-                </form>
-            </td>
-            <td>
-                <form action="/testing/deleteChatting" method="post">
-                    <label for="chat_code"></label> 
-                    <input type="hidden" name="chat_code" id="chat_code" value="${chat.chat_code}" required /> 
-                    <label for="buy_code"></label> 
-                    <input type="hidden" name="buy_code" id="buy_code" value="${chat.buy_code}" required />
-                    <button type="submit">채팅 삭제</button>
-                </form>
-            </td>
-        </tr>
-    </c:forEach>
-   </table>
-</div>
-</div>
-         <button id="myBtn" title="Go to top">Top</button>
-   </c:if>
-   
-  
-   
-   
-     <footer>
-      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
-      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
-      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
-      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
-      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
-      
-      
-   </footer>
+		<div class="main-top">
 
-   <%
+
+			<div id=saveForm>
+
+
+
+				<table class="chatting_table" border="1">
+					<tr>
+						<th></th>
+						<th>상품이름</th>
+						<th>판매자 닉네임</th>
+						<th>채팅하기</th>
+						<th>채팅삭제</th>
+						<th></th>
+					</tr>
+					<c:forEach items="${chatList}" var="chat" varStatus="loop">
+						<tr>
+							<td>${loop.index + 1}</td>
+							<td>${chat.board_Title}</td>
+							<td>${chat.user_nickname}</td>
+							<td>
+								<form action="${path}/inchat" method="Get" target="_blank"
+									id="chatForm">
+									<input type="hidden" name="chat_code" value="${chat.chat_code}" />
+									<input type="hidden" name="sell_code" value="${chat.sell_code}" />
+									<input type="hidden" name="buy_code" value="${chat.buy_code}" />
+									<input type="hidden" name="board_id" value="${chat.board_id}" />
+									<input type="hidden" name="board_Price"
+										value="${chat.board_Price}" /> <input type="hidden"
+										name="board_Img" value="${chat.board_Img}" /> <input
+										type="hidden" name="board_Title" value="${chat.board_Title}" />
+
+
+									<button type="submit" class="chatBtn">채팅</button>
+
+								</form>
+							</td>
+							<td>
+								<form action="${path}/deleteChatting" method="post">
+									<label for="chat_code"></label> <input type="hidden"
+										name="chat_code" id="chat_code" value="${chat.chat_code}"
+										required /> <label for="buy_code"></label> <input
+										type="hidden" name="buy_code" id="buy_code"
+										value="${chat.buy_code}" required />
+									<button type="submit">채팅 삭제</button>
+								</form>
+							</td>
+							<td><c:choose>
+									<c:when
+										test="${selectedUserList.getUser_code() eq chat.sell_code}">
+										<p>신청 받은 채팅</p>
+									</c:when>
+									<c:otherwise>
+										<p>신청 한 채팅</p>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+		<button id="myBtn" title="Go to top">Top</button>
+	</c:if>
+
+
+
+
+	<footer>
+		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
+		<p>
+			<a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
+				href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
+				href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
+				href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
+				href="https://github.com/lepio1999">조원: 허재혁 </a>
+		</p>
+
+
+	</footer>
+
+	<%
    }
    %>
 </body>

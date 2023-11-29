@@ -60,8 +60,7 @@
 		base-package="com.sh.qna" />
 	<context:component-scan
 		base-package="com.sh.kakaopay" />
-	<context:component-scan
-		base-package="com.sh.VisitCount" />
+	
 
 
 

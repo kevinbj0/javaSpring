@@ -4,6 +4,7 @@
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
    
       <%@ page import="java.util.*" %>
+      <c:set var="path" value="${pageContext.request.contextPath}" />
       
    
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
 <head>
 <meta charset="utf-8">
 <title>채팅</title>
+
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -37,7 +39,7 @@ window.onload = function() {
         $('#chatArea').show();
         $('#message').focus();
 
-        wsocket = new WebSocket("ws://localhost:8090/testing/chat-sh");
+        wsocket = new WebSocket("ws://43.201.65.22:8080${path}/chat-sh");
         wsocket.onopen = onOpen;
         wsocket.onmessage = onMessage;
         wsocket.onclose = onClose;

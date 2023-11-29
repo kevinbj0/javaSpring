@@ -31,7 +31,7 @@ public class UserController {
 		return "/saveUser/saveUser";
 	}
 
-	@RequestMapping(value = "/testing/mailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String email) throws Exception {
 		if (!isValidEmailAddress(email)) {

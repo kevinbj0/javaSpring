@@ -36,6 +36,7 @@ public class KakaoController {
 
 	@PostMapping("/saveForm")
 	public String registerMember(UserDTO userDTO) {
+		//System.out.println("이미지링크 : " + userDTO.getUser_image());
 		service1.registerMember(userDTO);
 		return "/login/login";
 	}

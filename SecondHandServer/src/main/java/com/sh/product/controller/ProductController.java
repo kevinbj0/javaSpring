@@ -36,11 +36,11 @@ import com.sh.product.service.ProductService;
 
 @Controller
 public class ProductController {
+	String fileDir = "c:\\test\\upload\\";
 
-	String fileDir = "c:\\test\\upload\\";// 물리적 폴더 만들어야함 c드라이브 안에 test폴더 생성후 test폴더안에 upload폴더 생성
+	@Autowired
+	private LoginService loginService;
 	
-	   @Autowired
-	   private LoginService loginService;
 	@Autowired
 	private ProductService productservice;
 
@@ -51,7 +51,7 @@ public class ProductController {
 		List<ProductDTO> products = productservice.getProductList();
 
 		session.setAttribute("products", products);
-		System.out.println("상품정보=" + products);
+		//System.out.println("상품정보=" + products);
 		return "products/productList";
 	}
 
@@ -64,7 +64,6 @@ public class ProductController {
 	      String user_heat = loginService.selectHeat(user_code);
 	      model.addAttribute("user_heat", user_heat);
 
-	      System.out.println("szsfzfzsfzfzfz" + user_heat);
 	      // ProductService를 통해 상품 및 이미지 정보 가져오기
 	      ProductDTO product = productservice.getProductById(boardId);
 	      HttpSession session = request.getSession();
@@ -119,8 +118,8 @@ public class ProductController {
 		// ProductService를 통해 상품 추가
 		// MultipartFile file 부분은 파일 업로드시 사용
 
-		System.out.println(product);
-		System.out.println(file);
+		//System.out.println(product);
+		//System.out.println(file);
 
 		// 파일 업로드 부분
 		String fileRealName = "";
@@ -182,10 +181,10 @@ public class ProductController {
 		// 상품 수정이 성공하면 목록 페이지로 리다이렉션
 		int updateResult = productservice.updateProduct(product);
 		if (updateResult > 0) {
-			System.out.println("상품 수정 성공!");
+			//System.out.println("상품 수정 성공!");
 			return "redirect:/scrollHome";
 		} else {
-			System.out.println("상품 수정 실패!");
+			//System.out.println("상품 수정 실패!");
 
 			return "redirect:/scrollHome";
 		}
@@ -196,6 +195,7 @@ public class ProductController {
 	@PostMapping("/products/delete")
 	public String productDelete(@RequestParam String boardId, Model model) {
 		ProductDTO product = productservice.getProductById(boardId);
+		productservice.deleteProduct2(boardId);
 		productservice.deleteProduct(boardId);
 		model.addAttribute("product", product);
 		return "redirect:/scrollHome";

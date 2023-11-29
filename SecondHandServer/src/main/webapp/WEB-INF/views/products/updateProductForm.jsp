@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@ page import="com.sh.login.domain.LoginDTO"%>
-          <%@ page import="com.sh.product.domain.ProductDTO"%>
-         <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-          <%@ page import="java.util.*"%>
-          <c:set  var="path"   value="${pageContext.request.contextPath}"/> 
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.sh.login.domain.LoginDTO"%>
+<%@ page import="com.sh.product.domain.ProductDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,20 +45,20 @@ header h2 {
 }
 
 .menu-icon {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-   order: -1;
-   font-size: 24px;
-   cursor: pointer;
-   margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	order: -1;
+	font-size: 24px;
+	cursor: pointer;
+	margin-right: 20px; /* 햄버거 아이콘과 Second Hands 텍스트 사이의 간격 조절 */
 }
 
 header button {
-	 margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
+	margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
 	padding: 10px;
-	background-color:  #ff6f0f;
-	font-weight:bold;
+	background-color: #ff6f0f;
+	font-weight: bold;
 	color: white;
 	border: none;
 	text-align: center;
@@ -71,7 +71,7 @@ header button {
 }
 
 header button:hover {
-	background-color: #ff6f0f; 
+	background-color: #ff6f0f;
 	color: black;
 }
 
@@ -98,7 +98,7 @@ header.menu-open h2 {
 
 .header-btn {
 	display: flex;
-	margin: 0px 0px 0px 500px;
+	margin: 0px 0px 0px 0px;
 }
 
 header.menu-open {
@@ -115,7 +115,6 @@ header.menu-open h2 {
 }
 
 .menu-icon:hover {
-
 	color: black;
 }
 
@@ -158,20 +157,17 @@ header.menu-open h2 {
 }
 
 .menu-container Button:hover {
-	background-color:#f9f9f9;
+	background-color: #f9f9f9;
 	color: #ff6f0f;
 }
 
 .menu-container h2:hover {
-
 	color: #ff6f0f;
 }
-
 
 .main-top {
 	background: #fffae0;
 	border-bottom: 1px solid #ddd;
-	  
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -231,11 +227,9 @@ header.menu-open h2 {
 	padding: 20px;
 	background-color: #fff;
 	border-radius: 8px;
-
 }
 
 #saveForm input {
-
 	margin: 9px 0px 15px;
 	padding: 10px;
 	margin-bottom: 15px;
@@ -252,10 +246,10 @@ button {
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
 }
+
 button:hover {
 	background-color: #d55500;
 }
-
 
 #saveForm label, #saveForm input {
 	display: block;
@@ -263,7 +257,6 @@ button:hover {
 }
 
 #board_Text {
-
 	height: 200px;
 	padding: 10px;
 	font-size: 22px;
@@ -271,8 +264,6 @@ button:hover {
 	border: 1px solid #ddd;
 	border-radius: 4px;
 }
-
-
 
 select {
 	padding: 10px; /* Adjust the padding as needed */
@@ -284,59 +275,62 @@ select {
 	border: 1px solid #ddd;
 	color: #5a5a5a;
 }
-#board_cate{
-width:15%;
 
+#board_cate {
+	width: 15%;
 }
 
-.detail-container{
-display: flex;
-}
-.cate-container{
-display: flex;
-}
-.cate-container select{
-
-width:50%;
+.detail-container {
+	display: flex;
 }
 
-#detail{
-margin:18px 18px 18px 0px;
+.cate-container {
+	display: flex;
+}
+
+.cate-container select {
+	width: 50%;
+}
+
+#detail {
+	margin: 18px 18px 18px 0px;
 }
 
 #board_cate {
 	
-	
 }
-#board_Title,
-#board_Text {
-	width:96%;
+
+#board_Title, #board_Text {
+	width: 96%;
 }
+
 #board_Price {
-	width:25%%;
-    margin-right: 40px;
-
+	width: 25%%;
+	margin-right: 40px;
 }
+
 footer {
-   background-color: #333;
-   padding: 10px;
-   color: white;
-   text-align: center;
-   bottom: 0;
+	background-color: #333;
+	padding: 10px;
+	color: white;
+	text-align: center;
+	bottom: 0;
 }
-footer a{
 
-   text-decoration: none; /* 텍스트 데코레이션 제거 */
-   color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
+footer a {
+	text-decoration: none; /* 텍스트 데코레이션 제거 */
+	color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
 }
 
 footer a:hover {
-   text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
-   color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
+	text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
+	color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
+
 textarea {
-    resize: none;
+	resize: none;
 }
+
 #myBtn {
 	position: fixed;
 	bottom: 20px;
@@ -358,7 +352,7 @@ textarea {
 
 /*글자수 제한*/
 #charCount {
-   margin-left: 574px;
+	margin-left: 574px;
 }
 </style>
 <script>
@@ -394,9 +388,9 @@ textarea {
 </script>
 
 
-    
+
 <body>
-   <%
+	<%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
    LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
    List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
@@ -406,67 +400,71 @@ textarea {
 	<header>
 		<div class="header-logo">
 			<div class="menu-icon">&#9776;</div>
-			<form action="/testing/homePage">
-			<button type="submit" >Second Hands</button>
-		</form>
+			<form action="${path}/homePage">
+				<button type="submit">Second Hands</button>
+			</form>
 		</div>
 
 		<div class="menu-container">
 			<ul>
- <% if ("admin".equals(selectedUser.getUser_id())) {
-%>
-      <li>
-            <form action="/testing/admin" method="post">
-            <button type="submit">관리자 페이지</button>
-        </form>
-   </li>     <%
-         }
-         %>
-		<li><img
-			src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
-			style="border-radius: 50%; width: 100px; height: 100px;">
-			<h2>
-			<%
-			if (user != null && selectedUser != null) {
-			%>
-			Welcome,
-			<%=firstSelectedUser.getUser_nickname()%>님
-			</h2></li>
+				<% if ("admin".equals(selectedUser.getUser_id())) { %>
 				<li>
-				<form action="/testing/myPage" method="post">
-               <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지</button>
-               </form>
+					<form action="${path}/admin" method="post">
+						<button type="submit">관리자 페이지</button>
+					</form>
 				</li>
-			<li>
-			<form action="/testing/chattingList" method="post">
+				<%
+		         }
+		         %>
+				<li><img src="${selectedUser.user_image}"
+					style="border-radius: 50%; width: 100px; height: 100px;">
+					<h2>
+						<%
+						if (user != null && selectedUser != null) {
+						%>
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code"
+								value="${selectedUser.user_code}">
+							<button type="submit">Welcome, ${selectedUser.user_nickname}님</button>
+						</form>
+					</h2>
+				</li>
+				<li>
+					<form action="${path}/myPage" method="post">
+						<input type="hidden" name="user_code"
+							value="<%=firstSelectedUser.getUser_code()%>">
+						<button type="submit">마이페이지</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/chattingList" method="post">
 						<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
 							value="<%=firstSelectedUser.getUser_code()%>">
 						<button type="submit">채팅 ${fn:length(chatList)} 개</button>
 					</form>
-</li>
-                       <li>
-              <form action="/testing/products/add">
-      <button type="submit">게시글작성</button>
-   			</form>
-   </li>
-      <li>
-               <form action="/testing/sellProducts">
-                  <button type="submit">판매내역</button>
-               </form>
-            </li>
+				</li>
 				<li>
-					<form action="/testing/showOrder">
+					<form action="${path}/products/add">
+						<button type="submit">게시글작성</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/sellProducts">
+						<button type="submit">판매내역</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/showOrder">
 						<button type="submit">주문내역</button>
 					</form>
 				</li>
 				<li>
-					<form action="/testing/qna">
+					<form action="${path}/qna">
 						<button type="submit">문의하기</button>
 					</form>
 				</li>
 				<li>
-					<form action="/testing/logout" method="post">
+					<form action="${path}/logout" method="post">
 						<button type="submit">로그아웃</button>
 					</form>
 				</li>
@@ -475,98 +473,93 @@ textarea {
 				%>
 				<li><h2>로그인이 필요한 서비스입니다.</h2></li>
 				<li>
-					<form action="/testing/login">
+					<form action="${path}/login">
 						<button type="submit">가입 및 로그인</button>
 					</form>
 				</li>
 				<%
 				}
 				%>
-				
+
 			</ul>
 		</div>
 		<div class="header-btn">
-			 <form action="/testing/scrollHome">
-         <button type="submit">중고거래</button>
-      </form>
-			  <form action="/testing/localproductList" method="post">
-               <input type="hidden" name="newLocation" value="${detail_loc}" />
-         <button type="submit">동네거래</button>
-      </form>
+			<form action="${path}/scrollHome">
+				<button type="submit">중고거래</button>
+			</form>
+			<form action="${path}/localproductList" method="post">
+				<input type="hidden" name="newLocation" value="${detail_loc}" />
+				<button type="submit">동네거래</button>
+			</form>
 		</div>
 		<%
 		if (user != null && selectedUser != null) {
 		%>
 		<div class="header-btn2">
-			<form action="/testing/logout" method="post">
+			<form action="${path}/logout" method="post">
 				<button type="submit">로그아웃</button>
 			</form>
 		</div>
 		<%
 		} else {
 		%>
-		<form action="/testing/login">
+		<form action="${path}/login">
 			<button type="submit">로그인</button>
 		</form>
 		<%
 		}
 		%>
-	
-	
+
+
 	</header>
 
 	<div class="main-top">
-		<form id="saveForm" action="/testing/products/update" method="post"
+		<form id="saveForm" action="${path}/products/update" method="post"
 			enctype="multipart/form-data">
-			   <div style="text-align: center;"> 
-            <h2>게시글 수정</h2>
-        </div>
-			<div style="display: flex; 
-    			margin: 26px 0px 25px 0px;" >
-			
-			<label for="board_cate">분류:</label> <select id="board_cate"
-				name="board_cate"
-				style= "margin: -11px 22px 0px;">
-				<option value="판매">판매</option>
-				<option value="나눔">나눔</option>
-			</select>
+			<div style="text-align: center;">
+				<h2>게시글 수정</h2>
 			</div>
-			 <label for="board_Title">제목:</label>
-			
-			<input type="text" id="board_Title" name="board_Title" value="${product.board_Title}" required>
-			
-			<br>
-				
-				<div class="detail-container" >
-				<label id="detail">가격:</label> <input type="number" id="board_Price" value="${product.board_Price}"
-				name="board_Price" step="1000" min="1000" max="999990000"
-				required style=" margin-right: 102px;">
-				<br>
+			<div style="display: flex; margin: 26px 0px 25px 0px;">
 
-			<label id="detail">카테고리:</label> <div class="cate-container" >
-			
-			<select id="loc_code" name="loc_code" style="margin-right: 5px;">
-				<option value="서울시">서울</option>
-				<option value="제주도">제주도</option>
-				<option value="경기도">경기도</option>
-				<option value="충청도">충청도</option>
-				<option value="경상도">경상도</option>
-				<option value="전라도">전라도</option>
-				<option value="강원도">강원도</option>
-		       </select> <select id="detail_loc" name="detail_loc"
-                  style="margin-left: 5px;">
-                  <!-- 중분류 옵션은 JavaScript에서 처리 -->
-               </select>
-            </div>
-         </div>
+				<label for="board_cate">분류:</label> <select id="board_cate"
+					name="board_cate" style="margin: -11px 22px 0px;">
+					<option value="판매">판매</option>
+					<option value="나눔">나눔</option>
+				</select>
+			</div>
+			<label for="board_Title">제목:</label> <input type="text"
+				id="board_Title" name="board_Title" value="${product.board_Title}"
+				required> <br>
+
+			<div class="detail-container">
+				<label id="detail">가격:</label> <input type="number" id="board_Price"
+					value="${product.board_Price}" name="board_Price" step="1000"
+					min="1000" max="999990000" required style="margin-right: 102px;">
+				<br> <label id="detail">카테고리:</label>
+				<div class="cate-container">
+
+					<select id="loc_code" name="loc_code" style="margin-right: 5px;">
+						<option value="서울시">서울</option>
+						<option value="제주도">제주도</option>
+						<option value="경기도">경기도</option>
+						<option value="충청도">충청도</option>
+						<option value="경상도">경상도</option>
+						<option value="전라도">전라도</option>
+						<option value="강원도">강원도</option>
+					</select> <select id="detail_loc" name="detail_loc"
+						style="margin-left: 5px;">
+						<!-- 중분류 옵션은 JavaScript에서 처리 -->
+					</select>
+				</div>
+			</div>
 
 
-         <label for="board_Text">내용:</label>
-      <textarea id="board_Text" name="board_Text" oninput="checkLength()"
-            required style="font-size:18px;"></textarea>
-         <span id="charCount">0 / 100</span>
+			<label for="board_Text">내용:</label>
+			<textarea id="board_Text" name="board_Text" oninput="checkLength()"
+				required style="font-size: 18px;">${product.board_Text}</textarea>
+			<span id="charCount">0 / 100</span>
 
-         <script>
+			<script>
             function checkLength() {
                var maxLength = 100;
                var textArea = document.getElementById("board_Text");
@@ -584,14 +577,11 @@ textarea {
                charCount.textContent = usedChars + " / 100";
             }
          </script>
-			<label for="board_Img">이미지:</label>
-			<input type="file"
-				id="board_Img" name="file" required><br>
-				 <input type="hidden" name="boardId" value="${product.board_Id}">
-				<input
+			<label for="board_Img">이미지:</label> <input type="file" id="board_Img"
+				name="file" required><br> <input type="hidden"
+				name="boardId" value="${product.board_Id}"> <input
 				type="hidden" name="user_code" id="user_code"
-				value="<%=firstSelectedUser.getUser_code()%>" required>
-				<input
+				value="<%=firstSelectedUser.getUser_code()%>" required> <input
 				type="hidden" name="user_nickname" id="user_nickname"
 				value="<%=firstSelectedUser.getUser_nickname()%>" required>
 			<button type="submit">게시글수정</button>
@@ -600,7 +590,7 @@ textarea {
 		<button id="myBtn" title="Go to top">Top</button>
 	</div>
 
- <script>
+	<script>
     var categoryData = ${item}; 
     
     console.log(categoryData);
@@ -625,14 +615,16 @@ textarea {
 
 
 
-   <footer>
-      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
-      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
-      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
-      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
-      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
-   </footer>
+	<footer>
+		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
+		<p>
+			<a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
+				href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
+				href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
+				href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
+				href="https://github.com/lepio1999">조원: 허재혁 </a>
+		</p>
+	</footer>
 
 	<%
 	}

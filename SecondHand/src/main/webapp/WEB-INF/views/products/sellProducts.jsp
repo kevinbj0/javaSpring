@@ -184,11 +184,11 @@ header.menu-open h2 {
 .header-logo h2 {
    font-size: 32px;
 }
-
 .header-btn {
    display: flex;
-   margin: 0px 0px 0px 500px;
+   margin: 0px 0px 0px 0px;
 }
+
 
 header.menu-open {
    flex-direction: column;
@@ -489,7 +489,7 @@ footer a:hover {
 	<header>
 		<div class="header-logo">
 			<div class="menu-icon">&#9776;</div>
-			<form action="/testing/homePage">
+			<form action="${path}/homePage">
 			<button type="submit" >Second Hands</button>
 		</form>
 		</div>
@@ -500,14 +500,14 @@ footer a:hover {
 %>
      
       <li>
-            <form action="/testing/admin" method="post">
+            <form action="${path}/admin" method="post">
             <button type="submit">관리자 페이지</button>
         </form>
    </li>     <%
          }
          %>
 				<li>
-				   <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
+				   <img src="${path}}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
 						<h2>
 						<%
 						if (user != null && selectedUser != null) {
@@ -517,13 +517,13 @@ footer a:hover {
 					</h2>
 				</li>
 				<li>
-				            <form action="/testing/myPage" method="post">
+				            <form action="${path}/myPage" method="post">
                <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">마이페이지</button>
                </form>
 				</li>
 				           		<li>
-			<form action="/testing/chattingList" method="post">
+			<form action="${path}/chattingList" method="post">
 						<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
 							value="<%=firstSelectedUser.getUser_code()%>">
 						<button type="submit">채팅 ${fn:length(chatList)} 개</button>
@@ -532,27 +532,27 @@ footer a:hover {
 					</form>
 </li>
                        <li>
-              <form action="/testing/products/add">
+              <form action="${path}/products/add">
       <button type="submit">게시글작성</button>
    			</form>
    </li>
               <li>
-               <form action="/testing/sellProducts">
+               <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
             </li>
 				<li>
-					<form action="/testing/showOrder">
+					<form action="${path}/showOrder">
 						<button type="submit">구매내역</button>
 					</form>
 				</li>
 				<li>
-					<form action="/testing/qna">
+					<form action="${path}/qna">
 						<button type="submit">문의하기</button>
 					</form>
 				</li>
 				<li>
-					<form action="/testing/logout" method="post">
+					<form action="${path}/logout" method="post">
 						<button type="submit">로그아웃</button>
 					</form>
 				</li>
@@ -561,7 +561,7 @@ footer a:hover {
 				%>
 				<li><h2>로그인이 필요한 서비스입니다.</h2></li>
 				<li>
-					<form action="/testing/login">
+					<form action="${path}/login">
 						<button type="submit">가입 및 로그인</button>
 					</form>
 				</li>
@@ -572,10 +572,10 @@ footer a:hover {
 			</ul>
 		</div>
 		<div class="header-btn">
-			 <form action="/testing/scrollHome">
+			 <form action="${path}/scrollHome">
          <button type="submit">중고거래</button>
       </form>
-			  <form action="/testing/localproductList" method="post">
+			  <form action="${path}/localproductList" method="post">
                <input type="hidden" name="newLocation" value="${detail_loc}" />
          <button type="submit">동네거래</button>
       </form>
@@ -584,14 +584,14 @@ footer a:hover {
 		if (user != null && selectedUser != null) {
 		%>
 		<div class="header-btn2">
-			<form action="/testing/logout" method="post">
+			<form action="${path}/logout" method="post">
 				<button type="submit">로그아웃</button>
 			</form>
 		</div>
 		<%
 		} else {
 		%>
-		<form action="/testing/login">
+		<form action="${path}/login">
 			<button type="submit">로그인</button>
 		</form>
 		<%
@@ -635,7 +635,7 @@ footer a:hover {
 		if (!loading) {
 			loading = true;
 			$.ajax({
-				url: "${path}/products/upEvent",
+				url: "${path}}/products/upEvent",
 				type: "POST",
 		        data: {
 		        	boardId: boardId
@@ -657,7 +657,7 @@ footer a:hover {
 		if (!loading) {
 			loading = true;
 			$.ajax({
-				url: "${path}/sellList?user_code="+user_code,
+				url: "${path}}/sellList?user_code="+user_code,
 				type: "GET",
 				success: function(data) {
 					console.log("성공");
@@ -684,11 +684,11 @@ footer a:hover {
 	   			str += `     	 
 	    	      <div class="sell_Wrap">
 	    	        <div class="sell_image_box">
-	    	          <div class="sell_image" style="background-image: url('${path}/images/<%="${item.board_img}" %>')"></div>
+	    	          <div class="sell_image" style="background-image: url('${path}}/images/<%="${item.board_img}" %>')"></div>
 	    	        </div>
 	    	        <div class="sell_content_box">
 	    	          <div class="sell_Title_box">
-                   <a class="sell_a" href="/testing/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
+                   <a class="sell_a" href="${path}/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
                    <%="${item.board_title}"%> </a></div>
 	    	          <div class="sell_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%> | <%="${item.board_date}"%></div>
 	    	          <div class="sell_price"><%="${item.board_price}"%> 원</div>

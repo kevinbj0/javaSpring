@@ -93,8 +93,9 @@ header.menu-open h2 {
 
 .header-btn {
    display: flex;
-   margin: 0px 0px 0px 500px;
+   margin: 0px 0px 0px 0px;
 }
+
 
 header.menu-open {
    flex-direction: column;
@@ -276,11 +277,17 @@ button:hover {
    background-color: #d55500;
 }
 
+ #not-modify {
+color: #9f9f9f;
+ 
+ }
+
 
 #saveForm label,
 #saveForm input {
     display: block;
     text-align: left; /* 왼쪽 정렬을 위한 수정 */
+ outline: none;
 }
 
 #saveForm input[type="checkbox"],
@@ -427,7 +434,6 @@ footer a:hover {
    color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
 
-
 </style>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -495,7 +501,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
    <header>
       <div class="header-logo">
       <div class="menu-icon">&#9776;</div>
-      <form action="/testing/homePage">
+      <form action="${path}/homePage">
          <button type="submit" >Second Hands</button>
       </form></div>
       <div class="menu-container">
@@ -504,7 +510,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
 %>
      
       <li>
-            <form action="/testing/admin" method="post">
+            <form action="${path}/admin" method="post">
             <button type="submit">관리자 페이지</button>
         </form>
    </li>     <%
@@ -522,14 +528,14 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
             </li>
                   <li>
               
-                           <form action="/testing/myPage" method="post">
+                           <form action="${path}/myPage" method="post">
                <input type="hidden" name="user_code" value="<%=selectedUser.getUser_code()%>">
                   <button type="submit">마이페이지</button>
                </form>
               
             </li>
                   <li>
-               <form action="/testing/chattingList" method="post">
+               <form action="${path}/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=selectedUser.getUser_code()%>">
                   <button type="submit">채팅 ${fn:length(chatList)} 개</button>
@@ -538,28 +544,28 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
                </form>
             </li>
             <li>
-               <form action="/testing/products/add">
+               <form action="${path}/products/add">
                   <button type="submit">게시글작성</button>
                </form>
             </li>
                      <li>
-               <form action="/testing/sellProducts">
+               <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/showOrder">
+               <form action="${path}/showOrder">
                   <button type="submit">주문내역</button>
                </form>
             </li>
             <li>
-                 <form action="/testing/qna">
+                 <form action="${path}/qna">
                   <button type="submit">문의하기</button>
                </form>
             </li>
 
             <li>
-               <form action="/testing/logout" method="post">
+               <form action="${path}/logout" method="post">
                   <button type="submit">로그아웃</button>
                </form>
             </li>
@@ -569,7 +575,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
             %>
             <li><h2>로그인이 필요한 서비스입니다.</h2></li>
             <li>
-               <form action="/testing/login">
+               <form action="${path}/login">
                   <button type="submit">가입 및 로그인</button>
                </form>
             </li>
@@ -579,23 +585,23 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
          </ul>
       </div>
 
-      <form action="/testing/scrollHome">
+      <form action="${path}/scrollHome">
          <button type="submit">중고거래</button>
       </form>
-      <form action="/testing/localproductList" method="post">
+      <form action="${path}/localproductList" method="post">
                <input type="hidden" name="newLocation" value="${detail_loc}" />
          <button type="submit">동네거래</button>
       </form>
       <%
       if (user != null && selectedUserList != null) {
       %>
-      <form action="/testing/logout" method="post">
+      <form action="${path}/logout" method="post">
          <button type="submit">로그아웃</button>
       </form>
       <%
       } else {
       %>
-      <form action="/testing/login">
+      <form action="${path}/login">
          <button type="submit">가입 및 로그인</button>
       </form>
       <%
@@ -605,7 +611,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
 
       <div class="main-top">
 <div class="button-container">
-    <form id="saveForm" action="/testing/update" method="post">
+    <form id="saveForm" action="${path}/update" method="post">
           <div style="text-align: center;"> <!-- Add this div for centering -->
             <h2>" <%= selectedUser.getUser_nickname() %> " 님의 정보수정</h2>
         </div>
@@ -614,8 +620,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
         <input type="hidden" name="user_kakao" id="user_kakao" value="<%= selectedUser.getUser_kakao() %>" required>
 
         <label for="user_id">아이디</label>
-        <input type="text" name="user_id" id="user_id" value="<%= selectedUser.getUser_id() %>" readonly required>
-
+ <input  id="not-modify"  type="text" name="user_id" id="user_id" value="<%= selectedUser.getUser_id() %>" placeholder="<%= selectedUser.getUser_id() %> ( 아이디는 수정할 수 없습니다. )" readonly required>
            <label for="user_password">비밀번호</label>
         <input type="text" name="user_pw" id="user_pw" value="<%= selectedUser.getUser_pw() %>"  required>
         <label for="user_nickname">닉네임</label>
@@ -624,8 +629,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
         <label for="address">이메일</label>
         <input type="text" name="address" id="address" value="<%= selectedUser.getAddress() %>" required>
         <label for="user_birth">생년월일</label>
-        <input type="text" name="user_birth" id="user_birth" value="<%= selectedUser.getUser_birth() %>" readonly >
-
+ <input id="not-modify" type="text" name="user_birth" id="user_birth" value="<%= selectedUser.getUser_birth() %>" placeholder="<%= selectedUser.getUser_birth() %> ( 생년월일은 수정할 수 없습니다. )" readonly >
         <label for="phone_num">휴대폰 번호</label>
         <input type="text" name="phone_num" id="phone_num" value="<%= selectedUser.getPhone_num() %>" required>
         <!-- 주소 -->
@@ -650,7 +654,7 @@ List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chat
         <button type="submit">정보수정</button>
        
     </form>
-    <form id="deleteForm" action="/testing/delete" method="post" onsubmit="return confirm(' 회원탈퇴를 하시겠습니까?(탈퇴시 모든 게시글은 삭제됩니다)');">
+    <form id="deleteForm" action="${path}/delete" method="post" onsubmit="return confirm(' 회원탈퇴를 하시겠습니까?(탈퇴시 모든 게시글은 삭제됩니다)');">
         <input type="hidden" name="user_code" value="<%= selectedUser.getUser_code() %>">
         <input type="hidden" name="user_id" value="<%= selectedUser.getUser_id() %>">
         <button class = "deleteUBtn" type="submit">회원탈퇴</button>

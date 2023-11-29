@@ -97,7 +97,7 @@ header.menu-open h2 {
 
 .header-btn {
    display: flex;
-   margin: 0px 0px 0px 500px;
+   margin: 0px 0px 0px 0px;
 }
 
 header.menu-open {
@@ -397,7 +397,7 @@ textarea {
    <header>
       <div class="header-logo">
          <div class="menu-icon">&#9776;</div>
-         <form action="/testing/homePage">
+         <form action="${path}/homePage">
             <button type="submit">Second Hands</button>
          </form>
       </div>
@@ -407,14 +407,14 @@ textarea {
   <% if ("admin".equals(selectedUser.getUser_id())) {
 %>
       <li>
-            <form action="/testing/admin" method="post">
+            <form action="${path}/admin" method="post">
             <button type="submit">관리자 페이지</button>
         </form>
    </li>     <%
          }
          %>
             <li><img
-               src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
+               src="${path}}/images/<%=firstSelectedUser.getUser_image()%>"
                style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
                   <%
@@ -424,14 +424,14 @@ textarea {
                   <%=firstSelectedUser.getUser_nickname()%>님
                </h2></li>
             <li>
-               <form action="/testing/myPage" method="post">
+               <form action="${path}/myPage" method="post">
                   <input type="hidden" name="user_code"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">마이페이지</button>
                </form>
             </li>
             <li>
-               <form action="/testing/chattingList" method="post">
+               <form action="${path}/chattingList" method="post">
                   <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
                      value="<%=firstSelectedUser.getUser_code()%>">
                   <button type="submit">채팅 ${fn:length(chatList)} 개</button>
@@ -440,27 +440,27 @@ textarea {
                </form>
             </li>
             <li>
-               <form action="/testing/products/add">
+               <form action="${path}/products/add">
                   <button type="submit">게시글작성</button>
                </form>
             </li>
                  <li>
-               <form action="/testing/sellProducts">
+               <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/showOrder">
+               <form action="${path}/showOrder">
                   <button type="submit">주문내역</button>
                </form>
             </li>
             <li>
-               <form action="/testing/qna">
+               <form action="${path}/qna">
                   <button type="submit">문의하기</button>
                </form>
             </li>
             <li>
-               <form action="/testing/logout" method="post">
+               <form action="${path}/logout" method="post">
                   <button type="submit">로그아웃</button>
                </form>
             </li>
@@ -469,7 +469,7 @@ textarea {
             %>
             <li><h2>로그인이 필요한 서비스입니다.</h2></li>
             <li>
-               <form action="/testing/login">
+               <form action="${path}/login">
                   <button type="submit">가입 및 로그인</button>
                </form>
             </li>
@@ -480,10 +480,10 @@ textarea {
          </ul>
       </div>
       <div class="header-btn">
-         <form action="/testing/scrollHome">
+         <form action="${path}/scrollHome">
             <button type="submit">중고거래</button>
          </form>
-         <form action="/testing/localproductList" method="post">
+         <form action="${path}/localproductList" method="post">
             <input type="hidden" name="newLocation" value="${detail_loc}" />
             <button type="submit">동네거래</button>
          </form>
@@ -492,14 +492,14 @@ textarea {
       if (user != null && selectedUser != null) {
       %>
       <div class="header-btn2">
-         <form action="/testing/logout" method="post">
+         <form action="${path}/logout" method="post">
             <button type="submit">로그아웃</button>
          </form>
       </div>
       <%
       } else {
       %>
-      <form action="/testing/login">
+      <form action="${path}/login">
          <button type="submit">로그인</button>
       </form>
       <%
@@ -510,7 +510,7 @@ textarea {
    </header>
 
    <div class="main-top">
-      <form id="saveForm" action="/testing/products/add" method="post"
+      <form id="saveForm" action="${path}/products/add" method="post"
          enctype="multipart/form-data">
          <div style="text-align: center;">
             <h2>게시글 작성</h2>
