@@ -18,7 +18,7 @@
 			<property name="username" value="user" />
 			<property name="password" value="qwer1234" />
 		</bean>-->
-		
+
 		<!-- EC2 연결 -->
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
@@ -26,6 +26,8 @@
 			<property name="username" value="root"></property>
 			<property name="password" value="qwer1234"></property>
 		</bean>   
+
+
 	
 		<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">

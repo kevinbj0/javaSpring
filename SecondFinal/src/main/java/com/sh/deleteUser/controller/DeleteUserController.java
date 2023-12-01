@@ -39,7 +39,7 @@ public class DeleteUserController {
 	@PostMapping("/delete")
 	public String processDelete(@ModelAttribute LoginDTO loginDTO, @RequestParam String boardId,@RequestParam String user_id, @RequestParam String user_code ,HttpServletRequest request) {
 	  
-		System.out.println(loginDTO);
+		//System.out.println(loginDTO);
 		productService.deleteProduct2(boardId);
 		productService.deleteProduct4(user_id);
 		productService.deleteProduct3(user_code);

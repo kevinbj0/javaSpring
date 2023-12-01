@@ -507,13 +507,17 @@ footer a:hover {
          }
          %>
 				<li>
-				   <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
+				   <img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
 						<h2>
 						<%
 						if (user != null && selectedUser != null) {
 						%>
-						Welcome,
-						<%=firstSelectedUser.getUser_nickname()%>님
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+							<button type="submit">
+							Welcome, ${selectedUser.user_nickname}님
+							</button>
+						</form>
 					</h2>
 				</li>
 				<li>

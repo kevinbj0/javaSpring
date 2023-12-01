@@ -1,22 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@ page import="com.sh.login.domain.LoginDTO"%>
-          <%@ page import="com.sh.product.domain.ProductDTO"%>
-         <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-          <%@ page import="java.util.*"%>
-          <c:set  var="path"   value="${pageContext.request.contextPath}"/> 
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.sh.login.domain.LoginDTO"%>
+<%@ page import="com.sh.product.domain.ProductDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="UTF-8">
-<style>{
-	margin: 0;
-	padding: 0;
-	font-family: 'Arial', sans-serif;
-}
+<style>
+{
+margin
+:
+ 
+0
+;
 
+	
+padding
+:
+ 
+0
+;
+
+	
+font-family
+:
+ 
+'
+Arial
+'
+,
+sans-serif
+;
+
+
+}
 header {
 	margin: 0 auto;
 	background-color: #ff6f0f;
@@ -48,10 +70,10 @@ header h2 {
 }
 
 header button {
-	 margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
+	margin: 5px 5px; /* 간격을 줄이기 위해 margin 수정 */
 	padding: 10px;
-	background-color:  #ff6f0f;
-	font-weight:bold;
+	background-color: #ff6f0f;
+	font-weight: bold;
 	color: white;
 	border: none;
 	text-align: center;
@@ -64,7 +86,7 @@ header button {
 }
 
 header button:hover {
-	background-color: #ff6f0f; 
+	background-color: #ff6f0f;
 	color: black;
 }
 
@@ -108,7 +130,6 @@ header.menu-open h2 {
 }
 
 .menu-icon:hover {
-
 	color: black;
 }
 
@@ -151,20 +172,20 @@ header.menu-open h2 {
 }
 
 .menu-container Button:hover {
-	background-color:#f9f9f9;
+	background-color: #f9f9f9;
 	color: #ff6f0f;
 }
 
 .menu-container h2:hover {
-
 	color: #ff6f0f;
-}</style>
+}
+</style>
 <title>Insert title here</title>
 <body>
 </head>
 <body>
 
-	   <%
+	<%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
    LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
    List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
@@ -175,43 +196,48 @@ header.menu-open h2 {
 		<div class="header-logo">
 			<div class="menu-icon">&#9776;</div>
 			<form action="${path}/homePage">
-			<button type="submit" >Second Hands</button>
-		</form>
+				<button type="submit">Second Hands</button>
+			</form>
 		</div>
 
 		<div class="menu-container">
 			<ul>
-			         <li><h2> </h2></li>
-				<li>
-				   <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
-						<h2>
+				<li><h2></h2></li>
+				<li><img src="${selectedUser.user_image}"
+					style="border-radius: 50%; width: 100px; height: 100px;">
+					<h2>
 						<%
 						if (user != null && selectedUser != null) {
 						%>
-						Welcome,
-						<%=firstSelectedUser.getUser_nickname()%>님
-					</h2>
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code"
+								value="${selectedUser.user_code}">
+							<button type="submit">
+								Welcome, ${selectedUser.user_nickname}님
+							</button>
+						</form>
+					</h2></li>
+				<li>
+					<form action="${path}/myPage" method="post">
+						<input type="hidden" name="user_code"
+							value="<%=firstSelectedUser.getUser_code()%>">
+						<button type="submit">마이페이지 이동</button>
+					</form>
 				</li>
 				<li>
-				            <form action="${path}/myPage" method="post">
-               <input type="hidden" name="user_code" value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지 이동</button>
-               </form>
-				</li>
-				           		<li>
-			<form action="${path}/chattingList" method="post">
+					<form action="${path}/chattingList" method="post">
 						<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
 							value="<%=firstSelectedUser.getUser_code()%>">
 						<button type="submit">새 채팅 ${fn:length(chatList)} 개</button>
 
 
 					</form>
-</li>
-                       <li>
-              <form action="${path}/products/add">
-      <button type="submit">게시글작성</button>
-   			</form>
-   </li>
+				</li>
+				<li>
+					<form action="${path}/products/add">
+						<button type="submit">게시글작성</button>
+					</form>
+				</li>
 				<li>
 					<form action="${path}/showOrder">
 						<button type="submit">주문내역</button>
@@ -239,17 +265,17 @@ header.menu-open h2 {
 				<%
 				}
 				%>
-				
+
 			</ul>
 		</div>
 		<div class="header-btn">
-			 <form action="${path}/scrollHome">
-         <button type="submit">중고거래</button>
-      </form>
-			  <form action="${path}/localproductList" method="post">
-               <input type="hidden" name="newLocation" value="${detail_loc}" />
-         <button type="submit">동네거래</button>
-      </form>
+			<form action="${path}/scrollHome">
+				<button type="submit">중고거래</button>
+			</form>
+			<form action="${path}/localproductList" method="post">
+				<input type="hidden" name="newLocation" value="${detail_loc}" />
+				<button type="submit">동네거래</button>
+			</form>
 		</div>
 		<%
 		if (user != null && selectedUser != null) {
@@ -268,8 +294,8 @@ header.menu-open h2 {
 		<%
 		}
 		%>
-	<%} %>
-	
+		<%} %>
+
 	</header>
 </body>
 </html>

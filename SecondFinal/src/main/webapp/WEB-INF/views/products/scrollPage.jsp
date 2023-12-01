@@ -408,14 +408,16 @@ header.menu-open h2 {
 
             <li>
                <% if (user != null && selectedUser != null) {
-      LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
-      %> <img
-               src="${path}/images/<%=firstSelectedUser.getUser_image()%>"
-               style="border-radius: 50%; width: 100px; height: 100px;">
+			      LoginDTO firstSelectedUser = selectedUser; // Assuming you want the first user in the list
+			   %> 
+			   <img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
-
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
+				<form action="${path}/myPage" method="post">
+					<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+					<button type="submit">
+					Welcome, ${selectedUser.user_nickname}님
+					</button>
+				</form>
                </h2>
             </li>
             <li>
@@ -650,49 +652,43 @@ header.menu-open h2 {
    }
     
     //str문 생성
-     function  pageToString(list){
-       
-        console.log( "list"  +list) ;
-         
+   function  pageToString(list){
           let str = "";
           list.forEach(  ( item) => { 
-             
-               str += `        
-                   <article class="card_wrap">
-                <div class="card_image" style="background-image: url('${path}/images/<%="${item.board_img}" %>')"></div>
-                                   
+               str += `         
+                   <article class="card_wrap">              
                    <%if(user != null){%>
+                   <a class="card_a" href="${path}/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
+                   <div class="card_image" style="background-image: url('${path}images/<%="${item.board_img}" %>')"></div></a>
                    <h2 class="card_title">   
                    <a class="card_a" href="${path}/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
                    <%="${item.board_title}"%> </a></h2>
                   <%}else{%>
-                  <h2 class="card_title"><a class="card_a" onclick = "goLogin()"> <%="${item.board_title}"%> </a></h2>
-                       <%}%>
-                  <div class = "card_date"><%="${item.board_date}"%> </div>
-
-
-       
-                  <div class="card_price"><%= "${item.board_price}" %> 원</div>
+                  <a class="card_a" onclick = "goLogin()">
+                  <div class="card_image" style="background-image: url('${path}images/<%="${item.board_img}" %>')"></div></a>
+                  <h2 class="card_title">
+                  <a class="card_a" onclick = "goLogin()"> <%="${item.board_title}"%> </a></h2>
+                  <%}%>
+                       
+                <div class = "card_date"><%="${item.board_date}"%> </div>`;
                 
-                 
-          
-                 <div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
-                 <div class="card_count">
+       
+          		let price = `<%="${item.board_price}"%>`;
+          		if(price == 0){
+          			str+=`<div class="card_price">나눔🧡</div>`;
+          		}else{
+               		str+=`<div class="card_price"><%="${item.board_price}"%> 원</div>`;
+          		}
+        
+                
+                str+= `
+                <div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
+                <div class="card_count">
                  조회 <%="${item.board_click}"%>
                    <button id = '<%="${item.board_id}"%>' class="card_like" onclick = "likeEvent('<%="${item.board_id}"%>')"></button>
-                  </div>                  
-                 `;
-               
-                let bP=`<%="${item.board_price}"%>` ;
-                
-               
-               if(  bP== 0){
-                  str += "[나눔]";
-               }
-                
-               str+= ` </article>`;
-              
-               
+                  </div>
+                </article>
+               `;
                //item.board_date 안들어감
                
       });

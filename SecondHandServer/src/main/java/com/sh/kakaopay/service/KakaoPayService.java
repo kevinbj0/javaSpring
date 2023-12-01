@@ -50,9 +50,10 @@ public class KakaoPayService {
       params.add("quantity", "1");
       params.add("total_amount", String.valueOf(order.getBoard_price()));
       params.add("tax_free_amount", "0");
-      params.add("approval_url", "http://localhost:8090/kakaoPaySuccess");
-      params.add("cancel_url", "http://localhost:8090/homePage");
-      params.add("fail_url", "http://localhost:8090/homePage");
+      params.add("approval_url", "http://43.201.65.22:8080/kakaoPaySuccess");
+      params.add("cancel_url", "http://43.201.65.22:8080/homePage");
+      params.add("fail_url", "http://43.201.65.22:8080/homePage");
+      //로컬 연결 : localhost:8090
 
       System.out.println("아이디" + order.getBoard_id());
       System.out.println("아이디" + order.getUser_nickname());

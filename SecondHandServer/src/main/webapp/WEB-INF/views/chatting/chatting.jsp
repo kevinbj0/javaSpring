@@ -39,7 +39,8 @@ window.onload = function() {
         $('#chatArea').show();
         $('#message').focus();
 
-        wsocket = new WebSocket("ws://localhost:8090${path}/chat-sh");
+        //wsocket = new WebSocket("ws://localhost:8090${path}/chat-sh");
+        wsocket = new WebSocket("ws://43.201.65.22:8080${path}/chat-sh");
         wsocket.onopen = onOpen;
         wsocket.onmessage = onMessage;
         wsocket.onclose = onClose;
@@ -161,139 +162,143 @@ function scrollTop() {
 
 </script>
 <style>
-    #chatArea {
-        width: 800px;
-        height: 646px;
-        overflow-y: auto;
-        border-bottom: 1px solid black;
-        margin: 0 auto;
-        position: absolute;
-        top: 106px;
-        background-color: #474747;
-    }
-    
+body {
+   background-color: #474747;
+   padding-top: 30px;
+}
 
-    .send {
-        text-align: right;
-        padding: 10px;
-        word-break: break-all;
-        color: white;
-        
-        
-        
-    }
-    .recv {
-           color: white;
-        text-align: left;
-        padding: 10px;
-          word-break: break-all;
-        
-    }
-    .recvNickname{
-            word-break: break-all;
-           margin-left: 40px;
+#chatArea {
+   width: 800px;
+   height: 646px;
+   overflow-y: auto;
+       border-bottom: 2px solid black;
+   margin: 0 auto;
+   position: absolute;
+   top: 106px;
+   background-color: white;
+}
 
-           
-    }
-    
-    .sendBox{
-            word-break: break-all;
-            width: 300px;
-           margin-left: 450px;
-           background-color: #ff6f0f;
-           padding: 10px;
-           border-radius: 30px;
-    
-    }
-    
-    .recvBox{
-            word-break: break-all;
-            width: 300px;
-           margin-left: 20px;
-           background-color: #ff6f0f;
-           padding: 10px;
-           border-radius: 30px;
-    
-                                      
-                           
-                
-    
-    }
+.send {
+   text-align: right;
+   padding: 10px;
+   word-break: break-all;
+   color: white;
+}
 
-    .chatMessageBox{
-            margin-top: 20px;
-            margin: 0 auto;
-            width: 800px;
-            position: absolute;
-            bottom: -31px;
+.recv {
+   text-align: left;
+   padding: 10px;
+   word-break: break-all;
+}
 
+.recvNickname {
+   word-break: break-all;
+   margin-left: 40px;
+   color: black;
+}
 
-       
-    }
-    .chatArea_header{
-    height: 100px;
-    padding: 30px;
-    }
-   .board_Img{
+.sendBox {
+   word-break: break-all;
+   width: 300px;
+   margin-left: 450px;
+   background-color: #ff6f0f;
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.recvBox {
+   color:white;
+   word-break: break-all;
+   width: 300px;
+   margin-left: 20px;
+   background-color: #ff6f0f;
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.chatMessageBox {
+   margin-top: 20px;
+   margin: 0 auto;
+   width: 800px;
+   position: absolute;
+   bottom: -31px;
+}
+
+.chatArea_header {
+   height: 100px;
+   padding: 30px;
+}
+
+.board_Img {
    width: 80px;
    height: 80px;
    margin-top: 10px;
    margin-left: 20px;
    border-radius: 50%;
+   border: 1px solid white;
+}
 
-   }
-   .chatArea_header_info{
-       position: absolute;
-       left: 0px;
-       width: 800px;
-       top: 0px;
-       color: white;
-       display: flex;
-       border-bottom: 1px solid black;
+.chatArea_header_info {
+   position: absolute;
+   left: 0px;
+   width: 800px;
+   top: 0px;
+   color: white;
+   display: flex;
+   border-bottom: 2px solid black;
+   height: 99px;
+}
 
-       
+.chattingMainBox {
+   position: relative;
+   width: 800px;
+   margin: 0 auto;
+   height: 850px;
+   border-radius: 50px;
+   background-color: white; /* Try changing this */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
    
-   }
-   .chattingMainBox{
-       position: relative;
-       width: 800px;
-       margin: 0 auto;
-       height: 850px;
-       background-color: #474747;
-       border-radius: 50px;
-       
-       
-       
-   
-   }
-   .board_Details{
+}
+
+.board_Details {
    margin-top: 10px;
    margin-left: 15px;
    padding: 10px;
-   }
-   
-   #message{
+   color: black;
+}
+
+.target_heat {
+   color: orange;
+   font-weight: bolder;
+}
+
+#message {
    width: 600px;
    height: 30px;
    margin-left: 30px;
    font-size: 20px;
-   }
-   .chatMessageBoxButton{
+   border-radius: 8px;
+}
+
+.chatMessageBoxButton {
    margin-left: 20px;
    width: 50px;
    height: 30px;
-   }
-   .chatMessageBox{
+}
+
+.chatMessageBox {
    height: 100px;
-   }
-   
-   #myBtn:hover {
+}
+
+#myBtn:hover {
    background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
    color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
-.chatting_table{
-width: 1000px;
+
+.chatting_table {
+   width: 1000px;
 }
+
 .chatMessageBoxButton {
    background-color: #ff6f0f;
    color: #fff;
@@ -305,12 +310,11 @@ width: 1000px;
 
 .chatMessageBoxButton:hover {
    background-color: #d55500;
-}    
+}
 
 /* 빨간색 안내 메시지에 대한 스타일 지정 */
-
-
 </style>
+
 </head>
 <body>
 

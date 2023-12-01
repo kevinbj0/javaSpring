@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="com.sh.login.domain.LoginDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -16,446 +16,446 @@
 <title>Welcome Page</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c56a5ac8208747818bdaee7eb60e05ea&libraries=services"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c56a5ac8208747818bdaee7eb60e05ea&libraries=services"></script>
 
 
 <style>
 body {
-   margin: 0;
-   padding: 0;
-   font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: 'Arial', sans-serif;
 }
 /* 헤더 스타일 */
 header {
-   margin: 0 auto;
-   background-color: #ff6f0f; /*  #ff6f0f 메인주황색 색상 ! */
-   padding: 10px;
-   position: sticky;
-   top: 0;
-   color: white;
-   z-index: 1000;
-   text-align: center;
-   display: flex;
-   justify-content: space-between;
-   align-items: center; /* 새로 추가된 속성 */
-   width: 100%;
-   height: 100px;
-   box-sizing: border-box;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+	margin: 0 auto;
+	background-color: #ff6f0f; /*  #ff6f0f 메인주황색 색상 ! */
+	padding: 10px;
+	position: sticky;
+	top: 0;
+	color: white;
+	z-index: 1000;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center; /* 새로 추가된 속성 */
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
 }
 
 h2 {
-   margin: 0;
-   font-size: 24px; /* 폰트 크기 조정 */
+	margin: 0;
+	font-size: 24px; /* 폰트 크기 조정 */
 }
 
 .menu-icon {
-   order: -1;
-   font-size: 24px; /* 폰트 크기 조정 */
-   cursor: pointer;
+	order: -1;
+	font-size: 24px; /* 폰트 크기 조정 */
+	cursor: pointer;
 }
 
 /* 버튼 스타일 */
 header button {
-   margin: 5px;
-   padding: 10px;
-   background-color: #ff6f0f;
-   font-weight: bold;
-   color: white;
-   border: none;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 20px;
-   cursor: pointer;
-   /* border-radius: 5px; 모서리 둥글게 */
-   transition: background-color 0.3s, color 0.3s;
+	margin: 5px;
+	padding: 10px;
+	background-color: #ff6f0f;
+	font-weight: bold;
+	color: white;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	cursor: pointer;
+	/* border-radius: 5px; 모서리 둥글게 */
+	transition: background-color 0.3s, color 0.3s;
 }
 
 header button:hover {
-   color: black;
+	color: black;
 }
 
 header.menu-open {
-   flex-direction: column;
-   align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 header.menu-open form {
-   display: block;
+	display: block;
 }
 
 header.menu-open h2 {
-   margin-top: 10px;
+	margin-top: 10px;
 }
 
 /* 햄버거 아이콘을 화면 왼쪽에 고정 */
 .menu-icon {
-   order: -1;
+	order: -1;
 }
 
 /* 햄버거 아이콘 스타일 */
 .menu-icon:hover {
-   color: black; /* 마우스를 올렸을 때의 색상 변경 */
+	color: black; /* 마우스를 올렸을 때의 색상 변경 */
 }
 
 .menu-container {
-   display: none;
-   position: fixed;
-   top: 100px; /* 헤더 높이에 따라 조정하세요 */
-   left: 0;
-   width: 20%;
-   height: 100%;
-   background-color: #f9f9f9;
-   z-index: 999;
-   background-color: #f9f9f9;
+	display: none;
+	position: fixed;
+	top: 100px; /* 헤더 높이에 따라 조정하세요 */
+	left: 0;
+	width: 20%;
+	height: 100%;
+	background-color: #f9f9f9;
+	z-index: 999;
+	background-color: #f9f9f9;
 }
 
 .menu-container ul {
-   list-style-type: none;
-   padding: 0;
-   margin: 0;
-   text-align: center;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }
 
 .menu-container li {
-   padding: 15px;
-   border-bottom: 1px solid #ddd; /* 메뉴 항목 간에 경계선 추가 */
+	padding: 15px;
+	border-bottom: 1px solid #ddd; /* 메뉴 항목 간에 경계선 추가 */
 }
 
 .menu-container h2 {
-   text-decoration: none;
-   color: #333;
-   font-weight: bold;
-   font-size: 18px;
-   transition: color 0.3s;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	font-size: 18px;
+	transition: color 0.3s;
 }
 
 .menu-container button {
-   color: black;
-   background-color: #f9f9f9;
-   font-weight: bold;
+	color: black;
+	background-color: #f9f9f9;
+	font-weight: bold;
 }
 
 .menu-container Button:hover {
-   color: #ff6f0f; /* 호버 시 색상 변경 */
+	color: #ff6f0f; /* 호버 시 색상 변경 */
 }
 
 .menu-container h2:hover {
-   color: #ff6f0f; /* 호버 시 색상 변경 */
+	color: #ff6f0f; /* 호버 시 색상 변경 */
 }
 
 .main-top {
-   background: #fffae0;
-   border-bottom: 1px solid #ddd;
-   display: flex; /* 자식 요소를 가로로 정렬 */
-   justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
-   align-items: center; /* 수직 정렬 */
-   height: 800px;
+	background: #fffae0;
+	border-bottom: 1px solid #ddd;
+	display: flex; /* 자식 요소를 가로로 정렬 */
+	justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
+	align-items: center; /* 수직 정렬 */
+	height: 800px;
 }
 
 .main-top div {
-   width: 50%;
-   padding: 20px;
-   text-align: center; /* 가운데 정렬 추가 */
+	width: 50%;
+	padding: 20px;
+	text-align: center; /* 가운데 정렬 추가 */
 }
 
 .main-top div h1 {
-   font-weight: bold;
-   font-size: 52px;
+	font-weight: bold;
+	font-size: 52px;
 }
 
 .main-top div p {
-   font-size: 22px;
-   color: grey;
+	font-size: 22px;
+	color: grey;
 }
 
 .main-top div a {
-   display: inline-block;
-   width: 180px;
-   height: 25px;
-   padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
-   margin: 10px; /* 각 링크 간의 간격을 늘림 */
-   background-color: #ff6f0f; /* 주황색 배경 */
-   color: white; /* 흰 글씨 */
-   font-size: 18px;
-   border-radius: 10px; /* 모서리를 둥글게 설정 */
-   text-decoration: none;
-   font-weight: bold; /* 텍스트를 두껍게 설정 */
-   transition: background-color 0.3s, color 0.3s;
-   margin: 5px 20px -1px 10px;
+	display: inline-block;
+	width: 180px;
+	height: 25px;
+	padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
+	margin: 10px; /* 각 링크 간의 간격을 늘림 */
+	background-color: #ff6f0f; /* 주황색 배경 */
+	color: white; /* 흰 글씨 */
+	font-size: 18px;
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	text-decoration: none;
+	font-weight: bold; /* 텍스트를 두껍게 설정 */
+	transition: background-color 0.3s, color 0.3s;
+	margin: 5px 20px -1px 10px;
 }
 
 header.menu-open {
-   flex-direction: column;
-   align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 header.menu-open form {
-   display: block;
+	display: block;
 }
 
 header.menu-open h2 {
-   margin-top: 10px;
+	margin-top: 10px;
 }
 
 /* 햄버거 아이콘을 화면 왼쪽에 고정 */
 .menu-icon {
-   order: -1;
+	order: -1;
 }
 
 .main-top div a:hover {
-   background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
-   color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
+	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
 
 .main-top img {
-   max-width: 100%;
-   max-height: 100%;
-   width: 650px;
-   height: 800px;
+	max-width: 100%;
+	max-height: 100%;
+	width: 650px;
+	height: 800px;
 }
 
 /*         중간          */
 .main-middle {
-   border-bottom: 1px solid #ddd;
-   display: flex; /* 자식 요소를 가로로 정렬 */
-   justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
-   align-items: center; /* 수직 정렬 */
-   height: 800px;
+	border-bottom: 1px solid #ddd;
+	display: flex; /* 자식 요소를 가로로 정렬 */
+	justify-content: space-between; /* 자식 요소 간의 간격을 최대화하여 정렬 */
+	align-items: center; /* 수직 정렬 */
+	height: 800px;
 }
 
 .main-middle div {
-   width: 50%;
-   padding: 20px;
-   text-align: start;
+	width: 50%;
+	padding: 20px;
+	text-align: start;
 }
 
 .main-middle div h1 {
-   font-weight: bold;
-   font-size: 52px;
+	font-weight: bold;
+	font-size: 52px;
 }
 
 .main-middle div p {
-   font-size: 22px;
-   color: grey;
+	font-size: 22px;
+	color: grey;
 }
 
 .main-middle div a {
-   display: inline-block;
-   width: 180px;
-   height: 25px;
-   padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
-   margin: 10px; /* 각 링크 간의 간격을 늘림 */
-   background-color: #ff6f0f; /* #ff6f0f = 주황색 배경 */
-   color: white; /* 흰 글씨 */
-   font-size: 18px;
-   border-radius: 10px; /* 모서리를 둥글게 설정 */
-   text-decoration: none;
-   font-weight: bold; /* 텍스트를 두껍게 설정 */
-   transition: background-color 0.3s, color 0.3s;
+	display: inline-block;
+	width: 180px;
+	height: 25px;
+	padding: 15px 20px; /* 텍스트 주변의 여백을 늘림 */
+	margin: 10px; /* 각 링크 간의 간격을 늘림 */
+	background-color: #ff6f0f; /* #ff6f0f = 주황색 배경 */
+	color: white; /* 흰 글씨 */
+	font-size: 18px;
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	text-decoration: none;
+	font-weight: bold; /* 텍스트를 두껍게 설정 */
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .main-middle div a:hover {
-   background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
-   color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
+	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
 
 .main-middle img {
-   margin: 100px;
-   max-width: 100%;
-   max-height: 100%;
-   width: 400px;
-   height: 500px;
+	margin: 100px;
+	max-width: 100%;
+	max-height: 100%;
+	width: 400px;
+	height: 500px;
 }
 
 .main-middle div form {
-   margin-top: 10px; /* 필요한 여백 조정 */
+	margin-top: 10px; /* 필요한 여백 조정 */
 }
 
 .main-middle div form button {
-   background-color: #ff6f0f;
-   color: white;
-   padding: 15px 20px;
-   border: none;
-   border-radius: 10px;
-   font-size: 18px;
-   font-weight: bold;
-   cursor: pointer;
-   transition: background-color 0.3s, color 0.3s;
+	background-color: #ff6f0f;
+	color: white;
+	padding: 15px 20px;
+	border: none;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 #loginAlertButton1 {
-   background-color: #ff6f0f;
-   color: white;
-   padding: 15px 20px;
-   border: none;
-   border-radius: 10px;
-   font-size: 18px;
-   font-weight: bold;
-   cursor: pointer;
-   transition: background-color 0.3s, color 0.3s;
+	background-color: #ff6f0f;
+	color: white;
+	padding: 15px 20px;
+	border: none;
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
 }
 
-
 #loginAlertButton1:hover {
-   background-color: #d55500;
-   color: white;
+	background-color: #d55500;
+	color: white;
 }
 
 .main-middle div form button:hover {
-   background-color: #d55500;
-   color: white;
+	background-color: #d55500;
+	color: white;
 }
 
 .mid-title {
-   font-weight: bold;
-   color: #ff6f0f; /* 주황색으로 변경 */
+	font-weight: bold;
+	color: #ff6f0f; /* 주황색으로 변경 */
 }
 
 /* 메인 3 */
 .column-wrapper {
-   display: flex;
+	display: flex;
 }
 
 .column img {
-   margin: 20px;
-   width: 156px;
+	margin: 20px;
+	width: 156px;
 }
 
 .column {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: space-evenly;
-   margin-left: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	margin-left: 180px;
 }
 
 .main3 {
-   border-bottom: 1px solid #ddd;
-   color: black;
-   height: 500px;
+	border-bottom: 1px solid #ddd;
+	color: black;
+	height: 500px;
 }
 
 .main4 {
-   border-bottom: 1px solid #ddd;
-   color: red;
-   height: 500px;
+	border-bottom: 1px solid #ddd;
+	color: red;
+	height: 500px;
 }
 
 footer {
-   background-color: #333;
-   padding: 10px;
-   color: white;
-   text-align: center;
-   bottom: 0;
+	background-color: #333;
+	padding: 10px;
+	color: white;
+	text-align: center;
+	bottom: 0;
 }
 
 footer a {
-   text-decoration: none; /* 텍스트 데코레이션 제거 */
-   color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
+	text-decoration: none; /* 텍스트 데코레이션 제거 */
+	color: inherit; /* 링크의 색상을 부모 요소로부터 상속 */
 }
 
 footer a:hover {
-   text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
-   color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
+	text-decoration: none; /* 호버 시 텍스트 데코레이션 제거 유지 */
+	color: inherit; /* 호버 시 색상을 부모 요소로부터 상속 */
 }
 
 #myBtn {
-   position: fixed;
-   bottom: 20px;
-   right: 30px;
-   z-index: 99;
-   border: none;
-   outline: none;
-   background-color: #ff6f0f;
-   color: white;
-   cursor: pointer;
-   padding: 15px;
-   border-radius: 10px;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: #ff6f0f;
+	color: white;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 10px;
 }
 
 #myBtn:hover {
-   background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
-   color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
+	background-color: #d55500; /* 마우스를 올렸을 때의 배경 색상을 흰색으로 변경 */
+	color: white; /* 마우스를 올렸을 때의 텍스트 색상을 주황색으로 변경 */
 }
 
 /* 모달 스타일 */
 #find-me {
-   margin-top: 520px;
-   margin-right: 440px;
+	margin-top: 520px;
+	margin-right: 440px;
 }
 
 #find-me1 {
-   margin-top: 4px;
-   margin-right: 440px;
+	margin-top: 4px;
+	margin-right: 440px;
 }
 
 .modal {
-   display: none; /* 기본적으로 숨겨진 상태로 시작 */
-   position: fixed; /* 고정 위치 */
-   z-index: 1; /* 모달 위에 다른 요소가 올라오지 않도록 설정 */
-   left: 0;
-   top: 0;
-   width: 100%; /* 너비 100% */
-   height: 100%; /* 높이 100% */
-   overflow: auto; /* 콘텐츠가 너무 길어질 경우 스크롤 가능하도록 설정 */
-   background-color: rgba(0, 0, 0, 0.4); /* 반투명한 검정 배경색 */
+	display: none; /* 기본적으로 숨겨진 상태로 시작 */
+	position: fixed; /* 고정 위치 */
+	z-index: 1; /* 모달 위에 다른 요소가 올라오지 않도록 설정 */
+	left: 0;
+	top: 0;
+	width: 100%; /* 너비 100% */
+	height: 100%; /* 높이 100% */
+	overflow: auto; /* 콘텐츠가 너무 길어질 경우 스크롤 가능하도록 설정 */
+	background-color: rgba(0, 0, 0, 0.4); /* 반투명한 검정 배경색 */
 }
 
 #status {
-   font-size: 30px;
-   margin-top: 10px;
-   font-weight: 900;
-   margin-bottom: 15px;
+	font-size: 30px;
+	margin-top: 10px;
+	font-weight: 900;
+	margin-bottom: 15px;
 }
 
 .modal-content {
-   border-radius: 12px;
-   background-color: #fefefe;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   padding: 20px;
-   border: 1px solid #888;
-   width: 600px;
-   height: 600px;
-   text-align: center;
-   color: black;
+	border-radius: 12px;
+	background-color: #fefefe;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	border: 1px solid #888;
+	width: 600px;
+	height: 600px;
+	text-align: center;
+	color: black;
 }
-#new-location{
 
-font-weight: bold;
+#new-location {
+	font-weight: bold;
 }
+
 .localsubBtn {
-    position: fixed;
-    bottom: 7px;
-    right: 285px;
-   background-color: #ff6f0f;
-   color: #fff;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
-   transition: background-color 0.3s, color 0.3s;
-   margin-top: 15px;
+	position: fixed;
+	bottom: 7px;
+	right: 285px;
+	background-color: #ff6f0f;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+	margin-top: 15px;
 }
 
 .localsubBtn:hover {
-   background-color: #d55500;
+	background-color: #d55500;
 }
 
 .close {
-   color: #aaa;
-   float: right;
-   font-size: 28px;
-   font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .close:hover, .close:focus {
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 </style>
 <script>
@@ -492,7 +492,7 @@ font-weight: bold;
 </head>
 <body>
 
-   <%
+	<%
    LoginDTO user = (LoginDTO) session.getAttribute("user");
    LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
    List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
@@ -500,102 +500,106 @@ font-weight: bold;
 
 
 
-   <header>
-      <form action="${path}/homePage">
-         <button type="submit">Second Hands</button>
-      </form>
-      <div class="menu-icon">&#9776;</div>
-      <!-- 햄버거 아이콘 추가 -->
-      <div class="menu-container">
-         <ul>
+	<header>
+		<form action="${path}/homePage">
+			<button type="submit">Second Hands</button>
+		</form>
+		<div class="menu-icon">&#9776;</div>
+		<!-- 햄버거 아이콘 추가 -->
+		<div class="menu-container">
+			<ul>
 
-            <%
+				<%
             if (user != null && selectedUser != null) {
                LoginDTO firstSelectedUser = selectedUser;
                if ("admin".equals(firstSelectedUser.getUser_id())) {
             %>
 
-            <li>
-               <form action="${path}/admin" method="post">
-                  <button type="submit">관리자 페이지</button>
-               </form>
-            </li>
-            <%
+				<li>
+					<form action="${path}/admin" method="post">
+						<button type="submit">관리자 페이지</button>
+					</form>
+				</li>
+				<%
             }
             %>
-            <li><img
-               src="${user.user_image}"
-               style="border-radius: 50%; width: 100px; height: 100px;">
-               <h2>
-                  Welcome,
+				<li>
+				<img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
+					<h2>
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code"
+								value="${selectedUser.user_code}">
+							<button type="submit">
+								Welcome, ${selectedUser.user_nickname}님
+							</button>
+						</form>
+					</h2>
+				</li>
+				<li>
+					<form action="${path}/myPage" method="post">
+						<input type="hidden" name="user_code"
+							value="<%=firstSelectedUser.getUser_code()%>">
+						<button type="submit">마이페이지</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/chattingList" method="post">
+						<input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
+							value="<%=firstSelectedUser.getUser_code()%>">
+						<button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
-                  <%=firstSelectedUser.getUser_nickname()%>님
-               </h2></li>
-            <li>
-               <form action="${path}/myPage" method="post">
-                  <input type="hidden" name="user_code"
-                     value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">마이페이지</button>
-               </form>
-            </li>
-            <li>
-               <form action="${path}/chattingList" method="post">
-                  <input type="hidden" name="buy_code" placeholder="채팅 코드 입력"
-                     value="<%=firstSelectedUser.getUser_code()%>">
-                  <button type="submit">채팅 ${fn:length(chatList)} 개</button>
 
+					</form>
+				</li>
+				<li>
+					<form action="${path}/sellProducts">
+						<button type="submit">판매내역</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/showOrder">
+						<button type="submit">구매내역</button>
+					</form>
+				</li>
 
-               </form>
-            </li>
-            <li>
-               <form action="${path}/sellProducts">
-                  <button type="submit">판매내역</button>
-               </form>
-            </li>
-            <li>
-               <form action="${path}/showOrder">
-                  <button type="submit">구매내역</button>
-               </form>
-            </li>
-
-            <li>
-               <form action="${path}/qna">
-                  <button type="submit">문의하기</button>
-               </form>
-            </li>
-            <li>
-               <form action="${path}/logout" method="post">
-                  <button type="submit">로그아웃</button>
-               </form>
-            </li>
-            <%
+				<li>
+					<form action="${path}/qna">
+						<button type="submit">문의하기</button>
+					</form>
+				</li>
+				<li>
+					<form action="${path}/logout" method="post">
+						<button type="submit">로그아웃</button>
+					</form>
+				</li>
+				<%
             } else {
             %>
-            <li><h2>로그인이 필요한 서비스입니다.</h2></li>
-            <li>
-               <form action="${path}/login">
-                  <button type="submit">가입 및 로그인</button>
-               </form>
-            </li>
-            <%
+				<li><h2>로그인이 필요한 서비스입니다.</h2></li>
+				<li>
+					<form action="${path}/login">
+						<button type="submit">가입 및 로그인</button>
+					</form>
+				</li>
+				<%
             }
             %>
-         </ul>
-      </div>
+			</ul>
+		</div>
 
-      <form action="${path}/scrollHome">
-         <button type="submit">중고거래</button>
-      </form>
+		<form action="${path}/scrollHome">
+			<button type="submit">중고거래</button>
+		</form>
 
 
-      <%
+		<%
       if (user != null && selectedUser != null) {
       %>
-      <form action="${path}/localproductList" method="post">
-         <input type="hidden" name="newLocation" value="${detail_loc}" />
-         <button id="localTransactionButton" type="submit">동네거래</button>
-      </form>
-      <script>
+		<form action="${path}/localproductList" method="post">
+			<input type="hidden" name="newLocation" value="${detail_loc}" />
+			<button id="localTransactionButton" type="submit">동네거래</button>
+		</form>
+		<script>
         document.getElementById("localTransactionButton").addEventListener("click", function(e) {
             var newLocationValue = document.getElementsByName("newLocation")[0].value;
             if (newLocationValue.trim() === "") {
@@ -605,141 +609,141 @@ font-weight: bold;
             }
         });
     </script>
-      <%
+		<%
       } else {
       %>
-      <button id="loginAlertButton" type="button">동네거래</button>
-      <script>
+		<button id="loginAlertButton" type="button">동네거래</button>
+		<script>
         document.getElementById("loginAlertButton").addEventListener("click", function() {
             alert("로그인이 필요한 서비스 입니다.");
             window.location.href = "${path}/login"; 
         });
     </script>
-      <%
+		<%
       }
       %>
 
 
 
-      <%
+		<%
       if (user != null && selectedUser != null) {
       %>
-      <!-- 동네 인증 -->
-      <form id="location_form" method="post" action="location_form">
-         <!-- 모달요소 -->
-         <div id="myModal" class="modal">
-            <div class="modal-content">
-               <span class="close" onclick="closeModal()">&times;</span>
+		<!-- 동네 인증 -->
+		<form id="location_form" method="post" action="location_form">
+			<!-- 모달요소 -->
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<span class="close" onclick="closeModal()">&times;</span>
 
-               <div id="modal-content"></div>
-               <input class="localsubBtn" type="submit" value="동네 인증"
-                  id="submit-btn" disabled />
-            </div>
-         </div>
+					<div id="modal-content"></div>
+					<input class="localsubBtn" type="submit" value="동네 인증"
+						id="submit-btn" disabled />
+				</div>
+			</div>
 
-         <button id="find-me">동네인증</button>
-         <br />
-         <p id="status"></p>
-         <a id="map-link" target="_blank"></a>
-         <div id="map" style="width: 500px; height: 500px; margin-left: 50px"></div>
-         <input type="hidden" id="location-input" name="newLocation"
-            value="${detail_loc}" />
-      </form>
-      <%
+			<button id="find-me">동네인증</button>
+			<br />
+			<p id="status"></p>
+			<a id="map-link" target="_blank"></a>
+			<div id="map" style="width: 500px; height: 500px; margin-left: 50px"></div>
+			<input type="hidden" id="location-input" name="newLocation"
+				value="${detail_loc}" />
+		</form>
+		<%
       } else {
       %>
-      <button id="find-me1">동네인증</button>
-      <script>
+		<button id="find-me1">동네인증</button>
+		<script>
          document.getElementById("find-me1").addEventListener("click", function() {
             alert("로그인이 필요한 서비스 입니다.");
             window.location.href = "${path}/login"; 
         });
          </script>
-      <%
+		<%
       }
       %>
 
 
 
-      <%
+		<%
       if (user != null && selectedUser != null) {
          LoginDTO firstSelectedUser = selectedUser;
       %>
-      <form action="${path}/logout" method="post">
-         <button type="submit">로그아웃</button>
-      </form>
-      <%
+		<form action="${path}/logout" method="post">
+			<button type="submit">로그아웃</button>
+		</form>
+		<%
       } else {
       %>
-      <form action="${path}/login">
-         <button type="submit">로그인</button>
-      </form>
-      <%
+		<form action="${path}/login">
+			<button type="submit">로그인</button>
+		</form>
+		<%
       }
       %>
-   </header>
+	</header>
 
-   <!-- Your page content here -->
-   <div class="main-top">
-      <div>
-         <h1>
-            당신 근처의<br> 지역 생활 커뮤니티
-         </h1>
-         <p>
-            동네라서 가능한 모든 것<br> 당근에서 가까운 이웃과 함께해요.
-         </p>
-         <a class="link1" href="https://github.com/mvcfvsgdj/SecondHandPrj">더
-            보기</a> <a class="link2"
-            href="https://dbdiagram.io/d/653b74c9ffbf5169f092c009">알아보기</a>
-         <%
+	<!-- Your page content here -->
+	<div class="main-top">
+		<div>
+			<h1>
+				당신 근처의<br> 지역 생활 커뮤니티
+			</h1>
+			<p>
+				동네라서 가능한 모든 것<br> 당근에서 가까운 이웃과 함께해요.
+			</p>
+			<a class="link1" href="https://github.com/mvcfvsgdj/SecondHandPrj">더
+				보기</a> <a class="link2"
+				href="https://dbdiagram.io/d/653b74c9ffbf5169f092c009">알아보기</a>
+			<%
          if (user != null && selectedUser != null) {
             LoginDTO firstSelectedUser = selectedUser;
          %>
 
-         <%
+			<%
          } else {
          %><p>지금 저희와 함께하세요.</p>
-         <form id="saveForm" method="post" action="${path}/saveForm">
-            <a class="link2" href="${path}/shSaveUser">회원가입</a>
-         </form>
+			<form id="saveForm" method="post" action="${path}/saveForm">
+				<a class="link2" href="${path}/shSaveUser">회원가입</a>
+			</form>
 
-         <%
+			<%
          }
          %>
 
 
-      </div>
-      <div>
-         <img
-            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/rebranded-image-top-e765d561ee9df7f5ab897f622b8b5a35aaa70314f734e097ea70e6c83bdd73f1.webp"
-            alt="Image">
-      </div>
-   </div>
+		</div>
+		<div>
+			<img
+				src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/rebranded-image-top-e765d561ee9df7f5ab897f622b8b5a35aaa70314f734e097ea70e6c83bdd73f1.webp"
+				alt="Image">
+		</div>
+	</div>
 
-   <div class="main-middle">
+	<div class="main-middle">
 
-      <div>
-         <img id="likeImg" src="${path}/resources/product/sample.png">
+		<div>
+			<img id="likeImg" src="${path}/resources/product/sample.png">
 
-      </div>
+		</div>
 
-      <div>
-         <span class="mid-title">중고거래</span>
-         <h1>
-            믿을만한<br> 이웃 간 중고거래
-         </h1>
-         <p>
-            동네 주민들과 가깝고 따뜻한 거래를<br> 지금 경험해보세요.
-         </p>
+		<div>
+			<span class="mid-title">중고거래</span>
+			<h1>
+				믿을만한<br> 이웃 간 중고거래
+			</h1>
+			<p>
+				동네 주민들과 가깝고 따뜻한 거래를<br> 지금 경험해보세요.
+			</p>
 
-         <%
+			<%
          if (user != null && selectedUser != null) {
          %>
-         <form action="${path}/localproductList" method="post">
-            <input type="hidden" name="newLocation" value="${detail_loc}" />
-            <button id="localTransactionButton1" type="submit">동네거래</button>
-         </form>
-         <script>
+			<form action="${path}/localproductList" method="post">
+				<input type="hidden" name="newLocation" value="${detail_loc}" />
+				<button id="localTransactionButton1" type="submit">동네거래</button>
+			</form>
+			<script>
     document.getElementById("localTransactionButton1").addEventListener("click", function(e) {
         var newLocationValue = document.getElementsByName("newLocation")[0].value;
         if (newLocationValue.trim() === "") {
@@ -749,76 +753,76 @@ font-weight: bold;
         }
     });
 </script>
-         <%
+			<%
          } else {
          %>
-         <button id="loginAlertButton1" type="button"
-            onclick="redirectToLogin()">동네거래</button>
-         <script>
+			<button id="loginAlertButton1" type="button"
+				onclick="redirectToLogin()">동네거래</button>
+			<script>
     function redirectToLogin() {
         alert("로그인이 필요한 서비스입니다.");
         window.location.href = "${path}/login";
     }
 </script>
-         <%
+			<%
          }
          %>
-         <form action="${path}/scrollHome">
-            <button type="submit">중고거래</button>
-         </form>
+			<form action="${path}/scrollHome">
+				<button type="submit">중고거래</button>
+			</form>
 
-      </div>
+		</div>
 
-   </div>
+	</div>
 
-   <div class="main3">
-      <div class="column-wrapper">
-         <div class="column">
-            <img
-               src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+	<div class="main3">
+		<div class="column-wrapper">
+			<div class="column">
+				<img
+					src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
 
-            <img
-               src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
-         </div>
-         <div class="column">
-            <img
-               src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
-            <img
-               src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-         </div>
-         <div class="column">
-            <!-- 이미지 추가 -->
-         </div>
-      </div>
-   </div>
-   <div class="main4">test</div>
-   <button id="myBtn" title="Go to top">Top</button>
-   <footer>
-      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p>
-         <a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
-            href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
-            href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
-            href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
-            href="https://github.com/lepio1999">조원: 허재혁 </a>
-      </p>
-   </footer>
-
-
+				<img
+					src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+			</div>
+			<div class="column">
+				<img
+					src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+				<img
+					src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+			</div>
+			<div class="column">
+				<!-- 이미지 추가 -->
+			</div>
+		</div>
+	</div>
+	<div class="main4">test</div>
+	<button id="myBtn" title="Go to top">Top</button>
+	<footer>
+		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
+		<p>
+			<a href="https://github.com/dhdl2389">조장: 김재열</a> | <a
+				href="https://github.com/mvcfvsgdj">조원: 김민규 </a> | <a
+				href="https://github.com/kevinbj0">조원: 김병진 </a> | <a
+				href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> | <a
+				href="https://github.com/lepio1999">조원: 허재혁 </a>
+		</p>
+	</footer>
 
 
 
-   <script>
+
+
+	<script>
       function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
@@ -1441,7 +1445,7 @@ font-weight: bold;
      
     </script>
 
-   <script>
+	<script>
       // 모달 열기
       function openModal() {
         document.getElementById("myModal").style.display = "block";
@@ -1466,7 +1470,7 @@ font-weight: bold;
     </script>
 
 
-   <script>
+	<script>
     const findMeButton = document.getElementById('find-me');
     const submitButton = document.getElementById('submit-btn');
     const locationInput = document.getElementById('location-input');

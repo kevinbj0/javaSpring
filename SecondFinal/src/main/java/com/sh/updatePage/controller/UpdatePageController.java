@@ -30,7 +30,6 @@ import com.sh.product.domain.ProductDTO;
 @Controller
 public class UpdatePageController {
 	String fileDir = "c:\\test\\upload\\";
-	
 	@Autowired
 	private LoginService loginService;
 
@@ -59,7 +58,6 @@ public class UpdatePageController {
 	public String processUpdateMainImg(@ModelAttribute LoginDTO loginDTO,@RequestParam String user_image, @RequestParam String user_id, HttpServletRequest request) {
 		loginDTO.setUser_id(user_id);
 		loginDTO.setUser_image(user_image);
-		System.out.println(user_image);
 	    loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	    // 업데이트 성공
 	    HttpSession session = request.getSession();
@@ -76,7 +74,7 @@ public class UpdatePageController {
 
 		HttpSession session = request.getSession();
 		
-		System.out.println("파일-="+file);
+		//System.out.println("파일-="+file);
 		String fileRealName = null;
 	        loginDTO.setUser_id(user_id);
 

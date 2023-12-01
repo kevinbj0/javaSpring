@@ -53,6 +53,8 @@ public class KakaoPayService {
       params.add("approval_url", "http://localhost:8090/kakaoPaySuccess");
       params.add("cancel_url", "http://localhost:8090/homePage");
       params.add("fail_url", "http://localhost:8090/homePage");
+      //로컬 연결 : localhost:8090
+      //서버 연결 : 43.201.65.22:8080
 
       System.out.println("아이디" + order.getBoard_id());
       System.out.println("아이디" + order.getUser_nickname());
