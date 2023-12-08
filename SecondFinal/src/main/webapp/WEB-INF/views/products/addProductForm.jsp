@@ -539,6 +539,7 @@ textarea {
                style="margin-right: 102px;"> <br> <label id="detail">카테고리:</label>
 
             <script>
+               // 상품 게시 카테고리 구분 (  나눔 OR 판매  )
                function checkboardCate() {
 
                   var boardCate = document.getElementById("board_cate");
@@ -580,6 +581,7 @@ textarea {
          <span id="charCount">0 / 100</span>
 
          <script>
+            // board_text의 길이제한 두는 함수 
             function checkLength() {
                var maxLength = 100;
                var textArea = document.getElementById("board_Text");

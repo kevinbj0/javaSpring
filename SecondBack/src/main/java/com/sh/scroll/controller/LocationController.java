@@ -33,6 +33,7 @@ public class LocationController {
 	@PostMapping("/location_form")
 	public String location(@RequestParam(name = "newLocation", required = false) String newLocation, Model model,
 			HttpSession session) {
+		// 사용자가 선택한 동네 인증 정보 세션에 저장
 		session.setAttribute("detail_loc", newLocation);
 		// System.out.println(newLocation);
 		return "/homePage/homePage";
@@ -64,6 +65,7 @@ public class LocationController {
 	@ResponseBody
 	@GetMapping("/localScroll")
 	public Map<String, Object> scrollGet( String page, String mode,String detail_loc) {
+		// 동네거래 부분 스크롤 페이징
 		int currentPage = 1;
 		if (page != null) {
 			currentPage = Integer.parseInt(page);

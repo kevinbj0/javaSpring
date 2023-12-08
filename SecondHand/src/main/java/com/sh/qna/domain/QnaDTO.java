@@ -4,16 +4,20 @@ import lombok.Data;
 
 @Data
 public class QnaDTO {
-
-	private String q_code;
-	private String q_id;
-	private String q_title;
-	private String q_contents;
-	private String q_date;
-	private String q_time;
-	private String q_check;
-	private int num;
-	private String q_writer;
+	
+	
+	
+	private int q_code; // Q&A 글 코드
+	private String q_id;// 작성자 아이디
+	private String q_title; // 문의 제목
+	private String q_contents; // 문의 내용
+	private String q_date; // 작성 날짜
+	private String q_time; // 작성 시간
+	private String q_check; // 글공개 여부
+	private String q_writer; // 문의 작성자
+	private String q_comment; // 댓글내용
+	private int q_code_co; // Q&A 글 코드
+	private int num; // 갯수
 	
 
 	public QnaDTO() {
@@ -21,7 +25,7 @@ public class QnaDTO {
 	}
 	
 
-	public QnaDTO(String q_code,String q_id, String q_title ,String q_contents, String q_date,String q_time, String q_check, String q_writer) {
+	public QnaDTO(int q_code,String q_id, String q_title ,String q_contents, String q_date,String q_time, String q_check, String q_writer) {
 		super();
 		this.q_code = q_code;
 		this.q_id = q_id;
@@ -33,7 +37,9 @@ public class QnaDTO {
 		this.q_writer = q_writer;
 	}
 
-
+	  /**
+     * 새로운 Q&A 글 작성을 위한 생성자
+     */
 	public QnaDTO(String q_id, String q_title, String q_contents, String q_check, String q_writer) {
 		super();
 		this.q_id = q_id;
@@ -43,8 +49,10 @@ public class QnaDTO {
 		this.q_writer = q_writer;
 	}
 
-
-	public QnaDTO(String q_code, String q_title, String q_contents, String q_check) {
+	 /**
+     * Q&A 글 수정을 위한 생성자
+     */
+	public QnaDTO(int q_code, String q_title, String q_contents, String q_check) {
 		super();
 		this.q_code = q_code;
 		this.q_title = q_title;
@@ -52,7 +60,18 @@ public class QnaDTO {
 		this.q_check = q_check;
 	}
 
+	 /**
+     * Q&A 댓글 작성을 위한 생성자
+     */
+	public QnaDTO(int q_code, String q_writer, String q_comment) {
+		super();
+		this.q_code = q_code;
+		this.q_writer = q_writer;
+		this.q_comment = q_comment;
+	}
 
+
+	
 
 
 

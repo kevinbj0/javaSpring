@@ -440,14 +440,15 @@ footer a:hover {
 </script>
 
 
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 $(document).ready(function () {
     $('#saveForm').submit(function (e) {
         let fields = ['#user_id', '#user_pw', '#user_pw_confirm', '#address', '#phone_num', '#member_post', '#member_addr', '#detailed_address', '#user_birth', '#user_nickname'];
         let isPasswordMatch = checkPasswordMatch(); // 비밀번호 일치 여부 확인
-
+		
+        // fields 변수 내에 공란 있을 시 alert 
         for (let i = 0; i < fields.length; i++) {
             if ($(fields[i]).val() === '') {
                 e.preventDefault();
@@ -500,12 +501,25 @@ $(document).ready(function () {
 });
 </script>
 <script>
+
+   // 비밀번호 중복화인 checkin 함수 호출
    function checkPasswordMatch() {
       let confirmPassword = document.getElementById("user_pw_confirm").value;
       let matchDiv = document.getElementById("passwordMatchResult");
       let validityDiv = document.getElementById("passwordValidityMessage");
       let password = document.getElementById("user_pw").value;
-
+		
+      /*
+      정규식 설명:
+      ^                  시작 지점
+      (?=.*[a-zA-Z])     최소한 한 개의 알파벳(대소문자 구분)이 포함되어야 함
+      (?=.*[0-9])        최소한 한 개의 숫자가 포함되어야 함
+      (?=.*[!@#$%^&*?_]) 최소한 한 개의 특수문자(!@#$%^&*?_)가 포함되어야 함
+      (?!.*\s)           공백 문자가 포함되지 않아야 함
+      .{8,16}            총 길이가 8에서 16 사이여야 함
+      $                  종료 지점
+      */
+      
       let passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_])(?!.*\s).{8,16}$/;
 
       if (passwordRegex.test(password)) {
@@ -527,7 +541,8 @@ $(document).ready(function () {
          document.getElementById("user_pw_confirm").value = "";
       }
    }
-
+	
+   // 비밀번호 중복확인시 type 변경으로 비밀번호 확인하는 함수 호출
    $(document).ready(function() {
       let isPasswordShown = false;
 
@@ -607,8 +622,10 @@ $(document).ready(function () {
 
 <script>
    var code = ""; /*인증번호 저장할 곳*/
+   
    $(document).ready(function() {
       $('#auth_btn').click(function() {
+    	  alert('인증번호가 전송되었습니다.');
          var email = $('#address').val(); /*입력한 이메일*/
          console.log('완성된 이메일 : ' + email); /* 이메일 오는지 확인*/
          var checkInput = $('.mail-check-input'); /* 인증번호 입력 */
@@ -623,7 +640,7 @@ $(document).ready(function () {
                console.log("data : " + data);
                checkInput.prop('disabled', false); /* 데이터가 성공적으로 들어오면 인증번호 입력란이 활성화되도록 */
                code = data;
-               alert('인증번호가 전송되었습니다.');
+               
             },
             error : function(xhr, status, error) {
                console.error("Error:", error);

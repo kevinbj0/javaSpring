@@ -71,12 +71,14 @@ public class scrollController {
 		return map;
 	}
 
+	//검색 기능
 	@ResponseBody
 	@GetMapping("/search")
 	public List<ScrollDTO> searchGet(String searchTerm) {
 		return service.getSearchList(searchTerm);
 	}
 	
+	//관심상품 목록
 	@ResponseBody
 	@PostMapping("/likeList")
 	public List<ScrollDTO> likeList(String userId) {
@@ -98,7 +100,7 @@ public class scrollController {
 	@ResponseBody
 	@GetMapping("/sellList")
 	public List<ScrollDTO> sellGet(String user_code) {
-		System.out.println("유저코드(판매내역) = " + user_code);
+		//System.out.println("유저코드(판매내역) = " + user_code);
 		//출력할 리스트 받아옴
 		List<ScrollDTO> list = service.getSellProducts(user_code);
 		return list;

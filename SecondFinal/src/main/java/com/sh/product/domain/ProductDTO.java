@@ -21,7 +21,7 @@ public class ProductDTO {
 	// 유저정보
 	private String user_code; // 유저 정보
 	private String user_nickname; // 유저 닉네임
-	private int likeCount;
+	private int likeCount; // 좋아요 갯수
 	
 	private String board_cate; //판매 나눔 설정
 	// getters and setters

@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class homePageController {
-
+	
+	// index페이지
 	@GetMapping("/homePage")
 	public String homePage() {
 
@@ -18,7 +19,8 @@ public class homePageController {
 
 		return "/homePage/homePage";
 	}
-
+	
+	// 동네인증 반환
 	@PostMapping("/location-form")
 	public String location(HttpSession session) {
 

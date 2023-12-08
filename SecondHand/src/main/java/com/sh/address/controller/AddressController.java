@@ -13,12 +13,14 @@ public class AddressController {
 
 	@Autowired
 	AddressServiceI service;
-
+	
+	// 주소api 호출
 	@GetMapping("/address")
 	public String addressF() {
 		return "/address/address";
 	}
-
+	
+	// 주소api form 저장
 	@PostMapping("/addressForm")
 	public String registerMember(AddressDTO addressDTO) {
 		service.registerMember(addressDTO);

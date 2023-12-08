@@ -30,6 +30,7 @@ public interface ProductServiceI {
     void deleteProduct2(String boardId);
     void deleteProduct3(String user_code);
     void deleteProduct4(String user_id);
+    void deleteProduct6(String user_code);
 
     //상품 수정
     int updateProduct(ProductDTO product);
@@ -41,13 +42,13 @@ public interface ProductServiceI {
     
    //*** 좋아요
    //좋아요 insert
-   void insertLike(String boardId, String userId);
+   void insertLike(String boardId, String userId, String user_code);
    
    //좋아요 delete
    void deleteLike(String boardId, String userId);
    
    //좋아요 클릭했는지
-   boolean likeClick(String boardId, String userId);
+   boolean likeClick(String boardId, String userId,String user_code);
    
    //관심상품 갯수
    int likeNum(String userId);

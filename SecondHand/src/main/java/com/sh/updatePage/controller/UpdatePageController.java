@@ -29,8 +29,8 @@ import com.sh.product.domain.ProductDTO;
 
 @Controller
 public class UpdatePageController {
+	// 이미지 저장 경로
 	String fileDir = "c:\\test\\upload\\";
-	
 	@Autowired
 	private LoginService loginService;
 
@@ -41,6 +41,7 @@ public class UpdatePageController {
 
 	@PostMapping("/update")
 	public String processUpdate(@ModelAttribute LoginDTO loginDTO, HttpServletRequest request) {
+		// 유저 정보 수정
 		if (loginService.updateUser(loginDTO) > 0) {
 			// 업데이트 성공
 			HttpSession session = request.getSession();
@@ -57,9 +58,9 @@ public class UpdatePageController {
 	}
 	@PostMapping("/updateusermainimg")
 	public String processUpdateMainImg(@ModelAttribute LoginDTO loginDTO,@RequestParam String user_image, @RequestParam String user_id, HttpServletRequest request) {
+		// 유저 메인 이미지 수정
 		loginDTO.setUser_id(user_id);
 		loginDTO.setUser_image(user_image);
-		System.out.println(user_image);
 	    loginService.updateUserImg(loginDTO); // 여기서 이미지만 업데이트
 	    // 업데이트 성공
 	    HttpSession session = request.getSession();
@@ -72,11 +73,12 @@ public class UpdatePageController {
 	@PostMapping("/updateuserimg")
 	public String processUpdateimg(@ModelAttribute LoginDTO loginDTO, Model model,@RequestParam String user_id, MultipartFile file,
 	        HttpServletRequest request) throws IllegalStateException, IOException {
+		// 유저 이미지 수정
 	    // ProductService를 통해 상품 수정
 
 		HttpSession session = request.getSession();
 		
-		System.out.println("파일-="+file);
+		//System.out.println("파일-="+file);
 		String fileRealName = null;
 	        loginDTO.setUser_id(user_id);
 

@@ -226,7 +226,7 @@ footer a:hover {
 	
 
 	
-      Kakao.init("c56a5ac8208747818bdaee7eb60e05ea");
+      Kakao.init("c56a5ac8208747818bdaee7eb60e05ea"); // 카카오 api javascript key
       console.log(Kakao.isInitialized());
       
       function kakaoLogin() {
@@ -235,6 +235,7 @@ footer a:hover {
             Kakao.API.request({
               url: "/v2/user/me",
               success: function (response) {
+            	// api 내 제공 받는 3개의 값 지정  
                 document.getElementById("user_kakao").value = response.id;
                 document.getElementById("nickname").value =
                   response.properties.nickname;

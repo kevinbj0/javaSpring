@@ -507,13 +507,17 @@ footer a:hover {
          }
          %>
 				<li>
-				   <img src="${path}}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
+				   <img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
 						<h2>
 						<%
 						if (user != null && selectedUser != null) {
 						%>
-						Welcome,
-						<%=firstSelectedUser.getUser_nickname()%>님
+						<form action="${path}/myPage" method="post">
+							<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+							<button type="submit">
+							Welcome, ${selectedUser.user_nickname}님
+							</button>
+						</form>
 					</h2>
 				</li>
 				<li>
@@ -610,20 +614,10 @@ footer a:hover {
 		
 		
 		<div class="product_wrap">
-
 		</div>
 		
 		     <button id="myBtn" title="Go to top">Top</button>
-     <footer>
-      &copy; 2023 에이콘아카데미 최종프로젝트 <br>
-      <p><a href="https://github.com/dhdl2389">조장: 김재열</a> |
-      <a href="https://github.com/mvcfvsgdj">조원: 김민규 </a> |
-      <a href="https://github.com/kevinbj0">조원: 김병진 </a> |
-      <a href="https://github.com/LeeJungHoon1">조원: 이정훈 </a> |
-      <a href="https://github.com/lepio1999">조원: 허재혁 </a></p>
-      
-      
-   </footer>
+
 </body>
 <script>
     let user_code = "${user.user_code}";
@@ -635,7 +629,7 @@ footer a:hover {
 		if (!loading) {
 			loading = true;
 			$.ajax({
-				url: "${path}}/products/upEvent",
+				url: "${path}/products/upEvent",
 				type: "POST",
 		        data: {
 		        	boardId: boardId
@@ -657,7 +651,7 @@ footer a:hover {
 		if (!loading) {
 			loading = true;
 			$.ajax({
-				url: "${path}}/sellList?user_code="+user_code,
+				url: "${path}/sellList?user_code="+user_code,
 				type: "GET",
 				success: function(data) {
 					console.log("성공");
@@ -684,7 +678,7 @@ footer a:hover {
 	   			str += `     	 
 	    	      <div class="sell_Wrap">
 	    	        <div class="sell_image_box">
-	    	          <div class="sell_image" style="background-image: url('${path}}/images/<%="${item.board_img}" %>')"></div>
+	    	          <div class="sell_image" style="background-image: url('${path}/images/<%="${item.board_img}" %>')"></div>
 	    	        </div>
 	    	        <div class="sell_content_box">
 	    	          <div class="sell_Title_box">

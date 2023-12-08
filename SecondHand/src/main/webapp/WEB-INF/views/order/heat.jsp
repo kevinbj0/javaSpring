@@ -368,16 +368,19 @@ footer a:hover {
    </li>     <%
          }
          %>
-            <li><img
-               src="${path}}/images/<%=firstSelectedUser.getUser_image()%>"
-               style="border-radius: 50%; width: 100px; height: 100px;">
+            <li><img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
                   <%
                   if (user != null && selectedUser != null) {
                   %>
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
-               </h2></li>
+               	<form action="${path}/myPage" method="post">
+					<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+					<button type="submit">
+					Welcome, ${selectedUser.user_nickname}님
+					</button>
+				</form>
+               </h2>
+            </li>
             <li>
                <form action="${path}/myPage" method="post">
                   <input type="hidden" name="user_code"
@@ -508,9 +511,12 @@ footer a:hover {
 
 
 <script>
+	// 사용자의 초기온도 정보 서버에서 받아오기
     let user_heat = ${user_heat};
+    // 사용자가 클릭한 버튼의 인덱스를 저장하는 변수
     let clickedIndex = -1;
-
+	
+    //버튼 클릭시 호출되는 함수
     function evabtn(value, button) {
         // 현재 클릭한 버튼의 인덱스 찾기
         const buttons = document.querySelectorAll('.eva');
@@ -528,7 +534,7 @@ footer a:hover {
                 buttons[i].classList.add('selected');
             }
 
-            // 값 업데이트
+            // 사용자의 온도 값 업데이트
             user_heat += parseFloat(value);
             updateTemperature(user_heat);
 
@@ -536,21 +542,24 @@ footer a:hover {
             clickedIndex = currentIndex;
         }
     }
-
+	
+    // 버튼에 호버시 호출되는 함수 
     function hoverbtn(button) {
         const index = Array.from(document.querySelectorAll('.eva')).indexOf(button);
         for (let i = index; i < document.querySelectorAll('.eva').length; i++) {
             document.querySelectorAll('.eva')[i].classList.add('hovered');
         }
     }
-
+	
+    // 버튼에 호버를 해제할 때 호출 되는 함수 
     function unhoverbtn(button) {
         const index = Array.from(document.querySelectorAll('.eva')).indexOf(button);
         for (let i = index; i < document.querySelectorAll('.eva').length; i++) {
             document.querySelectorAll('.eva')[i].classList.remove('hovered');
         }
     }
-
+	
+    // 온도를 업데이트하고 화면에 표시되는 함수
     function updateTemperature(temperature) {
         document.getElementById("temperature").innerHTML = '온도: ' + temperature.toFixed(1);
         document.getElementById("temperatureInput").value = temperature.toFixed(1);

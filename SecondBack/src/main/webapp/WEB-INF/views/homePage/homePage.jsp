@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Welcome Page</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -493,10 +494,10 @@ footer a:hover {
 <body>
 
 	<%
-   LoginDTO user = (LoginDTO) session.getAttribute("user");
-   LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
-   List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
-   %>
+	LoginDTO user = (LoginDTO) session.getAttribute("user");
+	LoginDTO selectedUser = (LoginDTO) session.getAttribute("selectedUser");
+	List<Object> chatList = (List<Object>) request.getAttribute("chatList"); // chatList 추가
+	%>
 
 
 
@@ -510,10 +511,10 @@ footer a:hover {
 			<ul>
 
 				<%
-            if (user != null && selectedUser != null) {
-               LoginDTO firstSelectedUser = selectedUser;
-               if ("admin".equals(firstSelectedUser.getUser_id())) {
-            %>
+				if (user != null && selectedUser != null) {
+					LoginDTO firstSelectedUser = selectedUser;
+					if ("admin".equals(firstSelectedUser.getUser_id())) {
+				%>
 
 				<li>
 					<form action="${path}/admin" method="post">
@@ -521,20 +522,18 @@ footer a:hover {
 					</form>
 				</li>
 				<%
-            }
-            %>
-				<li>
-				<img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
+				}
+				%>
+				<li><img src="${selectedUser.user_image}"
+					style="border-radius: 50%; width: 100px; height: 100px;">
 					<h2>
 						<form action="${path}/myPage" method="post">
 							<input type="hidden" name="user_code"
 								value="${selectedUser.user_code}">
-							<button type="submit">
-								Welcome, ${selectedUser.user_nickname}님
-							</button>
+							<button type="submit">Welcome,
+								${selectedUser.user_nickname}님</button>
 						</form>
-					</h2>
-				</li>
+					</h2></li>
 				<li>
 					<form action="${path}/myPage" method="post">
 						<input type="hidden" name="user_code"
@@ -573,8 +572,8 @@ footer a:hover {
 					</form>
 				</li>
 				<%
-            } else {
-            %>
+				} else {
+				%>
 				<li><h2>로그인이 필요한 서비스입니다.</h2></li>
 				<li>
 					<form action="${path}/login">
@@ -582,8 +581,8 @@ footer a:hover {
 					</form>
 				</li>
 				<%
-            }
-            %>
+				}
+				%>
 			</ul>
 		</div>
 
@@ -593,8 +592,8 @@ footer a:hover {
 
 
 		<%
-      if (user != null && selectedUser != null) {
-      %>
+		if (user != null && selectedUser != null) {
+		%>
 		<form action="${path}/localproductList" method="post">
 			<input type="hidden" name="newLocation" value="${detail_loc}" />
 			<button id="localTransactionButton" type="submit">동네거래</button>
@@ -610,8 +609,8 @@ footer a:hover {
         });
     </script>
 		<%
-      } else {
-      %>
+		} else {
+		%>
 		<button id="loginAlertButton" type="button">동네거래</button>
 		<script>
         document.getElementById("loginAlertButton").addEventListener("click", function() {
@@ -620,14 +619,14 @@ footer a:hover {
         });
     </script>
 		<%
-      }
-      %>
+		}
+		%>
 
 
 
 		<%
-      if (user != null && selectedUser != null) {
-      %>
+		if (user != null && selectedUser != null) {
+		%>
 		<!-- 동네 인증 -->
 		<form id="location_form" method="post" action="location_form">
 			<!-- 모달요소 -->
@@ -650,8 +649,8 @@ footer a:hover {
 				value="${detail_loc}" />
 		</form>
 		<%
-      } else {
-      %>
+		} else {
+		%>
 		<button id="find-me1">동네인증</button>
 		<script>
          document.getElementById("find-me1").addEventListener("click", function() {
@@ -660,27 +659,27 @@ footer a:hover {
         });
          </script>
 		<%
-      }
-      %>
+		}
+		%>
 
 
 
 		<%
-      if (user != null && selectedUser != null) {
-         LoginDTO firstSelectedUser = selectedUser;
-      %>
+		if (user != null && selectedUser != null) {
+			LoginDTO firstSelectedUser = selectedUser;
+		%>
 		<form action="${path}/logout" method="post">
 			<button type="submit">로그아웃</button>
 		</form>
 		<%
-      } else {
-      %>
+		} else {
+		%>
 		<form action="${path}/login">
 			<button type="submit">로그인</button>
 		</form>
 		<%
-      }
-      %>
+		}
+		%>
 	</header>
 
 	<!-- Your page content here -->
@@ -696,20 +695,20 @@ footer a:hover {
 				보기</a> <a class="link2"
 				href="https://dbdiagram.io/d/653b74c9ffbf5169f092c009">알아보기</a>
 			<%
-         if (user != null && selectedUser != null) {
-            LoginDTO firstSelectedUser = selectedUser;
-         %>
+			if (user != null && selectedUser != null) {
+				LoginDTO firstSelectedUser = selectedUser;
+			%>
 
 			<%
-         } else {
-         %><p>지금 저희와 함께하세요.</p>
+			} else {
+			%><p>지금 저희와 함께하세요.</p>
 			<form id="saveForm" method="post" action="${path}/saveForm">
 				<a class="link2" href="${path}/shSaveUser">회원가입</a>
 			</form>
 
 			<%
-         }
-         %>
+			}
+			%>
 
 
 		</div>
@@ -737,8 +736,8 @@ footer a:hover {
 			</p>
 
 			<%
-         if (user != null && selectedUser != null) {
-         %>
+			if (user != null && selectedUser != null) {
+			%>
 			<form action="${path}/localproductList" method="post">
 				<input type="hidden" name="newLocation" value="${detail_loc}" />
 				<button id="localTransactionButton1" type="submit">동네거래</button>
@@ -754,8 +753,8 @@ footer a:hover {
     });
 </script>
 			<%
-         } else {
-         %>
+			} else {
+			%>
 			<button id="loginAlertButton1" type="button"
 				onclick="redirectToLogin()">동네거래</button>
 			<script>
@@ -765,8 +764,8 @@ footer a:hover {
     }
 </script>
 			<%
-         }
-         %>
+			}
+			%>
 			<form action="${path}/scrollHome">
 				<button type="submit">중고거래</button>
 			</form>
@@ -775,37 +774,8 @@ footer a:hover {
 
 	</div>
 
-	<div class="main3">
-		<div class="column-wrapper">
-			<div class="column">
-				<img
-					src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
 
-				<img
-					src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
-			</div>
-			<div class="column">
-				<img
-					src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
-				<img
-					src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-			</div>
-			<div class="column">
-				<!-- 이미지 추가 -->
-			</div>
-		</div>
-	</div>
-	<div class="main4">test</div>
+
 	<button id="myBtn" title="Go to top">Top</button>
 	<footer>
 		&copy; 2023 에이콘아카데미 최종프로젝트 <br>
@@ -824,10 +794,14 @@ footer a:hover {
 
 	<script>
       function success(position) {
+    	// 현재 위치의 위도와 경도 추출
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
+        
+   	    // 현재 위치 상태 표시
         const status = document.querySelector("#status");
-        const mapLink = document.querySelector("#map-link");
+        // 맵 링크 초기화	
+   	    const mapLink = document.querySelector("#map-link");
 
         status.textContent =
           "동네 인증";
@@ -836,15 +810,16 @@ footer a:hover {
           "";
         mapLink.textContent =
            "";
-
+        // Kakao Maps API를 사용하여 현재 위치를 지도에 표시
         var mapContainer = document.getElementById("map"),
           mapOption = {
             center: new kakao.maps.LatLng(latitude, longitude),
+         // 지도 크기 레벨 지정
             level: 3,
           };
 
         var map = new kakao.maps.Map(mapContainer, mapOption);
-
+		// 카카오 맵 api 마커 부분
         var markerPosition = new kakao.maps.LatLng(latitude, longitude);
 
         var marker = new kakao.maps.Marker({
@@ -855,13 +830,14 @@ footer a:hover {
         var geocoder = new kakao.maps.services.Geocoder();
 
         var infowindow = new kakao.maps.InfoWindow({ zindex: 1 });
-
+        // 지도 클릭 시 위치 정보 확인
         kakao.maps.event.addListener(map, "click", function (mouseEvent) {
           searchDetailAddrFromCoords(
             mouseEvent.latLng,
             function (result, status) {
               if (status === kakao.maps.services.Status.OK) {
-                var detailAddr = !!result[0].road_address
+            	// 클릭한 위치의 주소 정보 가져오기
+            	  var detailAddr = !!result[0].road_address
                   ? "<div>도로명주소 : " +
                     result[0].road_address.address_name +
                     "</div>"
@@ -870,7 +846,7 @@ footer a:hover {
                   "<div>지번 주소 : " +
                   result[0].address.address_name +
                   "</div>";
-
+               // 정보를 마커와 인포윈도우를 통해 지도 상에 표시
                 var content =
                   '<div class="bAddr">' +
                   '<span class="title">현재 주소정보</span>' +
@@ -886,24 +862,28 @@ footer a:hover {
             }
           );
         });
-
+		
+     // 모달에 위치 정보 표시
         kakao.maps.event.addListener(map, "click", function (mouseEvent) {
              const newLatitude = mouseEvent.latLng.getLat();
              const newLongitude = mouseEvent.latLng.getLng();
 
              const newLocation = checkLocation(newLatitude, newLongitude);
+             // 콘솔에 새로운 위치 정보 로깅	
              console.log("New location:", newLocation);
 
              const modalContent = document.getElementById("modal-content");
              let newLocationElement = modalContent.querySelector("#new-location");
              if (!newLocationElement) {
-               newLocationElement = document.createElement("div");
+            	 // 새로운 위치 정보 엘리먼트 생성
+            	 newLocationElement = document.createElement("div");
                newLocationElement.id = "new-location";
                modalContent.appendChild(newLocationElement);
              }
 
              if (typeof newLocation === "object" && Object.keys(newLocation).length !== 0) {
-                const detailLoc = newLocation.detail_loc;
+            	   // 새로운 위치가 확인되면 모달에 표시
+            	 const detailLoc = newLocation.detail_loc;
                newLocationElement.textContent =
                  "인증되었습니다. 현재위치:" +
                  newLocation.locCode +
@@ -914,46 +894,45 @@ footer a:hover {
                  "이고, 경도는 " +
                  newLongitude +
                  "입니다.";
-            // newLocation 값을 input에 할당
+            // 새로운 위치 값을 입력란에 할당
                document.getElementById("location-input").value = newLocation.locCode + " - " + newLocation.detail_loc;
              } else {
+            	 // 새로운 위치가 확인되지 않으면 콘솔에 로그 출력
                console.log("New location:", newLocation);
                newLocationElement.textContent = newLocation;
+               // 새로운 위치 값을 입력란에 할당
                document.getElementById("location-input").value = newLocation;
              }
            });
-
+        // 지도 이동 시 중앙 위치 정보 표시
         kakao.maps.event.addListener(map, "idle", function () {
           searchAddrFromCoords(map.getCenter(), displayCenterInfo);
         });
-
+        // 좌표를 이용하여 주소를 검색하는 함수
         function searchAddrFromCoords(coords, callback) {
           geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
         }
-
+        // 좌표를 이용하여 상세한 주소 정보를 검색하는 함수
         function searchDetailAddrFromCoords(coords, callback) {
           geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
         }
-
+		
+    	 // 검색 결과를 받아와서 처리하는 함수
         function displayCenterInfo(result, status) {
           if (status === kakao.maps.services.Status.OK) {
+        	  // 중심 위치 주소를 표시할 요소
             var infoDiv = document.getElementById("centerAddr");
 
-            for (var i = 0; i < result.length; i++) {
-              if (result[i].region_type === "H") {
-                infoDiv.innerHTML = result[i].address_name;
-                break;
-              }
-            }
           }
         }
       }
-
+      // 현재 위치 찾기 오류 처리
       function error() {
         const status = document.querySelector("#status");
         status.textContent = "확인되지 않은 위치입니다.";
       }
-
+		
+      // Geolocation API를 통해 현재 위치 찾기
       function geoFindMe() {
         const status = document.querySelector("#status");
         const mapLink = document.querySelector("#map-link");
@@ -962,15 +941,19 @@ footer a:hover {
         mapLink.textContent = "";
 
         if (!navigator.geolocation) {
+       	// Geolocation API가 지원되지 않는 경우
           status.textContent = "";
         } else {
+        // Geolocation API를 통해 현재 위치 찾기
           status.textContent = "";
           navigator.geolocation.getCurrentPosition(success, error);
         }
       }
-
+		
+      
+   // 두 지점 간의 거리 계산 (Haversine 공식 사용)
       function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-        const R = 6371;
+        const R = 6371; // 지구의 반지름 (단위: km
         const dLat = deg2rad(lat2 - lat1);
         const dLon = deg2rad(lon2 - lon1);
         const a =
@@ -980,14 +963,14 @@ footer a:hover {
             Math.sin(dLon / 2) *
             Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const d = R * c;
+        const d = R * c; // 두 지점 간의 거리 (단위: km)
         return d;
       }
-
+   // 각도를 라디안(호도법)으로 변환
       function deg2rad(deg) {
         return deg * (Math.PI / 180);
       }
-
+   // 현재 위치 주변의 가까운 위치 찾기 및 사용자에게 선택지 제공	
       function checkLocation(latitude, longitude) {
         let minDistance = Infinity;
         let closestLocations = [];
@@ -1389,35 +1372,44 @@ footer a:hover {
         const desiredRange = 5; // 변경하고자 하는 거리 범위 (단위: km)
 
         for (let location of locations) {
-           
-           console.log("location"+  location.locCode);
-          const distance = getDistanceFromLatLonInKm(
-            latitude,
-            longitude,
-            location.latitude,
-            location.longitude
-          );
+        	  // 각 위치에 대한 반복문 시작
 
-          if (distance <= desiredRange) {
-            ////    0   <= 1
-            locationsWithinRange.push(location); //   ok
-          }
+        	  // 해당 위치의 locCode를 콘솔에 출력
+        	  console.log("location" + location.locCode);
 
-          if (distance < minDistance) {
-            //
-            minDistance = distance; //  처음
-            closestLocations = [location];
-          } else if (distance === minDistance) {
-            closestLocations.push(location);
-          }
-        }
+        	  // 현재 위치와 대상 위치 간의 거리 계산
+        	  const distance = getDistanceFromLatLonInKm(
+        	    latitude,
+        	    longitude,
+        	    location.latitude,
+        	    location.longitude
+        	  );
+
+        	  // 대상 위치가 사용자가 지정한 범위 이내에 있다면
+        	  if (distance <= desiredRange) {
+        	    // 해당 위치를 범위 내의 위치 배열에 추가
+        	    locationsWithinRange.push(location);
+        	  }
+
+        	  // 최소 거리 갱신 처리
+        	  if (distance < minDistance) {
+        	    // 최소 거리를 처음으로 갱신하는 경우
+        	    minDistance = distance;
+        	    closestLocations = [location];
+        	  } else if (distance === minDistance) {
+        	    // 최소 거리와 동일한 거리인 경우, 가장 가까운 위치 배열에 추가
+        	    closestLocations.push(location);
+        	  }
+        	}
         
         
         
         if (locationsWithinRange.length > 0) {
             if (locationsWithinRange.length === 1) {
+            	  // 주변에 하나의 위치가 있는 경우
                 return locationsWithinRange[0].detail_loc;
             } else {
+            	 // 여러 위치가 주변에 있는 경우 사용자에게 선택지 제공
                 let userChoice;
                 do {
                     userChoice = prompt(

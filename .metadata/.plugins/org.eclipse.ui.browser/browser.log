@@ -242,3 +242,19 @@
 11월 27, 2023 13:38:41.559 NEW SESSION
 11월 27, 2023 13:38:41.560 [2480:10216:1127/133841.556:ERROR:get_updates_processor.cc(263)] PostClientToServerMessage() failed during GetUpdates with error Network error (ERR_ABORTED)
 11월 27, 2023 14:39:11.685 [9120:4444:1127/143911.685:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+12월 06, 2023 11:44:30.372 NEW SESSION
+12월 06, 2023 11:44:30.372 [3280:12272:1206/114430.368:ERROR:get_updates_processor.cc(263)] PostClientToServerMessage() failed during GetUpdates with error Network error (ERR_ABORTED)
+12월 06, 2023 14:29:53.568 [2396:624:1206/142953.567:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+12월 06, 2023 14:36:18.425 [2396:4860:1206/143618.424:ERROR:cert_issuer_source_aia.cc(34)] Error parsing cert retrieved from AIA (as DER):
+12월 06, 2023 14:36:18.426 ERROR: Couldn't read tbsCertificate as SEQUENCE
+12월 06, 2023 14:36:18.427 ERROR: Failed parsing Certificate
+12월 06, 2023 14:36:18.428 
+12월 06, 2023 14:36:18.631 [2396:4860:1206/143618.630:ERROR:cert_verify_proc_builtin.cc(696)] CertVerifyProcBuiltin for weblog.i2max.co.kr failed:
+12월 06, 2023 14:36:18.631 ----- Certificate i=0 (CN=weblog.i2max.co.kr) -----
+12월 06, 2023 14:36:18.632 ERROR: Time is after notAfter
+12월 06, 2023 14:36:18.633 
+12월 06, 2023 14:36:18.633 
+
+12월 08, 2023 09:26:24.26 NEW SESSION
+12월 08, 2023 09:26:24.26 [17384:6120:1208/092624.023:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost

@@ -17,7 +17,7 @@ public class AddressRepositoryRealImp implements AddressRepositoryI {
 
 	@Override
 	public int insert(AddressDTO addressDTO) {
-
+		// 주소저장
 		return session.insert(namespace + "insertUser", addressDTO);
 	}
 

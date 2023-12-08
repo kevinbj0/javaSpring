@@ -4,7 +4,7 @@ import com.sh.saveUser.domain.UserDTO;
 
 public interface UserMemberService {
 
-	public int registerMember(UserDTO userDTO);
+	public int registerMember(UserDTO userDTO);// 회원가입
 
-	public boolean isUserIdExists(String user_id);
+	public boolean isUserIdExists(String user_id); // 아이디 중복확인
 }

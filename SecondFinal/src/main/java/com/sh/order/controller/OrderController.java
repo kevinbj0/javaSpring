@@ -30,6 +30,7 @@ public class OrderController {
 
 	@GetMapping("/order")
 	public String productOrder(@RequestParam String boardId, Model model, HttpSession session) {
+		// 주문테이블 생성
 	    ProductDTO product = productservice.getProductById(boardId);
 	    List<ProductDTO> productList = new ArrayList<>(); // 새로운 리스트를 생성합니다.
 
@@ -45,6 +46,7 @@ public class OrderController {
 	@GetMapping("/showOrder")
 	public String showOrder(HttpSession session, Model model) {
 		
+		// 사용자의 구매내역서 조회
 		LoginDTO loggedInUser = (LoginDTO) session.getAttribute("user");
 		List<OrderDTO> orderList = service.getOrdersByUserCode(loggedInUser.getUser_id());
 		model.addAttribute("user", loggedInUser);
@@ -55,6 +57,7 @@ public class OrderController {
 
 	@PostMapping("/orderForm")
 	public String registerOrder(OrderDTO orderDTO) {
+		// 구매내역서 저장
 		service.registerOrder(orderDTO);
 		return "/homePage/homePage";
 	}

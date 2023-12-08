@@ -15,13 +15,13 @@ public class UserRepositoryRealImp implements UserMemberRepositoryI {
 
 	@Override
 	public int insert(UserDTO userDTO) {
-
+		//회원가입
 		return session.insert(namespace + "insertUser", userDTO);
 	}
 
 	@Override
 	public boolean getUserById(String user_id) {
-
+		// 아이디 중복확인
 		UserDTO user = session.selectOne(namespace + "getUserById", user_id);
 
 		return user != null;

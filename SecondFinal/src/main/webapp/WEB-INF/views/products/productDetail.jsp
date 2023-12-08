@@ -839,7 +839,8 @@ footer a:hover {
                            type="hidden" name="board_id" value="${product.board_Id}"
                            required><br>
                        <input type="hidden" name="board_Title" value="${product.board_Title}" required><br> 
-                           <input type="hidden" name="user_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="sell_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="buy_nickname" value="${selectedUser.user_nickname}" required><br>
                            <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
                             <input type="hidden" name="board_Img" value="${product.board_Img}" required><br>
                            
@@ -875,8 +876,8 @@ footer a:hover {
                            type="hidden" name="board_id" value="${product.board_Id}"
                            required><br>
                        <input type="hidden" name="board_Title" value="${product.board_Title}" required><br> 
-                           <input type="hidden" name="user_nickname" value="${product.user_nickname}" required><br>
-                           <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
+ 							<input type="hidden" name="sell_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="buy_nickname" value="${selectedUser.user_nickname}" required><br>                           <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
                             <input type="hidden" name="board_Img" value="${product.board_Img}" required><br>
                            
                         <button type="submit">채팅신청하기</button>

@@ -5,6 +5,7 @@
 <%@ page import="com.sh.login.domain.LoginDTO"%>
 <%@ page import="com.sh.order.domain.OrderDTO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+ <html xmlns:th="http://www.thymeleaf.org">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -407,6 +408,9 @@ footer a:hover {
 
 
 
+
+
+
    <c:set var="user" value="${sessionScope.user}" />
    <c:set var="selectedUserList" value="${sessionScope.selectedUser}" />
 
@@ -441,16 +445,19 @@ footer a:hover {
    </li>     <%
          }
          %>
-               <li><img
-                  src="${path}}/images/<%=firstSelectedUser.getUser_image()%>"
-                  style="border-radius: 50%; width: 100px; height: 100px;">
+               <li><img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
                   <h2>
                      <%
                      if (user != null && selectedUser != null) {
                      %>
-                     Welcome,
-                     <%=firstSelectedUser.getUser_nickname()%>님
-                  </h2></li>
+                     <form action="${path}/myPage" method="post">
+						<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+						<button type="submit">
+						Welcome, ${selectedUser.user_nickname}님
+						</button>
+					</form>
+                  </h2>
+               </li>
                <li>
                   <form action="${path}/myPage" method="post">
                      <input type="hidden" name="user_code"
@@ -613,7 +620,7 @@ footer a:hover {
       }
    </script>
 
-
+ 
 
 
    <footer>

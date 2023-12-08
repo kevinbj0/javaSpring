@@ -36,6 +36,7 @@ import com.sh.product.service.ProductService;
 
 @Controller
 public class ProductController {
+	//이미지 저장경로
 	String fileDir = "c:\\test\\upload\\";
 
 	@Autowired
@@ -46,6 +47,7 @@ public class ProductController {
 
 	@GetMapping("/products")
 	public String getProductList(@ModelAttribute ProductDTO productDTO, HttpServletRequest request) {
+		// 상품 목록 조회
 		// ProductService를 통해 상품 목록을 가져와서 모델에 추가
 		HttpSession session = request.getSession();
 		List<ProductDTO> products = productservice.getProductList();
@@ -60,7 +62,7 @@ public class ProductController {
 
 	@GetMapping("/products/detail")
 	   public String showProductDetail(@RequestParam String boardId,@RequestParam String user_code, Model model, HttpServletRequest request) {
-
+		  // 상품상세
 	      String user_heat = loginService.selectHeat(user_code);
 	      model.addAttribute("user_heat", user_heat);
 
@@ -88,6 +90,7 @@ public class ProductController {
 	   //끌어올리기
 	   @PostMapping("/products/updateDate")
 	   public String updateDate(@RequestParam String boardId) {
+		   //상품 수정
 	      productservice.updateDate(boardId);
 	      return "redirect:/scrollHome";
 	   }
@@ -104,6 +107,7 @@ public class ProductController {
 
 	@GetMapping("/products/add")
 	public String showAddProductForm(Model model) {
+		// 상품 등록
 		String categoriesJson = productservice.getAllCategoriesJson();
 
 		// System.out.println(json2);
@@ -125,7 +129,7 @@ public class ProductController {
 		String fileRealName = "";
 		if (!file.isEmpty()) {
 			fileRealName = file.getOriginalFilename();
-			System.out.println(fileRealName);
+		//	System.out.println(fileRealName);
 			String fullPath = fileDir + fileRealName; // "C:\\test\\upload\\test.jpg"
 			file.transferTo(new File(fullPath));
 			model.addAttribute("fileName", fileRealName);
@@ -134,16 +138,11 @@ public class ProductController {
 		product.setBoard_Img(fileRealName);
 		productservice.insertProductData(product);
 
-//           System.out.println("Title: " + product.getBoard_Title());
-//           System.out.println("Price: " + product.getBoard_Price());
-//           System.out.println("Description: " + product.getBoard_Text());
-//           System.out.println("Image URL: " + product.getBoard_Img());
 
 		return "redirect:/scrollHome";
 	}
 
-	///////////////////////////// 상품 업데이트
-	///////////////////////////// /////////////////////////////////////////////////////////////////////
+	///////////////////////////// 상품 업데이트 /////////////////
 
 	@GetMapping("/products/update")
 	public String updateProductForm(ProductDTO product, @RequestParam String boardId, Model model) {
@@ -190,8 +189,7 @@ public class ProductController {
 		}
 	}
 
-	///////////////////////////// 상품삭제
-	///////////////////////////// /////////////////////////////////////////////////////////////////////
+	///////////////////////////// 상품삭제 /////////////////////////////
 	@PostMapping("/products/delete")
 	public String productDelete(@RequestParam String boardId, Model model) {
 		ProductDTO product = productservice.getProductById(boardId);
@@ -201,8 +199,7 @@ public class ProductController {
 		return "redirect:/scrollHome";
 	}
 
-	///////////////////// 이미지 저장경로,저장하는 코드
-	///////////////////// //////////////////////////////////////////////////////////////
+	///////////////////// 이미지 저장경로,저장하는 코드 ///////////////////// 
 	@ResponseBody
 	@RequestMapping(value = "/images/{fileName:.*}", method = RequestMethod.GET)
 	public Resource imageView(@PathVariable String fileName) throws MalformedURLException {

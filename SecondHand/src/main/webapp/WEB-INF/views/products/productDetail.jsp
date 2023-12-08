@@ -597,13 +597,17 @@ footer a:hover {
          }
          %>
             <li>
-               <img src="${path}/images/<%=firstSelectedUser.getUser_image()%>" style="border-radius: 50%; width: 100px; height: 100px;">
+               <img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
                   <h2>
                   <%
                   if (user != null && selectedUser != null) {
                   %>
-                  Welcome,
-                  <%=firstSelectedUser.getUser_nickname()%>님
+                  	<form action="${path}/myPage" method="post">
+						<input type="hidden" name="user_code" value="${selectedUser.user_code}">
+						<button type="submit">
+						Welcome, ${selectedUser.user_nickname}님
+						</button>
+					</form>
                </h2>
             </li>
             <li>
@@ -835,7 +839,8 @@ footer a:hover {
                            type="hidden" name="board_id" value="${product.board_Id}"
                            required><br>
                        <input type="hidden" name="board_Title" value="${product.board_Title}" required><br> 
-                           <input type="hidden" name="user_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="sell_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="buy_nickname" value="${selectedUser.user_nickname}" required><br>
                            <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
                             <input type="hidden" name="board_Img" value="${product.board_Img}" required><br>
                            
@@ -871,8 +876,8 @@ footer a:hover {
                            type="hidden" name="board_id" value="${product.board_Id}"
                            required><br>
                        <input type="hidden" name="board_Title" value="${product.board_Title}" required><br> 
-                           <input type="hidden" name="user_nickname" value="${product.user_nickname}" required><br>
-                           <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
+ 							<input type="hidden" name="sell_nickname" value="${product.user_nickname}" required><br>
+                           <input type="hidden" name="buy_nickname" value="${selectedUser.user_nickname}" required><br>                           <input type="hidden" name="board_Price" value="${product.board_Price}" required><br>
                             <input type="hidden" name="board_Img" value="${product.board_Img}" required><br>
                            
                         <button type="submit">채팅신청하기</button>

@@ -16,24 +16,25 @@ public class OrderServiceImp implements OrderServiceI {
 
    @Override
    public int registerOrder(OrderDTO orderDTO) {
-
+	   // 주문내역서 저장
       return dao.insert(orderDTO);
    }
 
    @Override
    public List<OrderDTO> getOrdersByUserCode(String user_id) {
 
-      System.out.println("dkfkfkf" + user_id);
+      // 유저코드에 맞는 유저구매내역 조회
       return dao.getOrdersByUserCode(user_id);
    }
 
    @Override
    public String selectBoardId(String board_id) {
-      
+      // 게시글 아이디 조회
       return dao.selectBoardId(board_id);
    }
    @Override
    public void deleteProduct5(String user_id) {
+	   // 주문내역 삭제
 	   dao.deleteProduct5(user_id);
    }
 

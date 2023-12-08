@@ -16,7 +16,7 @@ public class AddressServiceImp implements AddressServiceI {
 
 	@Override
 	public int registerMember(AddressDTO addressDTO) {
-
+		//주소저장
 		return dao.insert(addressDTO);
 	}
 

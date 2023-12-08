@@ -57,9 +57,9 @@ header h2 {
 }
 
 .menu-icon {
-    justify-content: center;
-    align-items: center;
-    display: flex;
+   justify-content: center;
+   align-items: center;
+   display: flex;
    order: -1;
    font-size: 24px;
    cursor: pointer;
@@ -112,7 +112,6 @@ header.menu-open h2 {
    display: flex;
    margin: 0px 0px 0px 0px;
 }
-
 
 header.menu-open {
    flex-direction: column;
@@ -179,7 +178,7 @@ header.menu-open h2 {
 }
 
 #sort {
-    color: #cfcfcf;
+   color: #cfcfcf;
    width: 749px;
    display: flex;
    align-items: center;
@@ -198,7 +197,7 @@ header.menu-open h2 {
 
 #sort button {
    margin: 0px 6px 0px 6px;
-   width:101px;
+   width: 101px;
    padding: 4px;
    font-weight: bold;
    background-color: white;
@@ -271,7 +270,7 @@ header.menu-open h2 {
 }
 
 .card_image {
-border-radius: 12px;
+   border-radius: 12px;
    height: 223px;
    background-size: cover;
 }
@@ -316,6 +315,7 @@ border-radius: 12px;
    background: none;
    margin-right: 20px;
 }
+
 .footer {
    margin-top: 300px;
 }
@@ -406,28 +406,29 @@ border-radius: 12px;
 
       <div class="menu-container">
          <ul>
-      <% if ("admin".equals(selectedUser.getUser_id())) {
+            <% if ("admin".equals(selectedUser.getUser_id())) {
 %>
-      <li>
-            <form action="${path}/admin" method="post">
-            <button type="submit">관리자 페이지</button>
-        </form>
-   </li>     <%
+            <li>
+               <form action="${path}/admin" method="post">
+                  <button type="submit">관리자 페이지</button>
+               </form>
+            </li>
+            <%
          }
          %>
-            <li><img src="${selectedUser.user_image}" style="border-radius: 50%; width: 100px; height: 100px;">
+            <li><img src="${selectedUser.user_image}"
+               style="border-radius: 50%; width: 100px; height: 100px;">
                <h2>
                   <%
                   if (user != null && selectedUser != null) {
                   %>
-                  	<form action="${path}/myPage" method="post">
-						<input type="hidden" name="user_code" value="${selectedUser.user_code}">
-						<button type="submit">
-						Welcome, ${selectedUser.user_nickname}님
-						</button>
-					</form>
-               </h2>
-            </li>
+                  <form action="${path}/myPage" method="post">
+                     <input type="hidden" name="user_code"
+                        value="${selectedUser.user_code}">
+                     <button type="submit">Welcome,
+                        ${selectedUser.user_nickname}님</button>
+                  </form>
+               </h2></li>
             <li>
                <form action="${path}/myPage" method="post">
                   <input type="hidden" name="user_code"
@@ -449,7 +450,7 @@ border-radius: 12px;
                   <button type="submit">게시글작성</button>
                </form>
             </li>
-                 <li>
+            <li>
                <form action="${path}/sellProducts">
                   <button type="submit">판매내역</button>
                </form>
@@ -515,14 +516,16 @@ border-radius: 12px;
    </header>
 
    <div class="main-top">
-     <div id="sort">
-         <button id="srTime">최신순</button>|
-         <button id="srClick">인기순</button>|
-           <button id="srLike">관심상품</button>
+      <div id="sort">
+         <button id="srTime">최신순</button>
          |
-             <form action="${path}/products/add">
-                  <button type="submit">게시글작성</button>
-               </form>
+         <button id="srClick">인기순</button>
+         |
+         <button id="srLike">관심상품</button>
+         |
+         <form action="${path}/products/add">
+            <button type="submit">게시글작성</button>
+         </form>
          <div class="search">
             <input type="text" id="srSearch" value="" placeholder="검색어 입력">
             <img
@@ -646,15 +649,26 @@ border-radius: 12px;
                    <h2 class="card_title">    <a class="card_a" href="${path}/products/detail?boardId=<%="${item.board_id}" %>&user_code=<%="${item.user_code}"%>">
                      <%="${item.board_title}"%>
                      </a></h2>
-                <div class = "card_date"><%="${item.board_date}"%> </div>
-                <div class="card_price"><%="${item.board_price}"%> 원</div>
+                <div class = "card_date"><%="${item.board_date}"%> </div>`;
+            
+                let price = `<%="${item.board_price}"%>`;
+               if(price == 0){
+                  str+=`<div class="card_price">나눔🧡</div>`;
+               }else{
+                    str+=`<div class="card_price"><%="${item.board_price}"%> 원</div>`;
+               }
+       
+               
+               str+= `
+                
                 <div class="card_address"><%="${item.loc_code}"%>/<%="${item.detail_loc}"%></div>
                 <div class="card_count">
                  조회 <%="${item.board_click}"%>
-                   <button id = '<%="${item.board_id}"%>' class="card_like" onclick = "likeEvent('<%="${item.board_id}"%>')"></button>
+                   <button id = '<%="${item.board_id}"%>' class="card_like" onclick = "likeEvent('<%="${item.board_id}"%>','<%="${item.user_code}"%>')"></button>
                   </div>
                 </article>
                `;
+               
                //item.board_date 안들어감
       });
           
@@ -666,13 +680,14 @@ border-radius: 12px;
      //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 스크롤 기능 END
    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 관심상품 기능
     //좋아요 Insert
-   function likeEvent(boardId) {
+   function likeEvent(boardId,user_code) {
            $.ajax({
                url: "${path}/products/like",
                type: "POST",
                data: {
                    userId: userId,
-                   boardId: boardId
+                   boardId: boardId,
+                   user_code: user_code                   
                },
                success: function(data) {
                  if(data.onClick == false){

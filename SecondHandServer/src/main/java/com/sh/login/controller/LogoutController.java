@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LogoutController {
 
 	@PostMapping("/logout")
+	//로그아웃 컨트롤
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null) {

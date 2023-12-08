@@ -27,7 +27,8 @@
 	        detail_loc,
 	        board_price,
 	        board_click,
-	        board_img
+	        board_img,
+	        user_code
 	    FROM (
 	        SELECT 
 	            @rownum := 0 AS sort,
@@ -39,7 +40,8 @@
 	            detail_loc,
 	            board_price,
 	            board_click,
-	            board_img
+	            board_img,
+	            user_code
 	        FROM user_board
 	        ORDER BY board_date DESC
 	    ) AS subquery
@@ -63,7 +65,8 @@
 	        detail_loc,
 	        board_price,
 	        board_click,
-	        board_img
+	        board_img,
+	        user_code
 	    FROM (
 	        SELECT 
 	            @rownum := 0 AS sort,
@@ -75,7 +78,8 @@
 	            detail_loc,
 	            board_price,
 	            board_click,
-	            board_img
+	            board_img,
+	            user_code
 	        FROM user_board
 	        ORDER BY board_click DESC
 	    ) AS subquery
@@ -109,7 +113,8 @@
         b.board_price,
         b.board_click,
         b.board_img,
-        b.board_text
+        b.board_text,
+        b.user_code
     FROM 
         board_like l
     JOIN 
@@ -139,7 +144,8 @@
 	        detail_loc,
 	        board_price,
 	        board_click,
-	        board_img
+	        board_img,
+	        user_code
 	    FROM (
 	        SELECT 
 	            @rownum := 0 AS sort,
@@ -151,7 +157,8 @@
 	            detail_loc,
 	            board_price,
 	            board_click,
-	            board_img
+	            board_img,
+	            user_code
 	        FROM user_board
 	        WHERE detail_loc = #{detail_loc}
 	        ORDER BY board_date DESC
@@ -177,7 +184,8 @@
 	        detail_loc,
 	        board_price,
 	        board_click,
-	        board_img
+	        board_img,
+	        user_code
 	    FROM (
 	        SELECT 
 	            @rownum := 0 AS sort,
@@ -189,7 +197,8 @@
 	            detail_loc,
 	            board_price,
 	            board_click,
-	            board_img
+	            board_img,
+	            user_code
 	        FROM user_board
 	        WHERE detail_loc = #{detail_loc}
 	        ORDER BY board_click DESC

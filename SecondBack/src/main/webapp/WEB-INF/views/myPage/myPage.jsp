@@ -493,13 +493,17 @@ footer a:hover {
          });
 </script>
 
+<!-- Google Chart API -->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+	// Google Charts 라이브러리 로드 완료 후 차트 그리기
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
-
+	
+    // 차트 그리기 함수
     function drawChart() {
+    	// 서버에서 받아온 사용자 평가 데이터
         var heatData = ${updatedUserData};
         
         // 데이터가 0개인 경우
@@ -507,7 +511,7 @@ footer a:hover {
             document.getElementById('line_chart').innerHTML = "최근 평가 내용이 없습니다.";
             return;
         }
-
+		// 차트에 사용할 데이터 구성
         var chartData = [['Index', 'User Heat']];
 
         // 최근 5개 데이터만 선택
@@ -515,15 +519,17 @@ footer a:hover {
         heatData = heatData.slice(startIndex);
 
         for (var i = 0; i < heatData.length; i++) {
+        	// 각 데이터의 사용자 평가 온도와 인덱스 텍스트 설정
             var userHeat = parseFloat(heatData[i].user_heat);
             var indexText = getOrdinal(i + 1);
             chartData.push([indexText, userHeat]);
         }
-
+		// Google Charts에서 사용할 데이터로 변환
         var data = google.visualization.arrayToDataTable(chartData);
-
+		
+		// 차트 옵션 설정
         var options = {
-            title: '온도 기록',
+            title: '최근 온도 변화',
             legend: { position: 'none' },
             series: {
                 0: {
@@ -538,23 +544,26 @@ footer a:hover {
                     auraColor: 'none'
                 },
                 horizontal: [{
+                	// 특정 값을 강조하는 가로선 추가
                     value: 36.5,
                     color: '#ff0000',
                     strokeWidth: 2
                 }]
             },
             colors: ['#ff6f0f'],
-            width: 914, // Set the desired width
-            height: 703 
+            width: 914, // 차트 너비 설정
+            height: 703  // 차트 높이 설정
         };
-
+		
+		// LineChart 객체 생성
         var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
-
+		// 차트 그리기
         chart.draw(data, options);
     }
-
+	
+    // 인덱스 텍스트를 반환하는 함수
     function getOrdinal(n) {
-        var s = ["1번째 평점","2번째 평점", "3번째 평점", "4번째 평점", "5번째 평점"];
+        var s = ["펑가 1","평가 2", "평가 3", "평가 4", "평가 5"];
         return s[n - 1] || n;
     }
 </script>
@@ -835,6 +844,7 @@ footer a:hover {
 
 	<script>
     function toggleDiv(divId) {
+    	// 마이페이지와 최근 온도 평가 부분 TOGGLE SCRIPT
         var div = document.getElementById(divId);
         var otherDivId = (divId === 'user-info-div') ? 'line-chart-div' : 'user-info-div';
         var otherDiv = document.getElementById(otherDivId);

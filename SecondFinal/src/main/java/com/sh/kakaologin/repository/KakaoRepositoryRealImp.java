@@ -17,12 +17,13 @@ public class KakaoRepositoryRealImp implements KakaoMemberRepositoryI {
 
 	@Override
 	public int insert(KakaoUserDTO kakaoUserDTO) {
-
+		//카카오 유저 정보 저장
 		return session.insert(namespace + "insertUser", kakaoUserDTO);
 	}
 
 	@Override
 	public List<KakaoUserDTO> selectAll() {
+		// 카카오 유저 정보 조회
 		return session.selectList(namespace + "selectAll");
 	}
 

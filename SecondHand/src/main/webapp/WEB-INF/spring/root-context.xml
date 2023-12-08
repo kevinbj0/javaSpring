@@ -3,13 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components 
+	<!-- Root Context: defines shared resources visible to all other web components -->
 		   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
       <property name="url" value="jdbc:mysql://localhost:3306/sh_db?useUnicode=true&amp;characterEncoding=utf8"></property>
       <property name="username" value="root"></property>
       <property name="password" value="tiger"></property>
-   </bean>   -->
+   </bean>   
    
       	<!-- RDS 연결 
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -18,15 +18,17 @@
 			<property name="username" value="user" />
 			<property name="password" value="qwer1234" />
 		</bean>-->
-		
-		<!-- EC2 연결 -->
+
+		<!-- EC2 연결 	
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 			<property name="url" value="jdbc:mysql://43.201.65.22:3306/sh_db?useUnicode=true&amp;characterEncoding=utf8"></property>
 			<property name="username" value="root"></property>
 			<property name="password" value="qwer1234"></property>
-		</bean>   
-	
+		</bean>   -->
+
+
+
 		<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

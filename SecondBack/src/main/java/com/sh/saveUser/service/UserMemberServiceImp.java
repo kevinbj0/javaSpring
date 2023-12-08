@@ -15,11 +15,13 @@ public class UserMemberServiceImp implements UserMemberService {
 	@Override
 	public int registerMember(UserDTO userDTO) {
 		// TODO Auto-generated method stub
+		// 회원가입
 		return dao.insert(userDTO);
 	}
 
 	@Override
 	public boolean isUserIdExists(String user_id) {
+		// 아이디 중복확인
 		return dao.getUserById(user_id);
 	}
 }

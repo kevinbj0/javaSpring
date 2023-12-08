@@ -19,27 +19,18 @@ public class MyPageController {
    @Autowired
    LoginService loginService;
 
-//   @GetMapping("/myPage")
-//   public String myPage() {
-//      
-//      return "/myPage/myPage";
-//   }
-
+   
    @PostMapping("/myPage")
    public String myPage(@RequestParam String user_code, HttpServletRequest request) {
-
-      System.out.println("테스트" + user_code);
-
+	   // 마이페이지 form
       HttpSession session = request.getSession();
 
       List<Object> updatedUser = loginService.getHeatByUserCode(user_code);
-
-      // json객체로
+      
+      // json객체로 변환 (구글 차트 api)
       Gson gson = new GsonBuilder().create();
       String jsonResult = gson.toJson(updatedUser);
-      //return jsonResult;
-      
-      System.out.println(jsonResult);
+
 
       session.setAttribute("updatedUserData", jsonResult);
 

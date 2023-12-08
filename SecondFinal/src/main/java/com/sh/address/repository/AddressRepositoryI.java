@@ -4,6 +4,6 @@ import com.sh.address.domain.AddressDTO;
 
 public interface AddressRepositoryI {
 
-	public int insert(AddressDTO addressDTO);
+	public int insert(AddressDTO addressDTO); // 주소저장
 
 }

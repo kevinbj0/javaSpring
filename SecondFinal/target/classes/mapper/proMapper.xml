@@ -111,19 +111,23 @@
 
 
    </delete>
-
+	
+	<!-- 좋아요 삭제 -->
    <delete id="deleteProduct2" parameterType="String">
       DELETE FROM board_like
       WHERE board_id = #{board_id}
 
 
    </delete>
+   
+   <!-- 유저게시글 전체 삭제 -->
    <delete id="deleteProduct3" parameterType="String">
       DELETE FROM user_board
       WHERE user_code = #{user_code}
 
 
    </delete>
+   <!-- 유저아이디에 맞는 좋아요 삭제 -->
    <delete id="deleteProduct4" parameterType="String">
       DELETE FROM board_like
       WHERE user_id = #{user_id}

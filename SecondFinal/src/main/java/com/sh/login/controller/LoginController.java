@@ -40,11 +40,9 @@ public class LoginController {
    public String processLogin(@ModelAttribute LoginDTO loginDTO, @ModelAttribute ChatDTO chatDTO,
          HttpServletRequest request) {
       if (loginService.checkLogin(loginDTO)) {
-         // System.out.println("dfdfdf===>" + loginDTO);
-
+ 
          HttpSession session = request.getSession();
   
-
          // selectAll 메소드 호출하여 유저 정보 가져오기
          String userId = loginDTO.getUser_id();
          LoginDTO selectedUser = loginService.getLoginDTO(userId);
@@ -53,10 +51,10 @@ public class LoginController {
          // 세션에 selectedUser 저장
          session.setAttribute("selectedUser", selectedUser);
          String chatlogin = selectedUser.getUser_code();
-         System.out.println("코드뽑아오기" + chatlogin);
+        // System.out.println("코드뽑아오기" + chatlogin);
 
          List<Object> chatList = chatService.selectAllCode(chatlogin);
-         System.out.println("넘어갈때 리스트@@@@@@" + chatList);
+        // System.out.println("넘어갈때 리스트@@@@@@" + chatList);
          session.setAttribute("chatList", chatList);
 
          return "/homePage/homePage";
@@ -79,7 +77,7 @@ public class LoginController {
 	
 	
 	  
-
+   // 온도평가 및 재평가 확인
    @PostMapping("/heat")
    public String showHeatPage(HttpSession session, @RequestParam String sell_code, @RequestParam String board_id, Model model) {
        LoginDTO loggedInUser = (LoginDTO) session.getAttribute("user");
@@ -94,11 +92,9 @@ public class LoginController {
        List<Object> code = loginService.getCheckHeatByUserCode(sell_code);
 
        String checkBoardId = loginService.getCheckHeatByBoardId(board_id);
-       System.out.println("허재혁 보드아이디 체크" + checkBoardId);
-
+   
        boolean alreadyEvaluated = "T".equals(checkBoardId);
        model.addAttribute("alreadyEvaluated", alreadyEvaluated);
-       System.out.println(alreadyEvaluated);
 
        if (alreadyEvaluated) {
            // 이미 평가된 상품인 경우 alert를 추가하고 showOrder 페이지로 리디렉션
@@ -117,6 +113,7 @@ public class LoginController {
    }
    
    
+   // 온도 수정
    @PostMapping("/updateHeat")
    public String updateHeat(@ModelAttribute LoginDTO loginDTO, @RequestParam String user_heat,
          @RequestParam String check_heat,         

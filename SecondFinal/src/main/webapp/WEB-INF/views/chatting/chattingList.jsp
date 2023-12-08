@@ -566,7 +566,6 @@ footer a:hover {
 					<tr>
 						<th></th>
 						<th>상품이름</th>
-						<th>판매자 닉네임</th>
 						<th>채팅하기</th>
 						<th>채팅삭제</th>
 						<th></th>
@@ -575,7 +574,6 @@ footer a:hover {
 						<tr>
 							<td>${loop.index + 1}</td>
 							<td>${chat.board_Title}</td>
-							<td>${chat.user_nickname}</td>
 							<td>
 								<form action="${path}/inchat" method="Get" target="_blank"
 									id="chatForm">
@@ -606,10 +604,10 @@ footer a:hover {
 							<td><c:choose>
 									<c:when
 										test="${selectedUserList.getUser_code() eq chat.sell_code}">
-										<p>신청 받은 채팅</p>
+										<p>From  ${chat.buy_nickname}님</p>																
 									</c:when>
 									<c:otherwise>
-										<p>신청 한 채팅</p>
+										<p>To  ${chat.sell_nickname}</p>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>

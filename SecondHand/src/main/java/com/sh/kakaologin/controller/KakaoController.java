@@ -22,12 +22,14 @@ public class KakaoController {
 
 	@GetMapping("/login")
 	public String logintest() {
+		// 유저 로그인
 		return "/login/login";
 	}
 
 	@PostMapping("/kakaoForm")
 	public String sendData(@RequestParam String user_kakao, @RequestParam String nickname,
 			@RequestParam String profile_image, Model model) {
+		// 카카오 api호출 
 		model.addAttribute("user_kakao", user_kakao);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("profile_image", profile_image);
@@ -36,7 +38,8 @@ public class KakaoController {
 
 	@PostMapping("/saveForm")
 	public String registerMember(UserDTO userDTO) {
-		System.out.println("이미지링크 : " + userDTO.getUser_image());
+		//System.out.println("이미지링크 : " + userDTO.getUser_image());
+		// 회원가입
 		service1.registerMember(userDTO);
 		return "/login/login";
 	}

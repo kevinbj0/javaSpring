@@ -508,6 +508,7 @@ button[type="submit"][form="saveForm"]:hover {
 			<button id="localTransactionButton" type="submit">동네거래</button>
 		</form>
 		<script>
+		// 동네인증 연부 확인 로직
 			document.getElementById("localTransactionButton").addEventListener(
 					"click",
 					function(e) {
@@ -516,7 +517,7 @@ button[type="submit"][form="saveForm"]:hover {
 						if (newLocationValue.trim() === "") {
 							e.preventDefault(); // 폼 전송을 막음
 							alert("동네인증을 먼저 진행해주세요.");
-							// 여기에 동네인증 관련 코드 추가
+							
 						}
 					});
 		</script>
@@ -607,6 +608,7 @@ button[type="submit"][form="saveForm"]:hover {
 				</tr>
 
 				<c:forEach var="user" items="${userList}">
+				<!-- 회원 정보 확인 -->
 					<tr>
 						<td>${user.user_code}</td>
 						<td>${user.user_id}</td>
@@ -671,6 +673,8 @@ button[type="submit"][form="saveForm"]:hover {
 									onsubmit="return confirm(' 게시글 중 '+' ${products.board_Title}' + '을(를) 삭제합니다 .');">
 									<input type="hidden" name="boardId"
 										value="${products.board_Id}">
+											<input type="hidden" name=user_code
+										value="${products.user_code}">
 									<button type="submit">게시글 삭제</button>
 								</form>
 

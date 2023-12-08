@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class cateDTO {
 
-	String loc_code;
-	String detail_loc;
+	String loc_code; // 대분류
+	String detail_loc; // 중분류
 }
